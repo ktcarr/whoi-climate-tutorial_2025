@@ -1,0 +1,8 @@
+envs
+*.nc
+*.swp
+.DS_Store
+.ipynb_checkpoints
+_build
+docs/pages/tutorial_9-19/figs
+docs/pages/tutorial_11-7/azores_analysis_files
