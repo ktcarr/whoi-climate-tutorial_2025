@@ -7,7 +7,7 @@ In particular, you're going to valid the CESM2 climate model's ability to repres
 
 The assignment is broken down into 4 parts, detailed below (some [hints](hints) are included as well). For each part, we've highlighted what to include in your submission in a "To-do" box (you can turn in a jupyter notebook or .pdf/.doc file with solutions). A [marking guide](marking_guide) is provided at the end of the assignment, showing the number of points for each part (note 3/10 of total points come from labeling plots!).
 
-Feel free to copy and paste code from the [in-class example](../tutorial_9-19/example.ipynb) and please reach out if you run into coding issues (the intent of this assignment is not to assess your programming ability!).
+Feel free to copy and paste code from the [in-class example](../data_analysis/example.ipynb) and please reach out if you run into coding issues (the intent of this assignment is not to assess your programming ability!).
 
 ## 1) Choose a region and a climate "index"
 Start by defining a regional "climate index". The index should be a scalar metric which can be evaluated at every timestep. For example, in class we defined the Woods Hole sea surface temperature (SST) metric as the SST averaged along the coastline close to Woods Hole. For the assignment, choose a different location and/or a different variable (e.g., sea level pressure in the North Pacific). Filepaths to several variables are provided [below](filepaths). You may also want to change how the index is computed (e.g., averaging over a larger/smaller area, or defining an index as the difference between two area averages).

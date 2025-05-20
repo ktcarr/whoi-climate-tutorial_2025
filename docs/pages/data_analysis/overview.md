@@ -1,4 +1,4 @@
-# 9/19 tutorial
+# 1) Computing climate statistics
 
 <!---
 - Include EOFs here?
