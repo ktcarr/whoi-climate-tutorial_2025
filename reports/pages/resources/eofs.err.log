@@ -1,0 +1,147 @@
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import xeofs as xe
+import pandas as pd
+
+## get SLP over iceland and azores
+slp_ice = slp_anom.interp(longitude=342.5, latitude=65)
+slp_azo = slp_anom.interp(longitude=332, latitude=38.5)
+
+## put iceland/azores data in single array
+slp_2d = xr.concat([slp_ice, slp_azo], dim=pd.Index(["Iceland", "Azores"], name="posn"))
+
+## compute eofs
+model = xe.single.EOF(use_coslat=False)
+model.fit(slp_2d, dim="time")
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mNotImplementedError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 13[39m
+[32m     11[39m [38;5;66;03m## compute eofs[39;00m
+[32m     12[39m model = xe.single.EOF(use_coslat=[38;5;28;01mFalse[39;00m)
+[32m---> [39m[32m13[39m [43mmodel[49m[43m.[49m[43mfit[49m[43m([49m[43mslp_2d[49m[43m,[49m[43m [49m[43mdim[49m[43m=[49m[33;43m"[39;49m[33;43mtime[39;49m[33;43m"[39;49m[43m)[49m
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xeofs/single/base_model_single_set.py:155[39m, in [36mBaseModelSingleSet.fit[39m[34m(self, X, dim, weights)[39m
+[32m    150[39m [38;5;66;03m# Preprocess the data & transform to 2D[39;00m
+[32m    151[39m data2D: DataArray = [38;5;28mself[39m.preprocessor.fit_transform(
+[32m    152[39m     X, [38;5;28mself[39m.sample_dims, weights
+[32m    153[39m )
+[32m--> [39m[32m155[39m [38;5;28;43mself[39;49m[43m.[49m[43m_fit_algorithm[49m[43m([49m[43mdata2D[49m[43m)[49m
+[32m    157[39m [38;5;28;01mif[39;00m [38;5;28mself[39m._params[[33m"[39m[33mcompute[39m[33m"[39m]:
+[32m    158[39m     [38;5;28mself[39m.data.compute()
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xeofs/single/eof.py:97[39m, in [36mEOF._fit_algorithm[39m[34m(self, X)[39m
+[32m     95[39m [38;5;66;03m# Decompose the data[39;00m
+[32m     96[39m decomposer = Decomposer(**[38;5;28mself[39m._decomposer_kwargs)
+[32m---> [39m[32m97[39m [43mdecomposer[49m[43m.[49m[43mfit[49m[43m([49m[43mX[49m[43m,[49m[43m [49m[43mdims[49m[43m=[49m[43m([49m[43msample_name[49m[43m,[49m[43m [49m[43mfeature_name[49m[43m)[49m[43m)[49m
+[32m     99[39m singular_values = decomposer.s_
+[32m    100[39m components = decomposer.V_
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xeofs/linalg/decomposer.py:135[39m, in [36mDecomposer.fit[39m[34m(self, X, dims)[39m
+[32m    133[39m [38;5;66;03m# Use exact SVD for small data sets[39;00m
+[32m    134[39m [38;5;28;01mif[39;00m use_exact:
+[32m--> [39m[32m135[39m     U, s, VT = [38;5;28;43mself[39;49m[43m.[49m[43m_svd[49m[43m([49m[43mX[49m[43m,[49m[43m [49m[43mdims[49m[43m,[49m[43m [49m[43mnp[49m[43m.[49m[43mlinalg[49m[43m.[49m[43msvd[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m.[49m[43msolver_kwargs[49m[43m)[49m
+[32m    136[39m     U = U[:, : [38;5;28mself[39m.n_modes_precompute]
+[32m    137[39m     s = s[: [38;5;28mself[39m.n_modes_precompute]
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xeofs/linalg/decomposer.py:252[39m, in [36mDecomposer._svd[39m[34m(self, X, dims, func, kwargs)[39m
+[32m    229[39m [38;5;250m[39m[33;03m"""Performs SVD on the data[39;00m
+[32m    230[39m 
+[32m    231[39m [33;03mParameters[39;00m
+[32m   (...)[39m[32m    249[39m [33;03m    Right singular vectors.[39;00m
+[32m    250[39m [33;03m"""[39;00m
+[32m    251[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m252[39m     U, s, VT = [43mxr[49m[43m.[49m[43mapply_ufunc[49m[43m([49m
+[32m    253[39m [43m        [49m[43mfunc[49m[43m,[49m
+[32m    254[39m [43m        [49m[43mX[49m[43m,[49m
+[32m    255[39m [43m        [49m[43mkwargs[49m[43m=[49m[43mkwargs[49m[43m,[49m
+[32m    256[39m [43m        [49m[43minput_core_dims[49m[43m=[49m[43m[[49m[43mdims[49m[43m][49m[43m,[49m
+[32m    257[39m [43m        [49m[43moutput_core_dims[49m[43m=[49m[43m[[49m
+[32m    258[39m [43m            [49m[43m[[49m[43mdims[49m[43m[[49m[32;43m0[39;49m[43m][49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m.[49m[43mcomponent_dim_name[49m[43m][49m[43m,[49m
+[32m    259[39m [43m            [49m[43m[[49m[38;5;28;43mself[39;49m[43m.[49m[43mcomponent_dim_name[49m[43m][49m[43m,[49m
+[32m    260[39m [43m            [49m[43m[[49m[38;5;28;43mself[39;49m[43m.[49m[43mcomponent_dim_name[49m[43m,[49m[43m [49m[43mdims[49m[43m[[49m[32;43m1[39;49m[43m][49m[43m][49m[43m,[49m
+[32m    261[39m [43m        [49m[43m][49m[43m,[49m
+[32m    262[39m [43m        [49m[43mdask[49m[43m=[49m[33;43m"[39;49m[33;43mallowed[39;49m[33;43m"[39;49m[43m,[49m
+[32m    263[39m [43m    [49m[43m)[49m
+[32m    264[39m     [38;5;28;01mreturn[39;00m U, s, VT
+[32m    265[39m [38;5;28;01mexcept[39;00m np.linalg.LinAlgError:
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/computation/apply_ufunc.py:1267[39m, in [36mapply_ufunc[39m[34m(func, input_core_dims, output_core_dims, exclude_dims, vectorize, join, dataset_join, dataset_fill_value, keep_attrs, kwargs, dask, output_dtypes, output_sizes, meta, dask_gufunc_kwargs, on_missing_core_dim, *args)[39m
+[32m   1265[39m [38;5;66;03m# feed DataArray apply_variable_ufunc through apply_dataarray_vfunc[39;00m
+[32m   1266[39m [38;5;28;01melif[39;00m [38;5;28many[39m([38;5;28misinstance[39m(a, DataArray) [38;5;28;01mfor[39;00m a [38;5;129;01min[39;00m args):
+[32m-> [39m[32m1267[39m     [38;5;28;01mreturn[39;00m [43mapply_dataarray_vfunc[49m[43m([49m
+[32m   1268[39m [43m        [49m[43mvariables_vfunc[49m[43m,[49m
+[32m   1269[39m [43m        [49m[43m*[49m[43margs[49m[43m,[49m
+[32m   1270[39m [43m        [49m[43msignature[49m[43m=[49m[43msignature[49m[43m,[49m
+[32m   1271[39m [43m        [49m[43mjoin[49m[43m=[49m[43mjoin[49m[43m,[49m
+[32m   1272[39m [43m        [49m[43mexclude_dims[49m[43m=[49m[43mexclude_dims[49m[43m,[49m
+[32m   1273[39m [43m        [49m[43mkeep_attrs[49m[43m=[49m[43mkeep_attrs[49m[43m,[49m
+[32m   1274[39m [43m    [49m[43m)[49m
+[32m   1275[39m [38;5;66;03m# feed Variables directly through apply_variable_ufunc[39;00m
+[32m   1276[39m [38;5;28;01melif[39;00m [38;5;28many[39m([38;5;28misinstance[39m(a, Variable) [38;5;28;01mfor[39;00m a [38;5;129;01min[39;00m args):
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/computation/apply_ufunc.py:307[39m, in [36mapply_dataarray_vfunc[39m[34m(func, signature, join, exclude_dims, keep_attrs, *args)[39m
+[32m    302[39m result_coords, result_indexes = build_output_coords_and_indexes(
+[32m    303[39m     args, signature, exclude_dims, combine_attrs=keep_attrs
+[32m    304[39m )
+[32m    306[39m data_vars = [[38;5;28mgetattr[39m(a, [33m"[39m[33mvariable[39m[33m"[39m, a) [38;5;28;01mfor[39;00m a [38;5;129;01min[39;00m args]
+[32m--> [39m[32m307[39m result_var = [43mfunc[49m[43m([49m[43m*[49m[43mdata_vars[49m[43m)[49m
+[32m    309[39m out: [38;5;28mtuple[39m[DataArray, ...] | DataArray
+[32m    310[39m [38;5;28;01mif[39;00m signature.num_outputs > [32m1[39m:
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/computation/apply_ufunc.py:818[39m, in [36mapply_variable_ufunc[39m[34m(func, signature, exclude_dims, dask, output_dtypes, vectorize, keep_attrs, dask_gufunc_kwargs, *args)[39m
+[32m    813[39m     [38;5;28;01mif[39;00m vectorize:
+[32m    814[39m         func = _vectorize(
+[32m    815[39m             func, signature, output_dtypes=output_dtypes, exclude_dims=exclude_dims
+[32m    816[39m         )
+[32m--> [39m[32m818[39m result_data = [43mfunc[49m[43m([49m[43m*[49m[43minput_data[49m[43m)[49m
+[32m    820[39m [38;5;28;01mif[39;00m signature.num_outputs == [32m1[39m:
+[32m    821[39m     result_data = (result_data,)
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/dask/array/core.py:1787[39m, in [36mArray.__array_function__[39m[34m(self, func, types, args, kwargs)[39m
+[32m   1784[39m [38;5;28;01mif[39;00m has_keyword(da_func, [33m"[39m[33mlike[39m[33m"[39m):
+[32m   1785[39m     kwargs[[33m"[39m[33mlike[39m[33m"[39m] = [38;5;28mself[39m
+[32m-> [39m[32m1787[39m [38;5;28;01mreturn[39;00m [43mda_func[49m[43m([49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/dask/array/linalg.py:928[39m, in [36msvd[39m[34m(a, coerce_signs)[39m
+[32m    922[39m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[32m    923[39m         [33m"[39m[33mArray must be 2D.[39m[38;5;130;01m\n[39;00m[33m"[39m
+[32m    924[39m         [33m"[39m[33mInput shape: [39m[38;5;132;01m{}[39;00m[38;5;130;01m\n[39;00m[33m"[39m
+[32m    925[39m         [33m"[39m[33mInput ndim: [39m[38;5;132;01m{}[39;00m[38;5;130;01m\n[39;00m[33m"[39m.format(a.shape, a.ndim)
+[32m    926[39m     )
+[32m    927[39m [38;5;28;01mif[39;00m nb[[32m0[39m] > [32m1[39m [38;5;129;01mand[39;00m nb[[32m1[39m] > [32m1[39m:
+[32m--> [39m[32m928[39m     [38;5;28;01mraise[39;00m [38;5;167;01mNotImplementedError[39;00m(
+[32m    929[39m         [33m"[39m[33mArray must be chunked in one dimension only. [39m[33m"[39m
+[32m    930[39m         [33m"[39m[33mThis function (svd) only supports tall-and-skinny or short-and-fat [39m[33m"[39m
+[32m    931[39m         [33m"[39m[33mmatrices (see da.linalg.svd_compressed for SVD on fully chunked arrays).[39m[38;5;130;01m\n[39;00m[33m"[39m
+[32m    932[39m         [33m"[39m[33mInput shape: [39m[38;5;132;01m{}[39;00m[38;5;130;01m\n[39;00m[33m"[39m
+[32m    933[39m         [33m"[39m[33mInput numblocks: [39m[38;5;132;01m{}[39;00m[38;5;130;01m\n[39;00m[33m"[39m.format(a.shape, nb)
+[32m    934[39m     )
+[32m    936[39m [38;5;66;03m# Single-chunk case[39;00m
+[32m    937[39m [38;5;28;01mif[39;00m nb[[32m0[39m] == nb[[32m1[39m] == [32m1[39m:
+
+[31mNotImplementedError[39m: Array must be chunked in one dimension only. This function (svd) only supports tall-and-skinny or short-and-fat matrices (see da.linalg.svd_compressed for SVD on fully chunked arrays).
+Input shape: (44, 2)
+Input numblocks: (44, 2)
+
+

@@ -1,0 +1,1095 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Intro to EOFs &#8212; WHOI Climate Data Tutorial (2025)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pages/resources/eofs';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Git basics" href="git_basics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="WHOI Climate Data Tutorial (2025) - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="WHOI Climate Data Tutorial (2025) - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../setup/setup.html">0) Setup</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../setup/setup_venv.html">Python / virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup/connect_to_server.html">Accessing the CMIP data servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup/test.html">Test the setup worked!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_analysis/overview.html">1) Climate diagnostics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1DZRXfNPGTo16g4iyo0TyZzevw06dgi5qklZvJoqnEQw/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example: Woods Hole temperature variability</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../model_validation/overview.html">2) Model validation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../model_validation/model_validation_stub.html">Assignment 1 template</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../single_model_ensemble/overview.html">4) Single-model ensemble</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/18Rp-7hCtp8fYvdGVZOlwaS4b_-PtmIVTkmM529wNN1Q/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/ENSO_example.html">ENSO example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intermodel_comp/overview.html">5) Intermodel comparison</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intermodel_comp/example.html">Intermodel comparison example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/overview.html">6) Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1bAFB9mO22WYc6El3nojJgDyJqpis6xx5XXz0Tj2rMbI/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/azores_prep.html">Azores high: data prep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/azores_analysis.html">Azores high: analysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../assignments/assignments_toc.html">Assignments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/assignment1.html">Assignment 1: model validation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="resources.html">Resources</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html">FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xarray_reference.html">Xarray reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_basics.html">Git basics</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Intro to EOFs</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ktcarr/whoi-climate-tutorial_2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ktcarr/whoi-climate-tutorial_2025/issues/new?title=Issue%20on%20page%20%2Fpages/resources/eofs.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/pages/resources/eofs.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Intro to EOFs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-eofs">What are EOFs?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-visual-demonstration">A visual demonstration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#math-behind-eofs">Math behind EOFs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-we-mean-by-dominant-pattern">What do we mean by “dominant pattern”?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-1-maximizing-variance-of-the-projected-data">Definition 1: maximizing variance of the projected data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#view-2-minimizing-error-of-the-reconstructed-data">View 2: minimizing error of the reconstructed data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-find-the-dominant-pattern">How to find the dominant pattern?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-svd">Connection to SVD</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-timeseries-and-explained-variance">Projection timeseries and explained variance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-with-real-data">Examples with real data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-example">2-D example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-spatial-field">Full spatial field</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="intro-to-eofs">
+<h1>Intro to EOFs<a class="headerlink" href="#intro-to-eofs" title="Link to this heading">#</a></h1>
+<section id="what-are-eofs">
+<h2>What are EOFs?<a class="headerlink" href="#what-are-eofs" title="Link to this heading">#</a></h2>
+<p>“Empirical Orthogonal Function” (EOF) analysis is the name climate scientists use for “principal component analysis” (PCA). Intuitively, EOFs are the dominant spatial patterns in the data (we’ll get to the precise mathematical definition of “dominant pattern” soon). They are “empirical” because they’re estimated from data and “orthogonal” because each pattern identified in the analysis is required to be orthogonal to every other pattern (i.e., any two patterns have a spatial correlation of zero). Why use them? From a climate variability perspective, it can be helpful to think of the climate system having preferred “modes” of variability; in other words, preferred patterns of oscillation when perturbed. A popular application of EOF analysis is to identify these “modes” of variability.</p>
+<section id="a-visual-demonstration">
+<h3>A visual demonstration<a class="headerlink" href="#a-visual-demonstration" title="Link to this heading">#</a></h3>
+<p>Before explaining the math, let’s look at a visual example. We’ll start by generating some data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="c1">## set plotting preferences and instantiate RNG</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;axes.facecolor&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="s2">&quot;axes.grid&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+
+<span class="c1">## generate some data</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># number of samples</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.4</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1">## plot the results</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1">## add data</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1">## plot some vectors</span>
+<span class="n">arrow_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.18</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">dx</span><span class="o">=-</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">dy</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">arrow_kwargs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">dx</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">dy</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">arrow_kwargs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">dx</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dy</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">arrow_kwargs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">dx</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">dy</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">arrow_kwargs</span><span class="p">)</span>
+
+<span class="c1">## plot axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1">## label plot</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1283516e6caeb9c85ba0fecf74716e5c7cf54731395d805c488b531b4b9107a9.png" src="../../_images/1283516e6caeb9c85ba0fecf74716e5c7cf54731395d805c488b531b4b9107a9.png" />
+</div>
+</div>
+<p>I’ve plotted two possible sets of orthogonal vectors, one in black and one in red. Which aligns “better” with the data? Intuitively, you might say the black set: the longer arrow seems to be aligned along the main axis of the data. This is exactly the goal of EOFs: to find the “direction” or “pattern” which “aligns best” with the data. In this 2-D case (we only have two coordinates) the pattern is a 2-D vector. If we had 3 coordinates, the vector would have 3-coordinates, and so on. If we have temperature data with coordiantes of <span class="math notranslate nohighlight">\(n_{lat}\)</span> latitude points and <span class="math notranslate nohighlight">\(n_{lon}\)</span> longitude points, the resulting vector will be <span class="math notranslate nohighlight">\((n_{lon}\times n_{lat})\)</span> elements long; if we reshape this vector back into an array with dimensions of <span class="math notranslate nohighlight">\((n_{lon}, n_{lat})\)</span>, then we get a spatial pattern.</p>
+</section>
+</section>
+<section id="math-behind-eofs">
+<h2>Math behind EOFs<a class="headerlink" href="#math-behind-eofs" title="Link to this heading">#</a></h2>
+<p>Consider a set of <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(m\)</span>-dimensional vectors, concatenated into a data matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0ffd7390-f83a-4701-8649-e9f88d3c5967">
+<span class="eqno">(2)<a class="headerlink" href="#equation-0ffd7390-f83a-4701-8649-e9f88d3c5967" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \mathbf{X} &amp;= \begin{bmatrix} \mathbf{x}_1 &amp; \mathbf{x}_2 &amp; \cdots &amp; \mathbf{x}_n \end{bmatrix}
+\end{align}\]</div>
+<section id="what-do-we-mean-by-dominant-pattern">
+<h3>What do we mean by “dominant pattern”?<a class="headerlink" href="#what-do-we-mean-by-dominant-pattern" title="Link to this heading">#</a></h3>
+<p>Let’s consider two equivalent definitions</p>
+<section id="definition-1-maximizing-variance-of-the-projected-data">
+<h4>Definition 1: maximizing variance of the projected data<a class="headerlink" href="#definition-1-maximizing-variance-of-the-projected-data" title="Link to this heading">#</a></h4>
+<p>We want to find the “dominant” <span class="math notranslate nohighlight">\(m\)</span>-dimensional pattern <span class="math notranslate nohighlight">\(\mathbf{p}\)</span>. Mathematically, we define “dominant pattern” as the vector of length 1 whose projection onto the data yields the largest variance in time. In more detail:</p>
+<ol class="arabic simple">
+<li><p>First, note that the “projection” of a data sample <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> onto the pattern is the dot product <span class="math notranslate nohighlight">\(\mathbf{p}\cdot\mathbf{x}_i\)</span> (or equivalently, in matrix form, <span class="math notranslate nohighlight">\(\mathbf{p}^T\mathbf{x}_i\)</span>). Intuitively, the projection is the “similarity” between the pattern and the sample. A high value indicates a strong positive correlation, a low value indicates a strong negative correlation, and a value close to zero indicates a weak correlation. Note we can actually compute the pattern correlation explicitly as <span class="math notranslate nohighlight">\(\text{corr}(\mathbf{p},\mathbf{x}_i) = \frac{\mathbf{p}\cdot\mathbf{x}_i}{\sqrt{\left(\mathbf{p}\cdot\mathbf{p}\right) \left(\mathbf{x_i}\cdot\mathbf{x}_i\right)}}\)</span>.</p></li>
+<li><p>Then we can write the projection of each datapoint onto the pattern as: <span class="math notranslate nohighlight">\(\mathbf{q}^T = \mathbf{p}^T\mathbf{X}\)</span>. Note that this projection vector, <span class="math notranslate nohighlight">\(\mathbf{q}^T\)</span>, is a <span class="math notranslate nohighlight">\(1\times n\)</span> row vector, with a single entry for each of the <span class="math notranslate nohighlight">\(n\)</span> samples (columns) in the dataset.</p></li>
+<li><p>The variance of the projected dataset is given by <span class="math notranslate nohighlight">\(\text{var}(\mathbf{q}) = \frac{1}{n}\mathbf{q}^T\mathbf{q}=\mathbf{p}^T\mathbf{X}\mathbf{X}^T\mathbf{p}\)</span>. Note that the <span class="math notranslate nohighlight">\(m\times m\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}\equiv \frac{1}{n}\mathbf{XX}^T\)</span> is the covariance matrix of the data! Rewriting the variance in terms of this matrix, we have: <span class="math notranslate nohighlight">\(\text{var}(\mathbf{q})= \mathbf{p}^T\mathbf{C}_{xx}\mathbf{p}\)</span>.</p></li>
+<li><p>Finally, define the leading EOF as the vector <span class="math notranslate nohighlight">\(\hat{\mathbf{p}}\)</span> which maximizes the variance of <span class="math notranslate nohighlight">\(\mathbf{q}\)</span> subject to the constraint that <span class="math notranslate nohighlight">\(||\hat{\mathbf{p}}||=1\)</span>.</p></li>
+</ol>
+</section>
+<section id="view-2-minimizing-error-of-the-reconstructed-data">
+<h4>View 2: minimizing error of the reconstructed data<a class="headerlink" href="#view-2-minimizing-error-of-the-reconstructed-data" title="Link to this heading">#</a></h4>
+</section>
+</section>
+<section id="how-to-find-the-dominant-pattern">
+<h3>How to find the dominant pattern?<a class="headerlink" href="#how-to-find-the-dominant-pattern" title="Link to this heading">#</a></h3>
+<p>We want to choose the pattern <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> which maximizes <span class="math notranslate nohighlight">\(\mathbf{p}^T\mathbf{C}_{xx}\mathbf{p}\)</span> subject to the constraint <span class="math notranslate nohighlight">\(||\mathbf{p}||=\mathbf{p}^T\mathbf{p}=1\)</span>. We can solve for this <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> using a <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange multiplier</a>. Defining the Lagrange multiplier as <span class="math notranslate nohighlight">\(\mu\)</span>, write down an “augmented” cost function:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ec21cdcc-dd86-4e4c-899d-d92199148c20">
+<span class="eqno">(3)<a class="headerlink" href="#equation-ec21cdcc-dd86-4e4c-899d-d92199148c20" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \mathcal{L}(\mathbf{p}, \mu) &amp;= \mathbf{p}^T\mathbf{C}_{xx}\mathbf{p} + \mu \left(1-\mathbf{p}^T\mathbf{p}\right).
+\end{align}\]</div>
+<p>The first term on the LHS is the original cost function and the second term is the constraint term. Computing the gradient of the augmented cost function with respect to <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> we have:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-71e39a04-656c-4528-b34d-3a8637b7c75b">
+<span class="eqno">(4)<a class="headerlink" href="#equation-71e39a04-656c-4528-b34d-3a8637b7c75b" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \frac{\partial \mathcal{L}}{\partial \mathbf{p}} &amp;= \mathbf{C}_{xx} \mathbf{p} - \mu \mathbf{p}
+\end{align}\]</div>
+<p>Setting this gradient to zero, we find:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1646321a-9bbf-4f41-8317-a2714f9e5521">
+<span class="eqno">(5)<a class="headerlink" href="#equation-1646321a-9bbf-4f41-8317-a2714f9e5521" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \mathbf{C}_{xx} \mathbf{p} &amp;= \mu \mathbf{p}.
+\end{align}\]</div>
+<p>(note that setting <span class="math notranslate nohighlight">\(\frac{\partial \mathcal{L}}{\partial\mu}=1-\mathbf{p}^T\mathbf{p}:=0\)</span> yields the original constraint, <span class="math notranslate nohighlight">\(\mathbf{p}^T\mathbf{p}=1\)</span>). Note that to satisfy the equation above, <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> must be an eigenvector of <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}\)</span> (and has corresponding eigenvalue <span class="math notranslate nohighlight">\(\mu\)</span>). Note that if <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> is an eigenvector with eigenvalue <span class="math notranslate nohighlight">\(\mu\)</span> and length 1, then we have <span class="math notranslate nohighlight">\(\mathbf{p}^T\mathbf{C}_{xx}\mathbf{p} = \mathbf{p}^T\left(\mu\mathbf{p}\right)=\mu\)</span>. Therefore, the pattern which maximizes <span class="math notranslate nohighlight">\(\mathbf{p}^T\mathbf{C}_{xx}\mathbf{p}\)</span> is the eigenvector of <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}\)</span> with the largest eigenvalue.</p>
+<section id="connection-to-svd">
+<h4>Connection to SVD<a class="headerlink" href="#connection-to-svd" title="Link to this heading">#</a></h4>
+<p>Before explaining how to compute the projection timeseries and explained variance of each pattern, let’s look at the connection between the eigenvectors of <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}\)</span> and the singular value decomposition (SVD) of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. Let’s start by writing <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> in terms of its singular value decomposition:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f4331a27-85d3-4dd1-8d03-898b480c29bf">
+<span class="eqno">(6)<a class="headerlink" href="#equation-f4331a27-85d3-4dd1-8d03-898b480c29bf" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \mathbf{X}&amp;=\mathbf{U}\boldsymbol{\Lambda}\mathbf{V}^T,
+\end{align}\]</div>
+<p>Then the covariance matrix can be written as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7d004480-3a6f-4887-aea4-ebf269459323">
+<span class="eqno">(7)<a class="headerlink" href="#equation-7d004480-3a6f-4887-aea4-ebf269459323" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \mathbf{C}_{xx} &amp;=\mathbf{XX}^T\\
+    &amp;= \left(\mathbf{U}\boldsymbol{\Lambda} \mathbf{V}^T\right)\left(\mathbf{V} \boldsymbol{\Lambda} \mathbf{U}^T\right)\\
+    &amp;= \mathbf{U}\boldsymbol{\Lambda}^2\mathbf{U}^T
+\end{align}\]</div>
+<p>Where we used the property of orthogonal matrices <span class="math notranslate nohighlight">\(\mathbf{V}^T\mathbf{V}=\mathbf{I}\)</span>. Next, right-multiply by <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a11af8c7-26be-4080-b379-df4569b35cad">
+<span class="eqno">(8)<a class="headerlink" href="#equation-a11af8c7-26be-4080-b379-df4569b35cad" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \mathbf{C}_{xx}\mathbf{U} &amp;= \mathbf{U}\boldsymbol{\Lambda}^2
+\end{align}\]</div>
+<p>Therefore, the left singular vectors of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> are eigenvectors of <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}\)</span>. In particular, the <span class="math notranslate nohighlight">\(i^{th}\)</span> left singular vector satisfies the eigenvector equation <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}\mathbf{u}_i = \lambda_i^2\mathbf{u}_i\)</span>.</p>
+</section>
+</section>
+<section id="projection-timeseries-and-explained-variance">
+<h3>Projection timeseries and explained variance<a class="headerlink" href="#projection-timeseries-and-explained-variance" title="Link to this heading">#</a></h3>
+<p>The principal component timeseries is given by projecting the data onto the pattern:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9ff93711-f1fe-4ade-bbfc-913ba9b574cf">
+<span class="eqno">(9)<a class="headerlink" href="#equation-9ff93711-f1fe-4ade-bbfc-913ba9b574cf" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \mathbf{q}_i^T &amp;= \mathbf{p}_i^T\mathbf{X}
+\end{align}\]</div>
+<p>Setting <span class="math notranslate nohighlight">\(\mathbf{p}_i\)</span> to the <span class="math notranslate nohighlight">\(i^{th}\)</span> singular vector of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, we have:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-eb46b78e-6fe4-4fc0-98b7-0163eaac274e">
+<span class="eqno">(10)<a class="headerlink" href="#equation-eb46b78e-6fe4-4fc0-98b7-0163eaac274e" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \mathbf{q}_i^T &amp;=\mathbf{u}_i^T\mathbf{X}\\
+    &amp;= \mathbf{u}_i^T\left(\mathbf{U}\boldsymbol{\Lambda}\mathbf{V}^T\right)\\
+    &amp;=\sum_{j}\mathbf{u}_i\mathbf{u}_j\lambda_j\mathbf{v}_j^T\\
+    &amp;= \lambda_i\mathbf{v}_i^T,
+\end{align}\]</div>
+<p>where the last equality comes from noticing that <span class="math notranslate nohighlight">\(\mathbf{u}_i^T\mathbf{u}_j=1\)</span> if <span class="math notranslate nohighlight">\(i=j\)</span> and 0 otherwise. That is, the projection of the data onto the pattern is given by the right singular vectors, scaled by the singular values. Note that the variance of the data’s projection onto <span class="math notranslate nohighlight">\(\mathbf{u}_i\)</span> is then given by:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5a309880-8e3a-4c14-bca7-b57163d18a2b">
+<span class="eqno">(11)<a class="headerlink" href="#equation-5a309880-8e3a-4c14-bca7-b57163d18a2b" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \text{var}(\mathbf{q}_i) &amp;= \left(\lambda_i\mathbf{v}_i^T\right)\left(\lambda_i\mathbf{v}_i^T\right)^T\\
+    &amp;=\lambda_i^2\mathbf{v}_i^T\mathbf{v}_i\\
+    &amp;=\lambda_i^2,
+\end{align}\]</div>
+<p>and the fraction of variance explained by the <span class="math notranslate nohighlight">\(i^{th}\)</span> singular vector is given by:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-532657b9-2070-45fe-98e8-683c46e2b5e1">
+<span class="eqno">(12)<a class="headerlink" href="#equation-532657b9-2070-45fe-98e8-683c46e2b5e1" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \frac{\text{var}(\mathbf{q}_i)}{\sum_j \text{var}(\mathbf{q}_j)} &amp;= \frac{\lambda_i^2}{\sum_j\lambda_j^2}
+\end{align}\]</div>
+<p><strong>In summary,</strong> if we write <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> in terms of its SVD as <span class="math notranslate nohighlight">\(\mathbf{X}=\mathbf{USV}^T\)</span>, we have:</p>
+<ul class="simple">
+<li><p>The columns of <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> are the EOFs (spatial patterns)</p></li>
+<li><p>The columns of <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> (or rows of <span class="math notranslate nohighlight">\(\mathbf{V}^T\)</span>) are the corresponding timeseries</p></li>
+<li><p>The fraction of total variance explained by the data’s projection onto the <span class="math notranslate nohighlight">\(i^{th}\)</span> EOF is given by <span class="math notranslate nohighlight">\(\frac{\lambda_i^2}{\sum_j \lambda_j^2}\)</span></p></li>
+</ul>
+</section>
+</section>
+<section id="examples-with-real-data">
+<h2>Examples with real data<a class="headerlink" href="#examples-with-real-data" title="Link to this heading">#</a></h2>
+<p>Here we’ll use the <code class="docutils literal notranslate"><span class="pre">xeofs</span></code> package to compute EOFs (rather than doing the SVD manually).</p>
+<p>First, some functions to load, detrend, and plot the data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mticker</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cmocean</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">trim</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;trim to lon/lat range&quot;&quot;&quot;</span>
+
+    <span class="c1">## subset data in space (and downsample to 1-deg res.)</span>
+    <span class="n">data_trimmed</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">longitude</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">280</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">latitude</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+    <span class="c1">## get winter means</span>
+    <span class="n">data_trimmed_winter</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">data_trimmed</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s2">&quot;QS-DEC&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data_trimmed_winter</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">(</span><span class="n">server_fp</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load data from local directory if available; otherwise from server&quot;&quot;&quot;</span>
+
+    <span class="c1">## filepath for saving data locally</span>
+    <span class="n">save_fp</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./slp_data.nc&quot;</span><span class="p">)</span>
+
+    <span class="c1">## check if data is saved locally</span>
+    <span class="k">if</span> <span class="n">save_fp</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s2">&quot;slp_data.nc&quot;</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="c1">## filepath of ERA5 data on server</span>
+        <span class="n">fp_on_server</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span>
+            <span class="s2">&quot;cmip6/data/era5/reanalysis/single-levels/monthly-means/mean_sea_level_pressure&quot;</span>
+        <span class="p">)</span>
+
+        <span class="c1">## get full filepath</span>
+        <span class="n">fp</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">server_fp</span><span class="p">)</span> <span class="o">/</span> <span class="n">fp_on_server</span>
+
+        <span class="c1">## open data</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.nc&quot;</span><span class="p">))</span>
+
+        <span class="c1">## trim data</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">trim</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="c1">## save to file</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">save_fp</span><span class="p">)</span>
+
+    <span class="c1">## convert data from Pa to hPa</span>
+    <span class="n">hPa_per_Pa</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">100</span>
+    <span class="n">data_hPa</span> <span class="o">=</span> <span class="n">data</span> <span class="o">*</span> <span class="n">hPa_per_Pa</span>
+
+    <span class="k">return</span> <span class="n">data_hPa</span><span class="p">[</span><span class="s2">&quot;msl&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_trend_coefs</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;get coefficients for trend&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="n">deg</span><span class="p">)[</span><span class="s2">&quot;polyfit_coefficients&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_trend</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get trend for an xr.dataarray along specified dimension,</span>
+<span class="sd">    by fitting polynomial of degree &#39;deg&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">## Get coefficients for best fit</span>
+    <span class="n">polyfit_coefs</span> <span class="o">=</span> <span class="n">get_trend_coefs</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="n">deg</span><span class="p">)</span>
+
+    <span class="c1">## Get best fit line (linear trend in this case)</span>
+    <span class="n">trend</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">dim</span><span class="p">],</span> <span class="n">polyfit_coefs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">trend</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">detrend</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Remove trend of degree &#39;deg&#39; from data, along dimension &#39;dim&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">data</span> <span class="o">-</span> <span class="n">get_trend</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="n">deg</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_setup</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">lon_range</span><span class="p">,</span> <span class="n">lat_range</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">yticks</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a subplot to the figure with the given map projection</span>
+<span class="sd">    and lon/lat range. Returns an Axes object.&quot;&quot;&quot;</span>
+
+    <span class="c1">## increase resolution for projection</span>
+    <span class="c1">## (otherwise lines plotted on surface won&#39;t follow curved trajectories)</span>
+    <span class="n">projection</span><span class="o">.</span><span class="n">threshold</span> <span class="o">/=</span> <span class="mi">1000</span>
+
+    <span class="c1">## Create subplot with given projection</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+
+    <span class="c1">## Subset to given region</span>
+    <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">lon_range</span><span class="p">,</span> <span class="o">*</span><span class="n">lat_range</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+    <span class="c1">## draw coastlines</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="c1">## add tick labels</span>
+    <span class="k">if</span> <span class="n">xticks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="c1">## add lon/lat labels</span>
+        <span class="n">gl</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span>
+            <span class="n">draw_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+            <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+            <span class="n">zorder</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1">## specify which axes to label</span>
+        <span class="n">gl</span><span class="o">.</span><span class="n">top_labels</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">gl</span><span class="o">.</span><span class="n">right_labels</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1">## specify ticks</span>
+        <span class="n">gl</span><span class="o">.</span><span class="n">ylocator</span> <span class="o">=</span> <span class="n">mticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">yticks</span><span class="p">)</span>
+        <span class="n">gl</span><span class="o">.</span><span class="n">xlocator</span> <span class="o">=</span> <span class="n">mticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">xticks</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ax</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_setup_atlantic</span><span class="p">(</span><span class="n">fig</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Atlantic region&quot;&quot;&quot;</span>
+
+    <span class="c1">## adjust figure size</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1">## specify map projection</span>
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Orthographic</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mi">40</span><span class="p">,</span> <span class="n">central_latitude</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+    <span class="c1">## get ax object</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_setup</span><span class="p">(</span>
+        <span class="n">fig</span><span class="p">,</span>
+        <span class="n">proj</span><span class="p">,</span>
+        <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">360</span><span class="p">],</span>
+        <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span>
+        <span class="n">xticks</span><span class="o">=</span><span class="p">[</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">160</span><span class="p">,</span> <span class="o">-</span><span class="mi">110</span><span class="p">],</span>
+        <span class="n">yticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, load the data and compute anomalies</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all data and detrend</span>
+<span class="n">slp</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">server_fp</span><span class="o">=</span><span class="s2">&quot;/Volumes&quot;</span><span class="p">)</span>
+<span class="n">slp_anom</span> <span class="o">=</span> <span class="n">detrend</span><span class="p">(</span><span class="n">slp</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="d-example">
+<h3>2-D example<a class="headerlink" href="#d-example" title="Link to this heading">#</a></h3>
+<p>Let’s look at the SLP anomalies near Iceland and the Azores</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xeofs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xe</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1">## get SLP over iceland and azores</span>
+<span class="n">slp_ice</span> <span class="o">=</span> <span class="n">slp_anom</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">longitude</span><span class="o">=</span><span class="mf">342.5</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="mi">65</span><span class="p">)</span>
+<span class="n">slp_azo</span> <span class="o">=</span> <span class="n">slp_anom</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">longitude</span><span class="o">=</span><span class="mi">332</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="mf">38.5</span><span class="p">)</span>
+
+<span class="c1">## put iceland/azores data in single array</span>
+<span class="n">slp_2d</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">slp_ice</span><span class="p">,</span> <span class="n">slp_azo</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s2">&quot;Iceland&quot;</span><span class="p">,</span> <span class="s2">&quot;Azores&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;posn&quot;</span><span class="p">))</span>
+
+<span class="c1">## compute eofs</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">xe</span><span class="o">.</span><span class="n">single</span><span class="o">.</span><span class="n">EOF</span><span class="p">(</span><span class="n">use_coslat</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">slp_2d</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xeofs.single.eof.EOF at 0x1458c2e90&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check the package gives the expected results</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## compute svd</span>
+<span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">slp_2d</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="c1">## compare first pattern to package results</span>
+<span class="c1">## (sign doesn&#39;t matter, so check pos. or neg. match)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">u</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="p">()</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="o">-</span><span class="n">u</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="p">()</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="c1">## compare explained variance ratio</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">model</span><span class="o">.</span><span class="n">explained_variance_ratio</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot the results</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1">## add data</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">slp_2d</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">posn</span><span class="o">=</span><span class="s2">&quot;Iceland&quot;</span><span class="p">),</span> <span class="n">slp_2d</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">posn</span><span class="o">=</span><span class="s2">&quot;Azores&quot;</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1">## plot EOFs</span>
+<span class="n">arrow_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+
+<span class="c1"># 1st EOF</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span>
+    <span class="n">dx</span><span class="o">=</span><span class="mi">10</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="p">()</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">posn</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">dy</span><span class="o">=</span><span class="mi">10</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="p">()</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">posn</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">arrow_kwargs</span>
+<span class="p">)</span>
+
+<span class="c1"># 2nd EOF</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span>
+    <span class="n">dx</span><span class="o">=</span><span class="mi">5</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="p">()</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">posn</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">dy</span><span class="o">=</span><span class="mi">5</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="p">()</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">posn</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">arrow_kwargs</span>
+<span class="p">)</span>
+
+<span class="c1">## plot axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1">## label plot</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Iceland SLP anomaly (hPa)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Azores SLP anomaly (hPa)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/91ee71a9a4320d7f2e726b98100310e53b62fdf6404b99669731a9777130c55e.png" src="../../_images/91ee71a9a4320d7f2e726b98100310e53b62fdf6404b99669731a9777130c55e.png" />
+</div>
+</div>
+</section>
+<section id="full-spatial-field">
+<h3>Full spatial field<a class="headerlink" href="#full-spatial-field" title="Link to this heading">#</a></h3>
+<p>Compute EOFs</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## compute eofs</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">xe</span><span class="o">.</span><span class="n">single</span><span class="o">.</span><span class="n">EOF</span><span class="p">(</span><span class="n">use_coslat</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_modes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">slp_anom</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+
+<span class="c1">## extract eofs and principal component timeseries (&#39;pcs&#39;) for convenience</span>
+<span class="n">eofs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="p">()</span>
+<span class="n">pcs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">scores</span><span class="p">()</span>
+
+<span class="c1">## check that we can obtain &#39;pcs&#39; using model.transform function</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">pcs</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">slp_anom</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot spatial pattern</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_setup_atlantic</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span>
+    <span class="n">eofs</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+    <span class="n">eofs</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
+    <span class="n">eofs</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;cmo.balance&quot;</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.03</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4ec21d5402d48d32b6f2221ebe8e9d46d1cd34c99eb4f223ff0f1ad42da3daab.png" src="../../_images/4ec21d5402d48d32b6f2221ebe8e9d46d1cd34c99eb4f223ff0f1ad42da3daab.png" />
+</div>
+</div>
+<p>Plot timeseries</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1">## plot the data</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pcs</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">pcs</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1">## label</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Score (unitless)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3598325700ea3f7ae8e20b3961dd754a0b440fd25dee8cbb05a6302fb8db624c.png" src="../../_images/3598325700ea3f7ae8e20b3961dd754a0b440fd25dee8cbb05a6302fb8db624c.png" />
+</div>
+</div>
+<p>Explained variance ratio</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1">## plot the data</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">explained_variance_ratio</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">explained_variance_ratio</span><span class="p">())</span>
+
+<span class="c1">## label</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Fraction&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Mode #&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e9772caaec508524003ae04f290b209fd5e0ce668fa6e694db4c4d44aaf285ee.png" src="../../_images/e9772caaec508524003ae04f290b209fd5e0ce668fa6e694db4c4d44aaf285ee.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./pages/resources"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="git_basics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Git basics</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-eofs">What are EOFs?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-visual-demonstration">A visual demonstration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#math-behind-eofs">Math behind EOFs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-we-mean-by-dominant-pattern">What do we mean by “dominant pattern”?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-1-maximizing-variance-of-the-projected-data">Definition 1: maximizing variance of the projected data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#view-2-minimizing-error-of-the-reconstructed-data">View 2: minimizing error of the reconstructed data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-find-the-dominant-pattern">How to find the dominant pattern?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-svd">Connection to SVD</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-timeseries-and-explained-variance">Projection timeseries and explained variance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-with-real-data">Examples with real data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-example">2-D example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-spatial-field">Full spatial field</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Theo Carr
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

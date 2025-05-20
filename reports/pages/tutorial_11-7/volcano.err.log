@@ -1,0 +1,103 @@
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+## Load data
+
+#this is janky because all these data products have different lat ranges; load one at a time and change trim
+
+## specify arguments common to all datasets
+kwargs = dict(varname="SST", simulation_type="hist", save_fp=save_fp, preprocess_func=preprocess)
+
+## Load the data
+lens_SH_S = load_ensemble(lat_range=[-90,-45], **kwargs)
+lens_SH_N = load_ensemble(lat_range=[-45,0], **kwargs)
+lens_NH_S = load_ensemble(lat_range=[0,45], **kwargs)
+lens_NH_N = load_ensemble(lat_range=[45,90], **kwargs)
+lens_EQ = load_ensemble(lat_range=[-30,30], **kwargs)
+lens_EQ2 = load_ensemble(lat_range=[-15,15], **kwargs)
+
+## Merge into single xr.Dataset
+lens = xr.merge(
+    [
+        lens_SH_S["SST"].rename("SH_S"),
+        lens_SH_N["SST"].rename("SH_N"),
+        lens_NH_S["SST"].rename("NH_S"),
+        lens_NH_N["SST"].rename("NH_N"),
+        lens_EQ["SST"].rename("EQ"),
+        lens_EQ2["SST"].rename("EQ2"),
+    ]
+)
+
+## load into memory
+lens.load();
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mOSError[39m                                   Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[6][39m[32m, line 9[39m
+[32m      6[39m kwargs = [38;5;28mdict[39m(varname=[33m"[39m[33mSST[39m[33m"[39m, simulation_type=[33m"[39m[33mhist[39m[33m"[39m, save_fp=save_fp, preprocess_func=preprocess)
+[32m      8[39m [38;5;66;03m## Load the data[39;00m
+[32m----> [39m[32m9[39m lens_SH_S = [43mload_ensemble[49m[43m([49m[43mlat_range[49m[43m=[49m[43m[[49m[43m-[49m[32;43m90[39;49m[43m,[49m[43m-[49m[32;43m45[39;49m[43m][49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m     10[39m lens_SH_N = load_ensemble(lat_range=[-[32m45[39m,[32m0[39m], **kwargs)
+[32m     11[39m lens_NH_S = load_ensemble(lat_range=[[32m0[39m,[32m45[39m], **kwargs)
+
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 442[39m, in [36mload_ensemble[39m[34m(varname, simulation_type, lat_range, preprocess_func, save_fp)[39m
+[32m    437[39m     data = xr.open_dataset(save_fp)
+[32m    439[39m [38;5;28;01melse[39;00m:
+[32m    440[39m 
+[32m    441[39m     [38;5;66;03m## load the data and save to file for next time[39;00m
+[32m--> [39m[32m442[39m     data = [43mload_ensemble_helper[49m[43m([49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m    444[39m     [38;5;28mprint[39m([33m"[39m[33msaving to file[39m[33m"[39m)
+[32m    445[39m     data.to_netcdf(save_fp)
+
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 397[39m, in [36mload_ensemble_helper[39m[34m(varname, simulation_type, preprocess_func)[39m
+[32m    395[39m [38;5;66;03m## put results in list[39;00m
+[32m    396[39m member_ids = np.concatenate([np.arange([32m1[39m,[32m36[39m), np.arange([32m101[39m,[32m108[39m)])
+[32m--> [39m[32m397[39m data = [43m[[49m[43mload_simulation[49m[43m([49m[43mmember_id[49m[43m=[49m[43mi[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m[43m [49m[38;5;28;43;01mfor[39;49;00m[43m [49m[43mi[49m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[43mmember_ids[49m[43m][49m
+[32m    399[39m [38;5;66;03m## concatenate data along the "ensemble" dimension[39;00m
+[32m    400[39m ensemble_dim = pd.Index(np.arange([32m1[39m, [32m43[39m), name=[33m"[39m[33mmember[39m[33m"[39m)
+
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 397[39m, in [36m<listcomp>[39m[34m(.0)[39m
+[32m    395[39m [38;5;66;03m## put results in list[39;00m
+[32m    396[39m member_ids = np.concatenate([np.arange([32m1[39m,[32m36[39m), np.arange([32m101[39m,[32m108[39m)])
+[32m--> [39m[32m397[39m data = [[43mload_simulation[49m[43m([49m[43mmember_id[49m[43m=[49m[43mi[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m member_ids]
+[32m    399[39m [38;5;66;03m## concatenate data along the "ensemble" dimension[39;00m
+[32m    400[39m ensemble_dim = pd.Index(np.arange([32m1[39m, [32m43[39m), name=[33m"[39m[33mmember[39m[33m"[39m)
+
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 368[39m, in [36mload_simulation[39m[34m(varname, member_id, simulation_type, preprocess_func, use_jetstream)[39m
+[32m    365[39m     [38;5;28mprint[39m([33m"[39m[33mNot a valid simulation type[39m[33m"[39m)
+[32m    367[39m [38;5;66;03m#### 3. open the relevant datasets, applying preprocessing function[39;00m
+[32m--> [39m[32m368[39m data = [43mxr[49m[43m.[49m[43mopen_mfdataset[49m[43m([49m
+[32m    369[39m [43m    [49m[43mpaths[49m[43m=[49m[43mdata_fp[49m[43m.[49m[43mglob[49m[43m([49m[43mfile_pattern[49m[43m)[49m[43m,[49m
+[32m    370[39m [43m    [49m[43mpreprocess[49m[43m=[49m[43mpreprocess_func[49m[43m,[49m
+[32m    371[39m [43m    [49m[43mchunks[49m[43m=[49m[43m{[49m[33;43m"[39;49m[33;43mtime[39;49m[33;43m"[39;49m[43m:[49m[43m [49m[32;43m60[39;49m[43m}[49m[43m,[49m
+[32m    372[39m [43m[49m[43m)[49m
+[32m    374[39m [38;5;28;01mreturn[39;00m data[[varname,[33m"[39m[33mTAREA[39m[33m"[39m]].squeeze(drop=[38;5;28;01mTrue[39;00m)
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/backends/api.py:1597[39m, in [36mopen_mfdataset[39m[34m(paths, chunks, concat_dim, compat, preprocess, engine, data_vars, coords, combine, parallel, join, attrs_file, combine_attrs, **kwargs)[39m
+[32m   1594[39m paths = _find_absolute_paths(paths, engine=engine, **kwargs)
+[32m   1596[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m paths:
+[32m-> [39m[32m1597[39m     [38;5;28;01mraise[39;00m [38;5;167;01mOSError[39;00m([33m"[39m[33mno files to open[39m[33m"[39m)
+[32m   1599[39m paths1d: [38;5;28mlist[39m[[38;5;28mstr[39m | ReadBuffer]
+[32m   1600[39m [38;5;28;01mif[39;00m combine == [33m"[39m[33mnested[39m[33m"[39m:
+
+[31mOSError[39m: no files to open
+

@@ -1,0 +1,1210 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Azores high: data prep &#8212; WHOI Climate Data Tutorial (2025)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pages/tutorial_11-7/azores_prep';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Azores high: analysis" href="azores_analysis.html" />
+    <link rel="prev" title="6) Examples" href="overview.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="WHOI Climate Data Tutorial (2025) - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="WHOI Climate Data Tutorial (2025) - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../setup/setup.html">0) Setup</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../setup/setup_venv.html">Python / virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup/connect_to_server.html">Accessing the CMIP data servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup/test.html">Test the setup worked!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_analysis/overview.html">1) Climate diagnostics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1DZRXfNPGTo16g4iyo0TyZzevw06dgi5qklZvJoqnEQw/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example: Woods Hole temperature variability</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../model_validation/overview.html">2) Model validation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../model_validation/model_validation_stub.html">Assignment 1 template</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../single_model_ensemble/overview.html">4) Single-model ensemble</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/18Rp-7hCtp8fYvdGVZOlwaS4b_-PtmIVTkmM529wNN1Q/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/ENSO_example.html">ENSO example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intermodel_comp/overview.html">5) Intermodel comparison</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intermodel_comp/example.html">Intermodel comparison example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="overview.html">6) Examples</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1bAFB9mO22WYc6El3nojJgDyJqpis6xx5XXz0Tj2rMbI/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Azores high: data prep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="azores_analysis.html">Azores high: analysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../assignments/assignments_toc.html">Assignments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/assignment1.html">Assignment 1: model validation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../resources/resources.html">Resources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../resources/FAQ.html">FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources/xarray_reference.html">Xarray reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources/git_basics.html">Git basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources/eofs.html">Intro to EOFs</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ktcarr/whoi-climate-tutorial_2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ktcarr/whoi-climate-tutorial_2025/issues/new?title=Issue%20on%20page%20%2Fpages/tutorial_11-7/azores_prep.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/pages/tutorial_11-7/azores_prep.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Azores high: data prep</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-constants-functions">Define constants/functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utility-functions">Utility functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#azores-specific-utility-functions">Azores-specific utility functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-functions">Data loading functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-filepaths">Set filepaths</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#save-filepath">Save filepath</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reanalysis">Reanalysis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lme">LME</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lme-filepath">LME filepath</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-data">Load the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-slp-over-time-in-dataset">Plot SLP over time in dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-aha-metric">Compute AHA metric</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="azores-high-data-prep">
+<h1>Azores high: data prep<a class="headerlink" href="#azores-high-data-prep" title="Link to this heading">#</a></h1>
+<p>In this notebook, we’ll load global data from WHOI’s CMIP server,  “reduce” it by trimming in time and space, and save the pre-processed data locally. While not always possible, saving a reduced version of the data can speed up subsequent analysis: the code will run much faster if we can fit the data into “memory” (i.e., random access memory, or RAM).</p>
+<p>To compute the Azores High index, download the trimmed data for reanalysis and CESM last millenium ensemble here: <a class="reference external" href="https://drive.google.com/drive/folders/1kFF6a-ArVBdNaAK-3TKj-tpSV6Vx8yk4?usp=sharing">https://drive.google.com/drive/folders/1kFF6a-ArVBdNaAK-3TKj-tpSV6Vx8yk4?usp=sharing</a> (the folder called “LME” contains the trimmed last millenium ensemble data).</p>
+<section id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cmocean</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+
+<span class="c1">## custom imports</span>
+<span class="c1"># import src.utils</span>
+<span class="c1"># import src.utils_azores</span>
+
+<span class="c1">## Set plotting defaults</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;axes.facecolor&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="s2">&quot;axes.grid&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="define-constants-functions">
+<h2>Define constants/functions<a class="headerlink" href="#define-constants-functions" title="Link to this heading">#</a></h2>
+<p><strong>Last millenium ensemble (LME) data access</strong>: If you don’t have access to the “clidex” data server, download the LME folder from the shared google drive, and save it to your local project’s data filepath, <code class="docutils literal notranslate"><span class="pre">DATA_FP</span></code>.</p>
+<p><strong>Reanalysis data access</strong>: Note that this script uses reanalysis data on the CMIP<b>5</b> server, rather than the CMIP<b>6</b> server.</p>
+<section id="utility-functions">
+<h3>Utility functions<a class="headerlink" href="#utility-functions" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">switch_longitude_range</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;move longitude for dataset or dataarray from [0,360)</span>
+<span class="sd">    to (-180, 180]. Function accepts xr.dataset/xr.dataarray</span>
+<span class="sd">    and returns object of same type&quot;&quot;&quot;</span>
+
+    <span class="c1">## get updated longitude coordinate</span>
+    <span class="n">updated_longitude</span> <span class="o">=</span> <span class="n">convert_longitude</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="c1">## sort updated coordinate to be increasing</span>
+    <span class="n">updated_longitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">updated_longitude</span><span class="p">)</span>
+
+    <span class="c1">## sort data (&quot;reindex&quot;) according to update coordinate</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reindex</span><span class="p">({</span><span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="n">updated_longitude</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_longitude</span><span class="p">(</span><span class="n">longitude</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;move longitude from range [0,360) to (-180,180].</span>
+<span class="sd">    Function accepts and returns a numpy array representing longitude values&quot;&quot;&quot;</span>
+
+    <span class="c1">## find indices of longitudes which will become negative</span>
+    <span class="n">is_neg</span> <span class="o">=</span> <span class="n">longitude</span> <span class="o">&gt;</span> <span class="mi">180</span>
+
+    <span class="c1">## change values at these indices</span>
+    <span class="n">longitude</span><span class="p">[</span><span class="n">is_neg</span><span class="p">]</span> <span class="o">=</span> <span class="n">longitude</span><span class="p">[</span><span class="n">is_neg</span><span class="p">]</span> <span class="o">-</span> <span class="mi">360</span>
+
+    <span class="k">return</span> <span class="n">longitude</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">reverse_latitude</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Change direction of latitude from [-90,90] to [90,-90]</span>
+<span class="sd">    or vice versa&quot;&quot;&quot;</span>
+
+    <span class="n">lat_reversed</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">values</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reindex</span><span class="p">({</span><span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="n">lat_reversed</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">djf_avg</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;function to trim data to Dec/Jan/Feb (DJF) months&quot;&quot;&quot;</span>
+
+    <span class="c1">## subset data</span>
+    <span class="n">data_seasonal_avg</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s2">&quot;QS-DEC&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="c1">## get annual average for DJF</span>
+    <span class="n">is_djf</span> <span class="o">=</span> <span class="n">data_seasonal_avg</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span> <span class="o">==</span> <span class="mi">12</span>
+    <span class="n">data_djf_avg</span> <span class="o">=</span> <span class="n">data_seasonal_avg</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">is_djf</span><span class="p">)</span>
+
+    <span class="c1">## drop 1st and last averages, bc they only have</span>
+    <span class="c1">## 2 samples and 1 sample, respectively</span>
+    <span class="n">data_djf_avg</span> <span class="o">=</span> <span class="n">data_djf_avg</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1">## Replace time index with year, corresponding to january.</span>
+    <span class="c1">## &#39;+1&#39; is because &#39;time&#39;s year uses december</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">data_djf_avg</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">data_djf_avg</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">year</span>
+    <span class="n">data_djf_avg</span> <span class="o">=</span> <span class="n">data_djf_avg</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;year&quot;</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">data_djf_avg</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">spatial_avg</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;get global average of a quantity over the sphere.</span>
+<span class="sd">    Data is xr.dataarray/xr.dataset with  a &#39;regular&#39; lon/lat grid</span>
+<span class="sd">    (equal lon/lat spacing between all data points)&quot;&quot;&quot;</span>
+
+    <span class="c1">## get latitude-dependent weights</span>
+    <span class="c1"># first, convert latitude from degrees to radians</span>
+    <span class="c1"># conversion factor = (2 pi radians)/(360 degrees)</span>
+    <span class="n">latitude_radians</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">lat</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">/</span> <span class="mi">360</span>
+    <span class="n">cos_lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">latitude_radians</span><span class="p">)</span>
+
+    <span class="c1">## Next, trim data to specified range</span>
+    <span class="n">data_trim</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">*</span><span class="n">lon_range</span><span class="p">),</span> <span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">*</span><span class="n">lat_range</span><span class="p">))</span>
+    <span class="n">cos_lat_trim</span> <span class="o">=</span> <span class="n">cos_lat</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">*</span><span class="n">lat_range</span><span class="p">))</span>
+
+    <span class="c1">## Next, compute weighted avg</span>
+    <span class="n">data_weighted</span> <span class="o">=</span> <span class="n">data_trim</span><span class="o">.</span><span class="n">weighted</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">cos_lat_trim</span><span class="p">)</span>
+    <span class="n">data_avg</span> <span class="o">=</span> <span class="n">data_weighted</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">data_avg</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">spatial_int</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;compute spatial integral of a quantity on the sphere. For convenience,</span>
+<span class="sd">    assume regular grid (constant lat/lon)&quot;&quot;&quot;</span>
+
+    <span class="c1">## Get latitude/longitude in radians.</span>
+    <span class="c1">## denote (lon,lat) in radians as (theta, phi)</span>
+    <span class="n">rad_per_deg</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">360</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">lon</span> <span class="o">*</span> <span class="n">rad_per_deg</span>
+    <span class="n">phi</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">lat</span> <span class="o">*</span> <span class="n">rad_per_deg</span>
+
+    <span class="c1">## get differences for integration (assumes constant differences)</span>
+    <span class="n">dtheta</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dphi</span> <span class="o">=</span> <span class="n">phi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">phi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1">## broadcast to grid</span>
+    <span class="n">dtheta</span> <span class="o">=</span> <span class="n">dtheta</span> <span class="o">*</span> <span class="n">xr</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">dphi</span> <span class="o">=</span> <span class="n">dphi</span> <span class="o">*</span> <span class="n">xr</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
+
+    <span class="c1">## Get area of patch</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="mf">6.371e6</span>  <span class="c1"># radius of earth in m</span>
+    <span class="n">dA</span> <span class="o">=</span> <span class="n">R</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">*</span> <span class="n">dphi</span> <span class="o">*</span> <span class="n">dtheta</span>
+
+    <span class="c1">## Integrate</span>
+    <span class="n">data_int</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">*</span> <span class="n">dA</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">data_int</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_trend</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get linear trend for an xr.dataarray along specified dimension&quot;&quot;&quot;</span>
+
+    <span class="c1">## Get coefficients for best fit</span>
+    <span class="n">polyfit_coefs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="s2">&quot;polyfit_coefficients&quot;</span><span class="p">]</span>
+
+    <span class="c1">## Get best fit line (linear trend in this case)</span>
+    <span class="n">trend</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">dim</span><span class="p">],</span> <span class="n">polyfit_coefs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">trend</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="azores-specific-utility-functions">
+<h3>Azores-specific utility functions<a class="headerlink" href="#azores-specific-utility-functions" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_AHA</span><span class="p">(</span><span class="n">slp</span><span class="p">,</span> <span class="n">slp_global_avg</span><span class="p">,</span> <span class="n">norm_type</span><span class="o">=</span><span class="s2">&quot;global_mean&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;compute Azores High Area index, similar to Cresswell-Clay et al. (2022).</span>
+<span class="sd">    Defined as: area of Azores region which has (normalized) SLP exceeding 0.5 std</span>
+<span class="sd">    of long term average. Normalized SLP is defined as local SLP minus</span>
+<span class="sd">    globally-averaged SLP.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    - slp is gridded SLP data (at global scale)</span>
+<span class="sd">    - norm_type is one of {None, &quot;global_mean&quot;, &quot;detrend&quot;} specifying</span>
+<span class="sd">        how to normalize the AHA index</span>
+
+<span class="sd">    Note: returns area in KM^2.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">## get SLP anomaly in Azores regions</span>
+    <span class="n">slp_azores</span> <span class="o">=</span> <span class="n">trim_to_azores</span><span class="p">(</span><span class="n">slp</span><span class="p">)</span>
+
+    <span class="c1">## get normalized anomaly (func of lon/lat)</span>
+    <span class="k">if</span> <span class="n">norm_type</span> <span class="o">==</span> <span class="s2">&quot;global_mean&quot;</span><span class="p">:</span>
+        <span class="n">slp_azores_norm</span> <span class="o">=</span> <span class="n">slp_azores</span> <span class="o">-</span> <span class="n">slp_global_avg</span>
+
+    <span class="k">elif</span> <span class="n">norm_type</span> <span class="o">==</span> <span class="s2">&quot;detrend&quot;</span><span class="p">:</span>
+        <span class="n">trend</span> <span class="o">=</span> <span class="n">get_trend</span><span class="p">(</span><span class="n">slp_global_avg</span><span class="p">)</span>
+        <span class="n">slp_azores_norm</span> <span class="o">=</span> <span class="n">slp_azores</span> <span class="o">-</span> <span class="n">trend</span>
+
+    <span class="k">elif</span> <span class="n">norm_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">slp_azores_norm</span> <span class="o">=</span> <span class="n">slp_azores</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: specify valid normalization type.&quot;</span><span class="p">)</span>
+
+    <span class="c1">## Get standard deviation (func of lon/lat)</span>
+    <span class="n">slp_azores_mean</span> <span class="o">=</span> <span class="n">slp_azores_norm</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+    <span class="n">slp_azores_std</span> <span class="o">=</span> <span class="n">slp_azores_norm</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+
+    <span class="c1">## Get mask of grid cells exceeding 0.5 std threshold</span>
+    <span class="n">threshold</span> <span class="o">=</span> <span class="n">slp_azores_mean</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">slp_azores_std</span>
+    <span class="n">exceeds_thresh</span> <span class="o">=</span> <span class="n">slp_azores_norm</span> <span class="o">&gt;</span> <span class="n">threshold</span>
+
+    <span class="c1">## Sum area of lon/lat cells exceeding threshold</span>
+    <span class="c1">## convert from True/False to 1.0/0.0 for integration</span>
+    <span class="n">AHA</span> <span class="o">=</span> <span class="n">spatial_int</span><span class="p">(</span><span class="n">exceeds_thresh</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">))</span>
+
+    <span class="c1">## convert from m^2 to km^2</span>
+    <span class="n">m_per_km</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="n">m2_per_km2</span> <span class="o">=</span> <span class="n">m_per_km</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">AHA</span> <span class="o">*=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">m2_per_km2</span>
+
+    <span class="k">return</span> <span class="n">AHA</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-loading-functions">
+<h3>Data loading functions<a class="headerlink" href="#data-loading-functions" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_lme_member</span><span class="p">(</span><span class="n">forcing_type</span><span class="p">,</span> <span class="n">member_id</span><span class="p">,</span> <span class="n">fp_in</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function loads data from single member of CESM last-millenium ensemble (LME).</span>
+<span class="sd">    Args:</span>
+<span class="sd">    - &#39;member_id&#39; is integer in [1,13] specifying which ensemble member to load</span>
+<span class="sd">    - &#39;forcing_type&#39; is one of {&quot;all&quot;,&quot;volcanic&quot;,&quot;GHG&quot;,&quot;orbital&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">## get prefix</span>
+    <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;b.e11.BLMTRC5CN.f19_g16&quot;</span>
+    <span class="k">if</span> <span class="n">forcing_type</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">elif</span> <span class="n">forcing_type</span> <span class="o">==</span> <span class="s2">&quot;GHG&quot;</span><span class="p">:</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">.GHG&quot;</span>
+
+    <span class="k">elif</span> <span class="n">forcing_type</span> <span class="o">==</span> <span class="s2">&quot;volcanic&quot;</span><span class="p">:</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">.VOLC_GRA&quot;</span>
+
+    <span class="k">elif</span> <span class="n">forcing_type</span> <span class="o">==</span> <span class="s2">&quot;orbital&quot;</span><span class="p">:</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">.ORBITAL&quot;</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: not a valid forcing type&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="c1">## add rest of prefix</span>
+    <span class="n">prefix</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">member_id</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">.cam.h0.PSL&quot;</span>
+
+    <span class="c1">## Get names of two files for each ensemble member</span>
+    <span class="n">fp_and_prefix</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fp_in</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span>
+    <span class="n">fp0</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fp_and_prefix</span><span class="si">}</span><span class="s2">.085001-184912.nc&quot;</span>
+    <span class="n">fp1</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fp_and_prefix</span><span class="si">}</span><span class="s2">.185001-200512.nc&quot;</span>
+
+    <span class="c1">## Load data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">([</span><span class="n">fp0</span><span class="p">,</span> <span class="n">fp1</span><span class="p">],</span> <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">})[</span><span class="s2">&quot;PSL&quot;</span><span class="p">]</span>
+
+    <span class="c1">## switch longitude range from [0,360) to (-180,180]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">switch_longitude_range</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_noaa</span><span class="p">(</span><span class="n">fp_slp_noaa</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;NOAA CIRES data and update coordinates&quot;&quot;&quot;</span>
+
+    <span class="c1">## open raw data and select PSL variable</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">fp_slp_noaa</span><span class="p">)[</span><span class="s2">&quot;prmsl&quot;</span><span class="p">]</span>
+
+    <span class="c1">## switch longitude range from [0,360) to (-180,180]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">switch_longitude_range</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1">## reverse latitude direction from [90,-90] to [-90,90]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">reverse_latitude</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_era</span><span class="p">(</span><span class="n">fp_slp_era</span><span class="p">):</span>
+
+    <span class="c1">## open raw data and select PSL file</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="n">fp_slp_era</span><span class="p">)</span>
+
+    <span class="c1">## rename coordinates from &quot;latitude&quot; and &quot;longitude&quot;</span>
+    <span class="c1">## to &quot;lat&quot; and &quot;lon&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="s2">&quot;lon&quot;</span><span class="p">})</span>
+
+    <span class="c1">## switch longitude range from [0,360) to (-180,180]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">switch_longitude_range</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1">## reverse latitude direction from [90,-90] to [-90,90]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">reverse_latitude</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="c1">## For each dataset, get DJF average and trim to North Atlantic</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">trim</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;function to trim a data in time and space, and save to file.</span>
+<span class="sd">    Two datasets are returned:</span>
+<span class="sd">    - data_trim (trimmed to north atlantic)</span>
+<span class="sd">    - data_global_avg (global averaged of data)&quot;&quot;&quot;</span>
+
+    <span class="c1">## trim in time, then load to memory</span>
+    <span class="n">data_djf</span> <span class="o">=</span> <span class="n">djf_avg</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+    <span class="c1">## trim in space</span>
+    <span class="n">data_trim</span> <span class="o">=</span> <span class="n">trim_to_north_atlantic</span><span class="p">(</span><span class="n">data_djf</span><span class="p">)</span>
+
+    <span class="c1">## get global average</span>
+    <span class="n">data_global_avg</span> <span class="o">=</span> <span class="n">spatial_avg</span><span class="p">(</span><span class="n">data_djf</span><span class="p">)</span>
+
+    <span class="c1">## combine into single dataset</span>
+    <span class="n">data_prepped</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">data_trim</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;slp&quot;</span><span class="p">),</span> <span class="n">data_global_avg</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;slp_global_avg&quot;</span><span class="p">)]</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data_prepped</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">trim_to_north_atlantic</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;convenience function to trim data north atlantic domain&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">70</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">trim_to_azores</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;convenience function to trim data to Azores lon/lat range.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">52</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_prepped_data</span><span class="p">(</span><span class="n">data_loader_fn</span><span class="p">,</span> <span class="n">prep_fn</span><span class="p">,</span> <span class="n">fp_out</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function applies &#39;prep_fn&#39; to data returned by &#39;data_loader_fn&#39;,</span>
+<span class="sd">    and saves result to &#39;fp_out&#39;.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        - data_loader_fn: function to load raw data</span>
+<span class="sd">        - prep_fn: function to pre-process raw data</span>
+<span class="sd">        - fp_out: filepath to save pre-processed data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">## check if file exists</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fp_out</span><span class="p">):</span>
+
+        <span class="c1">## Load pre-trimmed file</span>
+        <span class="n">data_prepped</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">fp_out</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="c1">## Load data, trim it, and save to file</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data_loader_fn</span><span class="p">()</span>
+        <span class="n">data_prepped</span> <span class="o">=</span> <span class="n">prep_fn</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">data_prepped</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">fp_out</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data_prepped</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_trimmed_data_lme</span><span class="p">(</span><span class="n">forcing_type</span><span class="p">,</span> <span class="n">member_ids</span><span class="p">,</span> <span class="n">fp_in</span><span class="p">,</span> <span class="n">save_fp</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process multiple ensemble members&quot;&quot;&quot;</span>
+
+    <span class="c1">## Loop through each ensemble member</span>
+    <span class="n">data_trimmed</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">member_id</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">member_ids</span><span class="p">):</span>
+
+        <span class="c1">## get filepath for saving data</span>
+        <span class="n">fp_out</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">save_fp</span><span class="p">,</span> <span class="s2">&quot;LME&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;LME_</span><span class="si">{</span><span class="n">forcing_type</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">member_id</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">.nc&quot;</span><span class="p">)</span>
+
+        <span class="c1">## function to load the given ensemble member</span>
+        <span class="n">data_loader_fn</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">load_lme_member</span><span class="p">(</span><span class="n">forcing_type</span><span class="p">,</span> <span class="n">member_id</span><span class="p">,</span> <span class="n">fp_in</span><span class="o">=</span><span class="n">fp_in</span><span class="p">)</span>
+
+        <span class="c1">## load trimmed data</span>
+        <span class="n">data_trimmed_i</span> <span class="o">=</span> <span class="n">load_prepped_data</span><span class="p">(</span><span class="n">data_loader_fn</span><span class="p">,</span> <span class="n">trim</span><span class="p">,</span> <span class="n">fp_out</span><span class="p">)</span>
+
+        <span class="c1">## append result</span>
+        <span class="n">data_trimmed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_trimmed_i</span><span class="p">)</span>
+
+    <span class="c1">## merge data from each ensemble member to single dataset</span>
+    <span class="n">ensemble_member_dim</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">member_ids</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ensemble_member&quot;</span><span class="p">)</span>
+    <span class="n">data_trimmed</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">data_trimmed</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">ensemble_member_dim</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data_trimmed</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_trimmed_data</span><span class="p">(</span><span class="n">data_loader_fn</span><span class="p">,</span> <span class="n">fp_out</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">load_prepped_data</span><span class="p">(</span><span class="n">data_loader_fn</span><span class="o">=</span><span class="n">data_loader_fn</span><span class="p">,</span> <span class="n">fp_out</span><span class="o">=</span><span class="n">fp_out</span><span class="p">,</span> <span class="n">prep_fn</span><span class="o">=</span><span class="n">trim</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="load-data">
+<h2>Load data<a class="headerlink" href="#load-data" title="Link to this heading">#</a></h2>
+<section id="set-filepaths">
+<h3>Set filepaths<a class="headerlink" href="#set-filepaths" title="Link to this heading">#</a></h3>
+<section id="save-filepath">
+<h4>Save filepath<a class="headerlink" href="#save-filepath" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Where should we save intermediate results?</span>
+<span class="n">save_fp</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reanalysis">
+<h4>Reanalysis<a class="headerlink" href="#reanalysis" title="Link to this heading">#</a></h4>
+<p>Note: I’ve downloaded this data locally (and saved it to the folder <code class="docutils literal notranslate"><span class="pre">data/cmip5_reanalysis_raw</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fp_noaa_u10</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/cmip5_reanalysis_raw/uwnd.10m.mon.mean.nc&quot;</span><span class="p">)</span>
+<span class="n">fp_noaa_v10</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/cmip5_reanalysis_raw/vwnd.10m.mon.mean.nc&quot;</span><span class="p">)</span>
+<span class="n">fp_noaa_slp</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/cmip5_reanalysis_raw/prmsl.mon.mean.nc&quot;</span><span class="p">)</span>
+<span class="n">fp_noaa_precip</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/cmip5_reanalysis_raw/prate.mon.mean.nc&quot;</span><span class="p">)</span>
+<span class="n">fp_era_slp</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/cmip5_reanalysis_raw/msl.mon.mean.nc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The data was downloaded from the following locations on the CMIP5 server:</p>
+<p>Path to the reanalysis data on the CMIP5 server:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SERVER_FP</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/Volumes/data&quot;</span><span class="p">)</span>
+<span class="n">CMIP5_REANALYSIS_FP</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">SERVER_FP</span><span class="p">,</span> <span class="s2">&quot;reanalysis&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Paths to the NOAA 20th century reanalysis data products:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NOAA_FP</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">CMIP5_REANALYSIS_FP</span><span class="p">,</span> <span class="s2">&quot;noaa.cires.20crv2c&quot;</span><span class="p">)</span>
+<span class="n">fp_noaa_u10</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">NOAA_FP</span><span class="p">,</span> <span class="s2">&quot;gaussian/uwnd.10m/monthly/uwnd.10m.mon.mean.nc&quot;</span><span class="p">)</span>
+<span class="n">fp_noaa_v10</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">NOAA_FP</span><span class="p">,</span> <span class="s2">&quot;gaussian/vwnd.10m/monthly/vwnd.10m.mon.mean.nc&quot;</span><span class="p">)</span>
+<span class="n">fp_noaa_slp</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">NOAA_FP</span><span class="p">,</span> <span class="s2">&quot;monolevel/prmsl/monthly/prmsl.mon.mean.nc&quot;</span><span class="p">)</span>
+<span class="n">fp_noaa_precip</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">NOAA_FP</span><span class="p">,</span> <span class="s2">&quot;gaussian/prate/monthly/prate.mon.mean.nc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Path to the ERA 20th century renalysis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fp_era_slp</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">CMIP5_REANALYSIS_FP</span><span class="p">,</span> <span class="s2">&quot;era.20c/sfc/msl/moda/msl.mon.mean.nc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="lme">
+<h4>LME<a class="headerlink" href="#lme" title="Link to this heading">#</a></h4>
+<p>Note: accesssing this data requires access to the shared data server called “clidex”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fp_lme</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/vortexfs1/share/clidex/data/model/CESM/LME/atm/psl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="lme-filepath">
+<h3>LME filepath<a class="headerlink" href="#lme-filepath" title="Link to this heading">#</a></h3>
+</section>
+<section id="load-the-data">
+<h3>Load the data<a class="headerlink" href="#load-the-data" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## reanalysis</span>
+<span class="n">slp_noaa</span> <span class="o">=</span> <span class="n">get_trimmed_data</span><span class="p">(</span>
+    <span class="n">data_loader_fn</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">load_noaa</span><span class="p">(</span><span class="n">fp_noaa_slp</span><span class="p">),</span>
+    <span class="n">fp_out</span><span class="o">=</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">save_fp</span><span class="p">,</span> <span class="s2">&quot;slp_noaa.nc&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">slp_era</span> <span class="o">=</span> <span class="n">get_trimmed_data</span><span class="p">(</span>
+    <span class="n">data_loader_fn</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">load_era</span><span class="p">(</span><span class="n">fp_era_slp</span><span class="p">),</span>
+    <span class="n">fp_out</span><span class="o">=</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">save_fp</span><span class="p">,</span> <span class="s2">&quot;slp_era.nc&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1">## LME</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">save_fp</span><span class="o">=</span><span class="n">save_fp</span><span class="p">,</span> <span class="n">fp_in</span><span class="o">=</span><span class="n">fp_lme</span><span class="p">)</span>
+<span class="n">slp_lme</span> <span class="o">=</span> <span class="n">get_trimmed_data_lme</span><span class="p">(</span>
+    <span class="n">forcing_type</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">member_ids</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+<span class="n">slp_lme_volc</span> <span class="o">=</span> <span class="n">get_trimmed_data_lme</span><span class="p">(</span>
+    <span class="n">forcing_type</span><span class="o">=</span><span class="s2">&quot;volcanic&quot;</span><span class="p">,</span> <span class="n">member_ids</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+<span class="n">slp_lme_GHG</span> <span class="o">=</span> <span class="n">get_trimmed_data_lme</span><span class="p">(</span>
+    <span class="n">forcing_type</span><span class="o">=</span><span class="s2">&quot;GHG&quot;</span><span class="p">,</span> <span class="n">member_ids</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+<span class="n">slp_lme_orb</span> <span class="o">=</span> <span class="n">get_trimmed_data_lme</span><span class="p">(</span>
+    <span class="n">forcing_type</span><span class="o">=</span><span class="s2">&quot;orbital&quot;</span><span class="p">,</span> <span class="n">member_ids</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                                                                                                | 0/13 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 13/13 [00:00&lt;00:00, 248.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                                                                                                 | 0/5 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00&lt;00:00, 238.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                                                                                                 | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00&lt;00:00, 233.00it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                                                                                                 | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00&lt;00:00, 255.03it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-slp-over-time-in-dataset">
+<h3>Plot SLP over time in dataset<a class="headerlink" href="#plot-slp-over-time-in-dataset" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## specify which dataset to use</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">slp_noaa</span>
+
+<span class="c1">## Compute SLP averaged over Azores region</span>
+<span class="n">slp_azores</span> <span class="o">=</span> <span class="n">spatial_avg</span><span class="p">(</span><span class="n">trim_to_azores</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;slp&quot;</span><span class="p">]))</span>
+<span class="n">slp_global</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;slp_global_avg&quot;</span><span class="p">]</span>
+
+<span class="c1">## get linear trend for global</span>
+<span class="n">global_trend</span> <span class="o">=</span> <span class="n">get_trend</span><span class="p">(</span><span class="n">slp_global</span><span class="p">)</span>
+
+<span class="c1">## Plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">slp_azores</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Azores&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">slp_global</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Global&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">global_trend</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Global trend&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;SLP (hPa)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticks</span><span class="p">(),</span> <span class="n">labels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticks</span><span class="p">()</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">## Plot before/after normalizing</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">slp_noaa</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">slp_azores</span> <span class="o">-</span> <span class="n">slp_global</span> <span class="o">+</span> <span class="n">slp_global</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;remove global mean&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">slp_azores</span> <span class="o">-</span> <span class="n">global_trend</span> <span class="o">+</span> <span class="n">global_trend</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;remove trend&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;SLP (hPa)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticks</span><span class="p">(),</span> <span class="n">labels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticks</span><span class="p">()</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dafd689f7bc38d8f0ba7ef2a5e399cadef29dce111a8f90e8c35583b26570dab.png" src="../../_images/dafd689f7bc38d8f0ba7ef2a5e399cadef29dce111a8f90e8c35583b26570dab.png" />
+<img alt="../../_images/504640e13bbd2c8054d36d1425db2c4f6446adabd9597a7a51dbb8e18642ebc9.png" src="../../_images/504640e13bbd2c8054d36d1425db2c4f6446adabd9597a7a51dbb8e18642ebc9.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="compute-aha-metric">
+<h2>Compute AHA metric<a class="headerlink" href="#compute-aha-metric" title="Link to this heading">#</a></h2>
+<p>From Cresswell-Clay et al. (2022): “The AHA was defined as the area (km2) over the North Atlantic and Western Europe that had mean winter (December–January–February) SLP greater than 0.5 s.d. from the mean of the spatio-temporal winter SLP distribution (Fig. 1b). The region considered when calculating the AHA is bounded by the 60° W and 10° E meridians as well as the 10° N and 52° N latitudes.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_AHA_wrapper</span><span class="p">(</span><span class="n">slp_data</span><span class="p">,</span> <span class="n">save_fp</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load AHA from given save_fp. If file doesn&#39;t exist,</span>
+<span class="sd">    compute AHA based on given SLP data and save result&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">AHA</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="n">save_fp</span><span class="p">)</span>
+
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">AHA</span> <span class="o">=</span> <span class="n">compute_AHA</span><span class="p">(</span>
+            <span class="n">slp_data</span><span class="p">[</span><span class="s2">&quot;slp&quot;</span><span class="p">],</span> <span class="n">slp_data</span><span class="p">[</span><span class="s2">&quot;slp_global_avg&quot;</span><span class="p">],</span> <span class="n">norm_type</span><span class="o">=</span><span class="s2">&quot;detrend&quot;</span>
+        <span class="p">)</span>
+        <span class="n">AHA</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">save_fp</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">AHA</span>
+
+
+<span class="c1">## specify directory for saving AHA results</span>
+<span class="n">AHA_save_fp</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">save_fp</span><span class="p">,</span> <span class="s2">&quot;AHA&quot;</span><span class="p">)</span>
+
+<span class="c1">## compute AHA metric for each dataset</span>
+<span class="n">AHA_noaa</span> <span class="o">=</span> <span class="n">compute_AHA_wrapper</span><span class="p">(</span><span class="n">slp_noaa</span><span class="p">,</span> <span class="n">AHA_save_fp</span> <span class="o">/</span> <span class="s2">&quot;AHA_noaa.nc&quot;</span><span class="p">)</span>
+<span class="n">AHA_era</span> <span class="o">=</span> <span class="n">compute_AHA_wrapper</span><span class="p">(</span><span class="n">slp_era</span><span class="p">,</span> <span class="n">AHA_save_fp</span> <span class="o">/</span> <span class="s2">&quot;AHA_era.nc&quot;</span><span class="p">)</span>
+<span class="n">AHA_lme</span> <span class="o">=</span> <span class="n">compute_AHA_wrapper</span><span class="p">(</span><span class="n">slp_lme</span><span class="p">,</span> <span class="n">AHA_save_fp</span> <span class="o">/</span> <span class="s2">&quot;AHA_lme_full.nc&quot;</span><span class="p">)</span>
+<span class="n">AHA_lme_orbital</span> <span class="o">=</span> <span class="n">compute_AHA_wrapper</span><span class="p">(</span><span class="n">slp_lme_orb</span><span class="p">,</span> <span class="n">AHA_save_fp</span> <span class="o">/</span> <span class="s2">&quot;AHA_lme_orb.nc&quot;</span><span class="p">)</span>
+<span class="n">AHA_lme_volc</span> <span class="o">=</span> <span class="n">compute_AHA_wrapper</span><span class="p">(</span><span class="n">slp_lme_volc</span><span class="p">,</span> <span class="n">AHA_save_fp</span> <span class="o">/</span> <span class="s2">&quot;AHA_lme_volc.nc&quot;</span><span class="p">)</span>
+<span class="n">AHA_lme_ghg</span> <span class="o">=</span> <span class="n">compute_AHA_wrapper</span><span class="p">(</span><span class="n">slp_lme_GHG</span><span class="p">,</span> <span class="n">AHA_save_fp</span> <span class="o">/</span> <span class="s2">&quot;AHA_lme_GHG.nc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./pages/tutorial_11-7"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="overview.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">6) Examples</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="azores_analysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Azores high: analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-constants-functions">Define constants/functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utility-functions">Utility functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#azores-specific-utility-functions">Azores-specific utility functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-functions">Data loading functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-filepaths">Set filepaths</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#save-filepath">Save filepath</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reanalysis">Reanalysis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lme">LME</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lme-filepath">LME filepath</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-data">Load the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-slp-over-time-in-dataset">Plot SLP over time in dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-aha-metric">Compute AHA metric</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Theo Carr
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

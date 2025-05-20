@@ -1,0 +1,175 @@
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+## Load data
+data_hist = load_ensemble("SST", "hist", preprocess_func=preprocess, save_fp=save_fp)
+data_rcp = load_ensemble("SST", "rcp85", preprocess_func=preprocess, save_fp=save_fp)
+
+## Optional: load into memory (warning: may be slow!)
+data_hist.load()
+data_rcp.load();
+------------------
+
+----- stderr -----
+/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_15147/2253713197.py:30: FutureWarning: In a future version of xarray decode_timedelta will default to False rather than None. To silence this warning, set decode_timedelta to True, False, or a 'CFTimedeltaCoder' instance.
+  data = xr.open_mfdataset(
+----- stderr -----
+/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_15147/2253713197.py:30: FutureWarning: In a future version of xarray decode_timedelta will default to False rather than None. To silence this warning, set decode_timedelta to True, False, or a 'CFTimedeltaCoder' instance.
+  data = xr.open_mfdataset(
+----- stderr -----
+/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_15147/2253713197.py:30: FutureWarning: In a future version of xarray decode_timedelta will default to False rather than None. To silence this warning, set decode_timedelta to True, False, or a 'CFTimedeltaCoder' instance.
+  data = xr.open_mfdataset(
+----- stderr -----
+/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_15147/2253713197.py:30: FutureWarning: In a future version of xarray decode_timedelta will default to False rather than None. To silence this warning, set decode_timedelta to True, False, or a 'CFTimedeltaCoder' instance.
+  data = xr.open_mfdataset(
+----- stderr -----
+/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_15147/2253713197.py:30: FutureWarning: In a future version of xarray decode_timedelta will default to False rather than None. To silence this warning, set decode_timedelta to True, False, or a 'CFTimedeltaCoder' instance.
+  data = xr.open_mfdataset(
+----- stderr -----
+/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_15147/2253713197.py:30: FutureWarning: In a future version of xarray decode_timedelta will default to False rather than None. To silence this warning, set decode_timedelta to True, False, or a 'CFTimedeltaCoder' instance.
+  data = xr.open_mfdataset(
+----- stderr -----
+/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_15147/2253713197.py:30: FutureWarning: In a future version of xarray decode_timedelta will default to False rather than None. To silence this warning, set decode_timedelta to True, False, or a 'CFTimedeltaCoder' instance.
+  data = xr.open_mfdataset(
+----- stderr -----
+/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_15147/2253713197.py:30: FutureWarning: In a future version of xarray decode_timedelta will default to False rather than None. To silence this warning, set decode_timedelta to True, False, or a 'CFTimedeltaCoder' instance.
+  data = xr.open_mfdataset(
+----- stderr -----
+/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_15147/2253713197.py:30: FutureWarning: In a future version of xarray decode_timedelta will default to False rather than None. To silence this warning, set decode_timedelta to True, False, or a 'CFTimedeltaCoder' instance.
+  data = xr.open_mfdataset(
+----- stderr -----
+/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_15147/2253713197.py:30: FutureWarning: In a future version of xarray decode_timedelta will default to False rather than None. To silence this warning, set decode_timedelta to True, False, or a 'CFTimedeltaCoder' instance.
+  data = xr.open_mfdataset(
+----- stdout -----
+saving to file
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mKeyError[39m                                  Traceback (most recent call last)
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/backends/file_manager.py:211[39m, in [36mCachingFileManager._acquire_with_cache_info[39m[34m(self, needs_lock)[39m
+[32m    210[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m211[39m     file = [38;5;28;43mself[39;49m[43m.[49m[43m_cache[49m[43m[[49m[38;5;28;43mself[39;49m[43m.[49m[43m_key[49m[43m][49m
+[32m    212[39m [38;5;28;01mexcept[39;00m [38;5;167;01mKeyError[39;00m:
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/backends/lru_cache.py:56[39m, in [36mLRUCache.__getitem__[39m[34m(self, key)[39m
+[32m     55[39m [38;5;28;01mwith[39;00m [38;5;28mself[39m._lock:
+[32m---> [39m[32m56[39m     value = [38;5;28;43mself[39;49m[43m.[49m[43m_cache[49m[43m[[49m[43mkey[49m[43m][49m
+[32m     57[39m     [38;5;28mself[39m._cache.move_to_end(key)
+
+[31mKeyError[39m: [<class 'netCDF4._netCDF4.Dataset'>, ('/Users/theo/research/whoi-climate-tutorial_2025/docs/pages/tutorial_10-10/atlantic/SST_hist.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'c542e4ce-a41e-44b7-a143-2f340fa836db']
+
+During handling of the above exception, another exception occurred:
+
+[31mPermissionError[39m                           Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[6][39m[32m, line 2[39m
+[32m      1[39m [38;5;66;03m## Load data[39;00m
+[32m----> [39m[32m2[39m data_hist = [43mload_ensemble[49m[43m([49m[33;43m"[39;49m[33;43mSST[39;49m[33;43m"[39;49m[43m,[49m[43m [49m[33;43m"[39;49m[33;43mhist[39;49m[33;43m"[39;49m[43m,[49m[43m [49m[43mpreprocess_func[49m[43m=[49m[43mpreprocess[49m[43m,[49m[43m [49m[43msave_fp[49m[43m=[49m[43msave_fp[49m[43m)[49m
+[32m      3[39m data_rcp = load_ensemble([33m"[39m[33mSST[39m[33m"[39m, [33m"[39m[33mrcp85[39m[33m"[39m, preprocess_func=preprocess, save_fp=save_fp)
+[32m      5[39m [38;5;66;03m## Optional: load into memory (warning: may be slow!)[39;00m
+
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 103[39m, in [36mload_ensemble[39m[34m(varname, simulation_type, preprocess_func, save_fp)[39m
+[32m    100[39m         data = load_ensemble_helper(**kwargs)
+[32m    102[39m         [38;5;28mprint[39m([33m"[39m[33msaving to file[39m[33m"[39m)
+[32m--> [39m[32m103[39m         [43mdata[49m[43m.[49m[43mto_netcdf[49m[43m([49m[43msave_fp[49m[43m)[49m
+[32m    105[39m [38;5;28;01melse[39;00m:
+[32m    106[39m 
+[32m    107[39m     [38;5;66;03m## don't load/save the data[39;00m
+[32m    108[39m     data = load_ensemble_helper(**kwargs)
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/core/dataarray.py:4204[39m, in [36mDataArray.to_netcdf[39m[34m(self, path, mode, format, group, engine, encoding, unlimited_dims, compute, invalid_netcdf, auto_complex)[39m
+[32m   4200[39m [38;5;28;01melse[39;00m:
+[32m   4201[39m     [38;5;66;03m# No problems with the name - so we're fine![39;00m
+[32m   4202[39m     dataset = [38;5;28mself[39m.to_dataset()
+[32m-> [39m[32m4204[39m [38;5;28;01mreturn[39;00m [43mto_netcdf[49m[43m([49m[43m  [49m[38;5;66;43;03m# type: ignore[return-value]  # mypy cannot resolve the overloads:([39;49;00m
+[32m   4205[39m [43m    [49m[43mdataset[49m[43m,[49m
+[32m   4206[39m [43m    [49m[43mpath[49m[43m,[49m
+[32m   4207[39m [43m    [49m[43mmode[49m[43m=[49m[43mmode[49m[43m,[49m
+[32m   4208[39m [43m    [49m[38;5;28;43mformat[39;49m[43m=[49m[38;5;28;43mformat[39;49m[43m,[49m
+[32m   4209[39m [43m    [49m[43mgroup[49m[43m=[49m[43mgroup[49m[43m,[49m
+[32m   4210[39m [43m    [49m[43mengine[49m[43m=[49m[43mengine[49m[43m,[49m
+[32m   4211[39m [43m    [49m[43mencoding[49m[43m=[49m[43mencoding[49m[43m,[49m
+[32m   4212[39m [43m    [49m[43munlimited_dims[49m[43m=[49m[43munlimited_dims[49m[43m,[49m
+[32m   4213[39m [43m    [49m[43mcompute[49m[43m=[49m[43mcompute[49m[43m,[49m
+[32m   4214[39m [43m    [49m[43mmultifile[49m[43m=[49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[32m   4215[39m [43m    [49m[43minvalid_netcdf[49m[43m=[49m[43minvalid_netcdf[49m[43m,[49m
+[32m   4216[39m [43m    [49m[43mauto_complex[49m[43m=[49m[43mauto_complex[49m[43m,[49m
+[32m   4217[39m [43m[49m[43m)[49m
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/backends/api.py:1911[39m, in [36mto_netcdf[39m[34m(dataset, path_or_file, mode, format, group, engine, encoding, unlimited_dims, compute, multifile, invalid_netcdf, auto_complex)[39m
+[32m   1908[39m [38;5;28;01mif[39;00m auto_complex [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m   1909[39m     kwargs[[33m"[39m[33mauto_complex[39m[33m"[39m] = auto_complex
+[32m-> [39m[32m1911[39m store = [43mstore_open[49m[43m([49m[43mtarget[49m[43m,[49m[43m [49m[43mmode[49m[43m,[49m[43m [49m[38;5;28;43mformat[39;49m[43m,[49m[43m [49m[43mgroup[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m   1913[39m [38;5;28;01mif[39;00m unlimited_dims [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m   1914[39m     unlimited_dims = dataset.encoding.get([33m"[39m[33munlimited_dims[39m[33m"[39m, [38;5;28;01mNone[39;00m)
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/backends/netCDF4_.py:452[39m, in [36mNetCDF4DataStore.open[39m[34m(cls, filename, mode, format, group, clobber, diskless, persist, auto_complex, lock, lock_maker, autoclose)[39m
+[32m    448[39m     kwargs[[33m"[39m[33mauto_complex[39m[33m"[39m] = auto_complex
+[32m    449[39m manager = CachingFileManager(
+[32m    450[39m     netCDF4.Dataset, filename, mode=mode, kwargs=kwargs
+[32m    451[39m )
+[32m--> [39m[32m452[39m [38;5;28;01mreturn[39;00m [38;5;28;43mcls[39;49m[43m([49m[43mmanager[49m[43m,[49m[43m [49m[43mgroup[49m[43m=[49m[43mgroup[49m[43m,[49m[43m [49m[43mmode[49m[43m=[49m[43mmode[49m[43m,[49m[43m [49m[43mlock[49m[43m=[49m[43mlock[49m[43m,[49m[43m [49m[43mautoclose[49m[43m=[49m[43mautoclose[49m[43m)[49m
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/backends/netCDF4_.py:393[39m, in [36mNetCDF4DataStore.__init__[39m[34m(self, manager, group, mode, lock, autoclose)[39m
+[32m    391[39m [38;5;28mself[39m._group = group
+[32m    392[39m [38;5;28mself[39m._mode = mode
+[32m--> [39m[32m393[39m [38;5;28mself[39m.format = [38;5;28;43mself[39;49m[43m.[49m[43mds[49m.data_model
+[32m    394[39m [38;5;28mself[39m._filename = [38;5;28mself[39m.ds.filepath()
+[32m    395[39m [38;5;28mself[39m.is_remote = is_remote_uri([38;5;28mself[39m._filename)
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/backends/netCDF4_.py:461[39m, in [36mNetCDF4DataStore.ds[39m[34m(self)[39m
+[32m    459[39m [38;5;129m@property[39m
+[32m    460[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mds[39m([38;5;28mself[39m):
+[32m--> [39m[32m461[39m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43m_acquire[49m[43m([49m[43m)[49m
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/backends/netCDF4_.py:455[39m, in [36mNetCDF4DataStore._acquire[39m[34m(self, needs_lock)[39m
+[32m    454[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_acquire[39m([38;5;28mself[39m, needs_lock=[38;5;28;01mTrue[39;00m):
+[32m--> [39m[32m455[39m [43m    [49m[38;5;28;43;01mwith[39;49;00m[43m [49m[38;5;28;43mself[39;49m[43m.[49m[43m_manager[49m[43m.[49m[43macquire_context[49m[43m([49m[43mneeds_lock[49m[43m)[49m[43m [49m[38;5;28;43;01mas[39;49;00m[43m [49m[43mroot[49m[43m:[49m
+[32m    456[39m [43m        [49m[43mds[49m[43m [49m[43m=[49m[43m [49m[43m_nc4_require_group[49m[43m([49m[43mroot[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m.[49m[43m_group[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m.[49m[43m_mode[49m[43m)[49m
+[32m    457[39m     [38;5;28;01mreturn[39;00m ds
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/contextlib.py:137[39m, in [36m_GeneratorContextManager.__enter__[39m[34m(self)[39m
+[32m    135[39m [38;5;28;01mdel[39;00m [38;5;28mself[39m.args, [38;5;28mself[39m.kwds, [38;5;28mself[39m.func
+[32m    136[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m137[39m     [38;5;28;01mreturn[39;00m [38;5;28mnext[39m([38;5;28mself[39m.gen)
+[32m    138[39m [38;5;28;01mexcept[39;00m [38;5;167;01mStopIteration[39;00m:
+[32m    139[39m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m([33m"[39m[33mgenerator didn[39m[33m'[39m[33mt yield[39m[33m"[39m) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/backends/file_manager.py:199[39m, in [36mCachingFileManager.acquire_context[39m[34m(self, needs_lock)[39m
+[32m    196[39m [38;5;129m@contextlib[39m.contextmanager
+[32m    197[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34macquire_context[39m([38;5;28mself[39m, needs_lock=[38;5;28;01mTrue[39;00m):
+[32m    198[39m [38;5;250m    [39m[33;03m"""Context manager for acquiring a file."""[39;00m
+[32m--> [39m[32m199[39m     file, cached = [38;5;28;43mself[39;49m[43m.[49m[43m_acquire_with_cache_info[49m[43m([49m[43mneeds_lock[49m[43m)[49m
+[32m    200[39m     [38;5;28;01mtry[39;00m:
+[32m    201[39m         [38;5;28;01myield[39;00m file
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/backends/file_manager.py:217[39m, in [36mCachingFileManager._acquire_with_cache_info[39m[34m(self, needs_lock)[39m
+[32m    215[39m     kwargs = kwargs.copy()
+[32m    216[39m     kwargs[[33m"[39m[33mmode[39m[33m"[39m] = [38;5;28mself[39m._mode
+[32m--> [39m[32m217[39m file = [38;5;28;43mself[39;49m[43m.[49m[43m_opener[49m[43m([49m[43m*[49m[38;5;28;43mself[39;49m[43m.[49m[43m_args[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m    218[39m [38;5;28;01mif[39;00m [38;5;28mself[39m._mode == [33m"[39m[33mw[39m[33m"[39m:
+[32m    219[39m     [38;5;66;03m# ensure file doesn't get overridden when opened again[39;00m
+[32m    220[39m     [38;5;28mself[39m._mode = [33m"[39m[33ma[39m[33m"[39m
+
+[36mFile [39m[32msrc/netCDF4/_netCDF4.pyx:2521[39m, in [36mnetCDF4._netCDF4.Dataset.__init__[39m[34m()[39m
+
+[36mFile [39m[32msrc/netCDF4/_netCDF4.pyx:2158[39m, in [36mnetCDF4._netCDF4._ensure_nc_success[39m[34m()[39m
+
+[31mPermissionError[39m: [Errno 13] Permission denied: '/Users/theo/research/whoi-climate-tutorial_2025/docs/pages/tutorial_10-10/atlantic/SST_hist.nc'
+

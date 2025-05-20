@@ -1,0 +1,1582 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Xarray reference &#8212; WHOI Climate Data Tutorial (2025)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pages/resources/xarray_reference';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Git basics" href="git_basics.html" />
+    <link rel="prev" title="FAQ" href="FAQ.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="WHOI Climate Data Tutorial (2025) - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="WHOI Climate Data Tutorial (2025) - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../setup/setup.html">0) Setup</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../setup/setup_venv.html">Python / virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup/connect_to_server.html">Accessing the CMIP data servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup/test.html">Test the setup worked!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_analysis/overview.html">1) Climate diagnostics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1DZRXfNPGTo16g4iyo0TyZzevw06dgi5qklZvJoqnEQw/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example: Woods Hole temperature variability</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../model_validation/overview.html">2) Model validation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../model_validation/model_validation_stub.html">Assignment 1 template</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../single_model_ensemble/overview.html">4) Single-model ensemble</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/18Rp-7hCtp8fYvdGVZOlwaS4b_-PtmIVTkmM529wNN1Q/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/ENSO_example.html">ENSO example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intermodel_comp/overview.html">5) Intermodel comparison</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intermodel_comp/example.html">Intermodel comparison example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/overview.html">6) Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1bAFB9mO22WYc6El3nojJgDyJqpis6xx5XXz0Tj2rMbI/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/azores_prep.html">Azores high: data prep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/azores_analysis.html">Azores high: analysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../assignments/assignments_toc.html">Assignments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/assignment1.html">Assignment 1: model validation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="resources.html">Resources</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html">FAQ</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Xarray reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_basics.html">Git basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eofs.html">Intro to EOFs</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ktcarr/whoi-climate-tutorial_2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ktcarr/whoi-climate-tutorial_2025/issues/new?title=Issue%20on%20page%20%2Fpages/resources/xarray_reference.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/pages/resources/xarray_reference.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Xarray reference</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-and-prepping-data-from-whoi-s-cmip-server">Loading and prepping data from WHOI’s “CMIP” server</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-data">Open the data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specify-file-paths">Specify file paths</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Opening data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-data">Plotting data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-setup-and-gridlines">Plot setup and gridlines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-in-the-pacific">Plotting in the Pacific</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-functions">Plotting functions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#make-plots-for-two-projection-types-platecarree-and-orthographic">Make plots for two projection types, PlateCarree and Orthographic</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#highlighting-specific-contours">Highlighting specific contours</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-data-and-highlight-the-280-k-contour">Plot the data (and highlight the <span class="math notranslate nohighlight">\(280 K\)</span> contour)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-averaging">Spatial averaging</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation-of-cos-latitude-weighting">Explanation of cos(latitude) weighting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seasonal-cycle">Seasonal cycle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolation-and-resampling">Interpolation and resampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#averaging-in-time">Averaging in time</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resampling-in-space">Resampling in space</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detrending">Detrending</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-point-wise-correlation-between-slp-and-t-2m">Compute point-wise correlation between SLP and <span class="math notranslate nohighlight">\(T_{2m}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-between-a-single-point-the-rest-of-the-grid">Correlation between a single point the rest of the grid</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regridding-data">Regridding data</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="xarray-reference">
+<h1>Xarray reference<a class="headerlink" href="#xarray-reference" title="Link to this heading">#</a></h1>
+<section id="loading-and-prepping-data-from-whoi-s-cmip-server">
+<h2>Loading and prepping data from WHOI’s “CMIP” server<a class="headerlink" href="#loading-and-prepping-data-from-whoi-s-cmip-server" title="Link to this heading">#</a></h2>
+<p>The goal of this script is to demonstrate – and provide a reference for – how to load and pre-process gridded climate data from WHOI’s servers. We’ll start by <a class="reference internal" href="#opening-data"><span class="std std-ref">opening</span></a> and <a class="reference internal" href="#plotting-data"><span class="std std-ref">plotting</span></a> some temperature data and perform some common pre-processing steps, including <a class="reference internal" href="#spatial-averaging"><span class="std std-ref">spatial averaging</span></a>, <a class="reference internal" href="#seasonal-cycle"><span class="std std-ref">removing the seasonal cycle</span></a>, <a class="reference internal" href="#interp"><span class="std std-ref">interpolation and resampling</span></a>, <a class="reference internal" href="#detrending"><span class="std std-ref">detrending</span></a>, <a class="reference internal" href="#correlation"><span class="std std-ref">computing correlations</span></a>, and <a class="reference internal" href="#regridding"><span class="std std-ref">regridding</span></a>. These examples are not necessarily the “best” (e.g., most efficient) way to do things and are intended as a starting point (the 2-dimenstional dataset we’re working with is small enough that it doesn’t matter too much if we do things inefficiently).</p>
+<p>Whenever possible, we’ve attempted to use built-in functions from <a class="reference external" href="https://xarray.dev/">xarray</a>, a Python package useful for working with gridded climate data and netcdf files. I think of it as a high-level “wrapper” for lower-level packages like <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code>. While the core of a <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> object is a <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code>, the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> object includes dimension names and additional metadata. This tends to make code easier to interpret: for example, to average over latitudes in a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array, you have to keep track of which array dimension corresponds to latitude – e.g., <code class="docutils literal notranslate"><span class="pre">data.mean(axis=2)</span></code>, if latitude is the 2<span class="math notranslate nohighlight">\(^{nd}\)</span> dimension – whereas in <code class="docutils literal notranslate"><span class="pre">xarray</span></code> you don’t: <code class="docutils literal notranslate"><span class="pre">data.mean(dim=&quot;latitude&quot;)</span></code>.</p>
+<p>For a more complete tutorial on the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> package, I highly recommend the developers’ official <a class="reference external" href="https://tutorial.xarray.dev/overview/xarray-in-45-min.html">45-minute tutorial</a>.</p>
+</section>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cmocean</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="kn">import</span> <span class="n">DateFormatter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cftime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mticker</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mdates</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
+
+<span class="c1">## set plotting style</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;axes.facecolor&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="s2">&quot;axes.grid&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
+
+<span class="c1">## initialize random number generator</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="open-the-data">
+<span id="opening-data"></span><h2>Open the data<a class="headerlink" href="#open-the-data" title="Link to this heading">#</a></h2>
+<div class="admonition-to-do admonition">
+<p class="admonition-title">To-do</p>
+<p>Specify the path to the file server in the following code cell.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## To-do: update path to WHOI file server on your machine</span>
+<span class="c1">## On Mac, the default location is &quot;/Volumes&quot;</span>
+<span class="n">server_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/Volumes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="specify-file-paths">
+<h3>Specify file paths<a class="headerlink" href="#specify-file-paths" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### Path to ERA5 T2m data</span>
+<span class="n">t2m_path_on_server</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span>
+    <span class="s2">&quot;cmip6/data/era5/reanalysis/single-levels/monthly-means/2m_temperature&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">#### Path to ERA5 SLP data</span>
+<span class="n">slp_path_on_server</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span>
+    <span class="s2">&quot;cmip6/data/era5/reanalysis/single-levels/monthly-means/mean_sea_level_pressure&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">#### Path to MIROC6 SST data</span>
+<span class="n">sst_path_on_server</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span>
+    <span class="s2">&quot;cmip6/data/cmip6/CMIP/MIROC/MIROC6/historical/r1i1p1f1/Omon/tos/gn/1&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">## append these relative filepaths to the server filepath</span>
+<span class="n">t2m_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">server_path</span><span class="p">,</span> <span class="n">t2m_path_on_server</span><span class="p">)</span>
+<span class="n">slp_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">server_path</span><span class="p">,</span> <span class="n">slp_path_on_server</span><span class="p">)</span>
+<span class="n">sst_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">server_path</span><span class="p">,</span> <span class="n">sst_path_on_server</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id1">
+<h2>Opening data<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>We’re going to work with a “reanalysis” product located on the CMIP6 archive. As a reminder from lecture, a reanalysis is a hybrid of model output and observations. Observations (e.g., of rainfall, temperature, or ocean salinity) are sparse (&amp; irregular) in time in space. The purpose of the reanalysis is to fill in the gaps, creating a nice “gridded” dataset which <em>is</em> regular in time and space.</p>
+<p>Note: for the ERA5 reanalysis, each year of data has a separate file. We’ll print out the names of the first 4 files.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## List the first few files in the 2m-temperature folder</span>
+<span class="n">file_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">t2m_path</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.nc&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">file_list</span><span class="p">)[:</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[PosixPath(&#39;/Volumes/cmip6/data/era5/reanalysis/single-levels/monthly-means/2m_temperature/1979_2m_temperature.nc&#39;)
+ PosixPath(&#39;/Volumes/cmip6/data/era5/reanalysis/single-levels/monthly-means/2m_temperature/1980_2m_temperature.nc&#39;)
+ PosixPath(&#39;/Volumes/cmip6/data/era5/reanalysis/single-levels/monthly-means/2m_temperature/1981_2m_temperature.nc&#39;)
+ PosixPath(&#39;/Volumes/cmip6/data/era5/reanalysis/single-levels/monthly-means/2m_temperature/1982_2m_temperature.nc&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>To open the dataset, use <code class="docutils literal notranslate"><span class="pre">xr.open_dataset</span></code> (single file) or <code class="docutils literal notranslate"><span class="pre">xr.open_mfdataset</span></code> (multiple files).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Load a single file using xarray</span>
+<span class="n">T2m_1980</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">t2m_path</span><span class="p">,</span> <span class="s2">&quot;1980_2m_temperature.nc&quot;</span><span class="p">))</span>
+<span class="n">T2m_1980</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="c1"># loads into memory</span>
+
+<span class="c1">## open the first 3 files (but don&#39;t load to memory)</span>
+<span class="n">T2m</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">file_list</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To subset data, use the <code class="docutils literal notranslate"><span class="pre">.isel</span></code> / <code class="docutils literal notranslate"><span class="pre">.sel</span></code> functions. We’ll write a function which trims data to the North Atlantic region.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## select data for Jan 1., two different ways</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span>
+        <span class="n">T2m_1980</span><span class="p">[</span><span class="s2">&quot;t2m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="n">T2m_1980</span><span class="p">[</span><span class="s2">&quot;t2m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s2">&quot;1980-01-01&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">trim_to_north_atl</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;trims data to the North Atlantic region&quot;&quot;&quot;</span>
+
+    <span class="c1">## lon/lat boundaries for N. Atlantic</span>
+    <span class="n">lon_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">260</span><span class="p">,</span> <span class="mi">360</span><span class="p">]</span>
+    <span class="n">lat_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">70</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+    <span class="c1">## trim the data</span>
+    <span class="n">x_trimmed</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">longitude</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">*</span><span class="n">lon_range</span><span class="p">),</span> <span class="n">latitude</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">*</span><span class="n">lat_range</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">x_trimmed</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we only care about a subset of the data (i.e., not the whole globe), it can be helpful to subset it <em>while</em> loading. To do this, pass a subsetting function to <code class="docutils literal notranslate"><span class="pre">xr.open_mfdataset</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Load trimmed data</span>
+<span class="n">T2m_trimmed</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">file_list</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="n">preprocess</span><span class="o">=</span><span class="n">trim_to_north_atl</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+<span class="c1">## Compare size to original data</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape of raw data:     </span><span class="si">{</span><span class="n">T2m</span><span class="p">[</span><span class="s1">&#39;t2m&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape of trimmed data: </span><span class="si">{</span><span class="n">T2m_trimmed</span><span class="p">[</span><span class="s1">&#39;t2m&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of raw data:     (36, 721, 1440)
+Shape of trimmed data: (36, 269, 400)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plotting-data">
+<span id="id2"></span><h2>Plotting data<a class="headerlink" href="#plotting-data" title="Link to this heading">#</a></h2>
+<section id="plot-setup-and-gridlines">
+<h3>Plot setup and gridlines<a class="headerlink" href="#plot-setup-and-gridlines" title="Link to this heading">#</a></h3>
+<p>First, let’s define a function which draws a blank map (don’t worry about the details for now).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## First, a generic plot setup function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_setup</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lon_range</span><span class="p">,</span> <span class="n">lat_range</span><span class="p">,</span> <span class="n">xticks</span><span class="p">,</span> <span class="n">yticks</span><span class="p">,</span> <span class="n">scale</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create map background for plotting spatial data.</span>
+<span class="sd">    Arguments:</span>
+<span class="sd">        - ax: Matplotlib object containing everything in the plot.</span>
+<span class="sd">            (I think of it as the plot &quot;canvas&quot;)</span>
+<span class="sd">        - lon_range/lat_range: 2-element arrays, representing plot boundaries</span>
+<span class="sd">        - xticks/yticks: location for lon/lat labels</span>
+<span class="sd">        - scale: number which controls linewidth and fontsize</span>
+
+<span class="sd">    Returns a modified &#39;ax&#39; object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">## specify transparency/linewidths</span>
+    <span class="n">grid_alpha</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">scale</span>
+    <span class="n">grid_linewidth</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">scale</span>
+    <span class="n">coastline_linewidth</span> <span class="o">=</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">scale</span>
+    <span class="n">label_size</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">scale</span>
+
+    <span class="c1">## crop map and plot coastlines</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">*</span><span class="n">lon_range</span><span class="p">,</span> <span class="o">*</span><span class="n">lat_range</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="n">coastline_linewidth</span><span class="p">)</span>
+
+    <span class="c1">## plot grid</span>
+    <span class="n">gl</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span>
+        <span class="n">draw_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="n">grid_alpha</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="n">grid_linewidth</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+        <span class="n">zorder</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1">## add tick labels</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">bottom_labels</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">right_labels</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">xlabel_style</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">label_size</span><span class="p">}</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">ylabel_style</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">label_size</span><span class="p">}</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">ylocator</span> <span class="o">=</span> <span class="n">mticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">yticks</span><span class="p">)</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">xlocator</span> <span class="o">=</span> <span class="n">mticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">xticks</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ax</span><span class="p">,</span> <span class="n">gl</span>
+
+
+<span class="c1">## Next, a function to plot the North Atlantic</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_setup_north_atl</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create map background for plotting spatial data.</span>
+<span class="sd">    Returns modified &#39;ax&#39; object.&quot;&quot;&quot;</span>
+
+    <span class="c1">## specify range and ticklabels for plot</span>
+    <span class="n">lon_range</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">lat_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">70</span><span class="p">]</span>
+    <span class="n">xticks</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">yticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span>
+
+    <span class="n">ax</span><span class="p">,</span> <span class="n">gl</span> <span class="o">=</span> <span class="n">plot_setup</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lon_range</span><span class="p">,</span> <span class="n">lat_range</span><span class="p">,</span> <span class="n">xticks</span><span class="p">,</span> <span class="n">yticks</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ax</span><span class="p">,</span> <span class="n">gl</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, plot a sample of the temperature dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Create a figure object (can contain multiple &quot;Axes&quot; object)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1">## add Axes object (blank canvas for our plot)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">ax</span><span class="p">,</span> <span class="n">gl</span> <span class="o">=</span> <span class="n">plot_setup_north_atl</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1">## Let&#39;s plot T2m data for Jan 1, 1980</span>
+<span class="n">t2m_plot</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span>
+    <span class="n">T2m_1980</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+    <span class="n">T2m_1980</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
+    <span class="n">T2m_1980</span><span class="p">[</span><span class="s2">&quot;t2m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">260</span><span class="p">,</span> <span class="mi">304</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>  <span class="c1"># contour levels to plot</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;cmo.thermal&quot;</span><span class="p">,</span>  <span class="c1"># colormap (see https://matplotlib.org/cmocean/)</span>
+    <span class="n">extend</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span>  <span class="c1"># includes values outside of contour bounds,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+<span class="p">)</span>
+
+<span class="c1">## add a colorbar</span>
+<span class="n">cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">t2m_plot</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$K$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4e443f7cc40a0e620614738ceeac757781458cf52067280a784c36370d68f968.png" src="../../_images/4e443f7cc40a0e620614738ceeac757781458cf52067280a784c36370d68f968.png" />
+</div>
+</div>
+</section>
+<section id="plotting-in-the-pacific">
+<h3>Plotting in the Pacific<a class="headerlink" href="#plotting-in-the-pacific" title="Link to this heading">#</a></h3>
+<section id="plotting-functions">
+<h4>Plotting functions<a class="headerlink" href="#plotting-functions" title="Link to this heading">#</a></h4>
+<p>Let’s start from scratch for this example: define a function to set up a plot with the given projection and lon/lat range (<code class="docutils literal notranslate"><span class="pre">plot_setup_simple</span></code>). Then define a wrapper function which sets up a plot with the given projection <em>in the North Pacific</em>.
+Note we have to specify the projection keyword (e.g., ccrs.PlateCarree or ccrs.Orthographic) when creating an Axes object with the <code class="docutils literal notranslate"><span class="pre">fig.add_subplot</span></code> function. When plotting data on regular lon/lat grids, we also have to pass <code class="docutils literal notranslate"><span class="pre">ccrs.PlateCarree</span></code> as an argument to <code class="docutils literal notranslate"><span class="pre">ax.set_extent</span></code> and to the contour plotting function, <code class="docutils literal notranslate"><span class="pre">ax.contourf</span></code>. Note the map projection type passted to <code class="docutils literal notranslate"><span class="pre">fig.add_subplot</span></code> may change (shown below) but we always pass <code class="docutils literal notranslate"><span class="pre">ccrs.PlateCarree</span></code> to the <code class="docutils literal notranslate"><span class="pre">ax.set_extent</span></code> and <code class="docutils literal notranslate"><span class="pre">ax.contourf</span></code> functions (I don’t know why this is the case, but it seems to work :).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_setup_simple</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">lon_range</span><span class="p">,</span> <span class="n">lat_range</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a subplot to the figure with the given map projection</span>
+<span class="sd">    and lon/lat range. Returns an Axes object.&quot;&quot;&quot;</span>
+
+    <span class="c1">## Create subplot with given projection</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+
+    <span class="c1">## Subset to given region</span>
+    <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">lon_range</span><span class="p">,</span> <span class="o">*</span><span class="n">lat_range</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+    <span class="c1">## draw coastlines</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">ax</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_setup_pacific</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">projection</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Pacific region&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">plot_setup_simple</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">240</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">70</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="make-plots-for-two-projection-types-platecarree-and-orthographic">
+<h4>Make plots for two projection types, PlateCarree and Orthographic<a class="headerlink" href="#make-plots-for-two-projection-types-platecarree-and-orthographic" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## define some map projections</span>
+<span class="c1">## for a full list, see https://scitools.org.uk/cartopy/docs/v0.15/crs/projections.html</span>
+<span class="n">proj_PC</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+<span class="n">proj_ortho</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Orthographic</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">central_latitude</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="c1">## Plot data with each projection</span>
+<span class="k">for</span> <span class="n">proj</span> <span class="ow">in</span> <span class="p">[</span><span class="n">proj_PC</span><span class="p">,</span> <span class="n">proj_ortho</span><span class="p">]:</span>
+
+    <span class="c1">## make blank figure</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+    <span class="c1">## plot pacific background</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_setup_pacific</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">proj</span><span class="p">)</span>
+
+    <span class="c1">## plot data</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span>
+        <span class="n">T2m_1980</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+        <span class="n">T2m_1980</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
+        <span class="n">T2m_1980</span><span class="p">[</span><span class="s2">&quot;t2m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+    <span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/238a180171ecd0cbbc8540adfffb4b445e8b915688cab53984b1492ecd5a9f76.png" src="../../_images/238a180171ecd0cbbc8540adfffb4b445e8b915688cab53984b1492ecd5a9f76.png" />
+<img alt="../../_images/94ad93e257e4dda4308911cf8f873c7666cc802ff509cb440e8f48970c2f68e4.png" src="../../_images/94ad93e257e4dda4308911cf8f873c7666cc802ff509cb440e8f48970c2f68e4.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="highlighting-specific-contours">
+<h3>Highlighting specific contours<a class="headerlink" href="#highlighting-specific-contours" title="Link to this heading">#</a></h3>
+<section id="plot-the-data-and-highlight-the-280-k-contour">
+<h4>Plot the data (and highlight the <span class="math notranslate nohighlight">\(280 K\)</span> contour)<a class="headerlink" href="#plot-the-data-and-highlight-the-280-k-contour" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## make blank figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
+
+<span class="c1">## plot pacific background</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_setup_pacific</span><span class="p">(</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Orthographic</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">central_latitude</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">## plot the data</span>
+<span class="c1"># plot_data = ax.contourf(t2m.longitude, t2m.latitude, t2m, transform=ccrs.PlateCarree())</span>
+<span class="n">plot_data</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span>
+    <span class="n">T2m_1980</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+    <span class="n">T2m_1980</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
+    <span class="n">T2m_1980</span><span class="p">[</span><span class="s2">&quot;t2m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+<span class="p">)</span>
+
+<span class="c1">## Add a colorbar</span>
+<span class="n">cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">plot_data</span><span class="p">)</span>
+
+<span class="c1">##### Highlight a specified contour value #####</span>
+
+<span class="c1">## specify which value to highlight</span>
+<span class="n">contour_value</span> <span class="o">=</span> <span class="mi">280</span>
+
+<span class="c1">## Create list of contour levels to pass to the plotting function.</span>
+<span class="c1">## We&#39;ll pad the contour value we want to plot with -/+ a big number:</span>
+<span class="c1">## we have to add these &quot;pad&quot; values because the plotting function</span>
+<span class="c1">## (ax.contour) will throw an error if we only pass only one value.</span>
+<span class="c1">## The pad value is chosen to be outside of the range of the data values</span>
+<span class="c1">## so isn&#39;t plotted.</span>
+<span class="n">pad_value</span> <span class="o">=</span> <span class="mf">1e10</span>
+<span class="n">levels</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">pad_value</span><span class="p">,</span> <span class="n">contour_value</span><span class="p">,</span> <span class="n">pad_value</span><span class="p">]</span>
+
+<span class="c1">## call the plotting function</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span>
+    <span class="n">T2m_1980</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+    <span class="n">T2m_1980</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
+    <span class="n">T2m_1980</span><span class="p">[</span><span class="s2">&quot;t2m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+    <span class="n">levels</span><span class="o">=</span><span class="n">levels</span><span class="p">,</span>
+    <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+    <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">################################################</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/06f31733564f26ac5cc4c5c42825de92966fe679258cb891677a5c56ad591c4e.png" src="../../_images/06f31733564f26ac5cc4c5c42825de92966fe679258cb891677a5c56ad591c4e.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="spatial-averaging">
+<span id="id3"></span><h2>Spatial averaging<a class="headerlink" href="#spatial-averaging" title="Link to this heading">#</a></h2>
+<p>Next, write a function to spatially average the data. This is slightly more involved than just averaging over all elements in the array: we need to compute a weighted average, with the weights given by the cosine of the latitude . The reason is that we’re averaging on the surface of a sphere, and need to account for the fact that grid cells get smaller as you go closer to the poles (see <a class="reference internal" href="#coslat"><span class="std std-ref">below</span></a> for a more detailed explanation).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">spatial_avg</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;function to compute spatial average of data on grid with constant</span>
+<span class="sd">    longitude/latitude spacing.&quot;&quot;&quot;</span>
+
+    <span class="c1">## first, compute cosine of latitude (after converting degrees to radians)</span>
+    <span class="n">latitude_radians</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">latitude</span><span class="p">)</span>
+    <span class="n">cos_lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">latitude_radians</span><span class="p">)</span>
+
+    <span class="c1">## get weighted average using xarray</span>
+    <span class="n">avg</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">weighted</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">cos_lat</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;latitude&quot;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">avg</span>
+
+
+<span class="c1">## &quot;naive&quot; unweighted average over longitude and latitudes</span>
+<span class="n">avg_unweighted</span> <span class="o">=</span> <span class="n">T2m_trimmed</span><span class="p">[</span><span class="s2">&quot;t2m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">])</span>
+
+<span class="c1">## (correct) weighted average</span>
+<span class="n">avg_weighted</span> <span class="o">=</span> <span class="n">spatial_avg</span><span class="p">(</span><span class="n">T2m_trimmed</span><span class="p">[</span><span class="s2">&quot;t2m&quot;</span><span class="p">])</span>
+
+<span class="c1">## compare results:</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">avg_unweighted</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">avg_unweighted</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;unweighted&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">avg_weighted</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">avg_weighted</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;weighted&quot;</span><span class="p">)</span>
+
+<span class="c1">## label plot</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$K$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticks</span><span class="p">()[::</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s2">&quot;%Y&quot;</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9b96f03ee7d9e95791e13e8d2127d3bee348713ca01bf0fc54c6ba18d0174654.png" src="../../_images/9b96f03ee7d9e95791e13e8d2127d3bee348713ca01bf0fc54c6ba18d0174654.png" />
+</div>
+</div>
+<section id="explanation-of-cos-latitude-weighting">
+<span id="coslat"></span><h3>Explanation of cos(latitude) weighting<a class="headerlink" href="#explanation-of-cos-latitude-weighting" title="Link to this heading">#</a></h3>
+<p>Not every element in our array represents an equal surface area of the earth: on a “regular” longitude-latitude grid (where the longitude and latitude spacing is constant) the area of gridcells decreases as you move away from the equator to the poles. Denoting longitude and latitude as <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span>, and longitude and latitude spacing as <span class="math notranslate nohighlight">\(\delta\theta\)</span> and <span class="math notranslate nohighlight">\(\delta\phi\)</span>, the area of each gridcell is given by <span class="math notranslate nohighlight">\(\delta A ~= R^2\cos(\phi)\delta\phi\delta\theta\)</span>, where <span class="math notranslate nohighlight">\(R\)</span> is the radius of the earth. The weighted average of a variable <span class="math notranslate nohighlight">\(f\)</span> on the sphere is then given by:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8c9274cb-086c-4f9a-a545-69f8719b5d00">
+<span class="eqno">(1)<a class="headerlink" href="#equation-8c9274cb-086c-4f9a-a545-69f8719b5d00" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \overline{f} &amp;= \frac{\sum f~\delta A}{\sum \delta A} = \frac{\sum f~R^2\cos\left(\phi\right)~\delta\phi~\delta\theta}{\sum R^2\cos\left(\phi\right)~\delta\phi~\delta\theta} = \frac{R^2 ~\delta\phi~\delta\theta \sum f~\cos\left(\phi\right)}{R^2~\delta\phi~\delta\theta \sum \cos(\phi)} = \frac{\sum f\cos(\phi)}{\sum\cos(\phi)},
+\end{align}\]</div>
+<p>where we use the fact that <span class="math notranslate nohighlight">\(R^2\)</span>, <span class="math notranslate nohighlight">\(\delta\theta\)</span>, and <span class="math notranslate nohighlight">\(\delta\phi\)</span> are constant (and can be pulled out of the summation). Therefore, to compute <span class="math notranslate nohighlight">\(\overline{f}\)</span>, we need to compute a <em>weighted</em> average, where the weights are the cosine of the latitude.</p>
+</section>
+</section>
+<section id="seasonal-cycle">
+<span id="id4"></span><h2>Seasonal cycle<a class="headerlink" href="#seasonal-cycle" title="Link to this heading">#</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">groupby</span></code> to group data by month (and apply functions to each month separately). Below, we’ll compute the mean temperature for each season and subtract it from the data to obtain anomalies.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seasonal_cyc</span> <span class="o">=</span> <span class="n">avg_weighted</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;time.month&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">anomalies</span> <span class="o">=</span> <span class="n">avg_weighted</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;time.month&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="n">seasonal_cyc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot results</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot seasonal cycle</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">seasonal_cyc</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">seasonal_cyc</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Jan&quot;</span><span class="p">,</span> <span class="s2">&quot;Jun&quot;</span><span class="p">,</span> <span class="s2">&quot;Nov&quot;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">285</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span> <span class="mi">295</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$K$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Mean seasonal cycle&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="c1">## Plot anomalies</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="c1">## plot raw data</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">avg_weighted</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">avg_weighted</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;w/ seasonal cycle&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$T$ before ($K$)&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_color</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">285</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span> <span class="mi">295</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">285</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span> <span class="mi">295</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_color</span><span class="p">())</span>
+
+<span class="c1">## plot after removing mean seasonal cycle</span>
+<span class="n">ax_anom</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">ax_anom</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">anomalies</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">anomalies</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;w/o seasonal cycle&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+<span class="n">ax_anom</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$T$ after ($K$)&quot;</span><span class="p">)</span>
+
+<span class="c1">## Label plot</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticks</span><span class="p">()[::</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s2">&quot;%Y&quot;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Before/after removing seasonal cycle&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8058a868ef9e7fc1c997f7cbf86090476ff92c208453ee75ad394f1d0c699bcf.png" src="../../_images/8058a868ef9e7fc1c997f7cbf86090476ff92c208453ee75ad394f1d0c699bcf.png" />
+<img alt="../../_images/26bab72f6f2baf0b12fa899dc4ff17f66656387d62f4fa45822a26d7f7a3f0bc.png" src="../../_images/26bab72f6f2baf0b12fa899dc4ff17f66656387d62f4fa45822a26d7f7a3f0bc.png" />
+</div>
+</div>
+<p>Note we can compute the seasonal cycle at every gridpoint separately:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## compute seasonal cycle, and plot at diff. b/n july and jan</span>
+<span class="n">seasonal_cyc_spatial</span> <span class="o">=</span> <span class="n">T2m_trimmed</span><span class="p">[</span><span class="s2">&quot;t2m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;time.month&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">jul_jan_diff</span> <span class="o">=</span> <span class="n">seasonal_cyc_spatial</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">month</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span> <span class="o">-</span> <span class="n">seasonal_cyc_spatial</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">## Create a figure object (can contain multiple &quot;Axes&quot; object)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">ax</span><span class="p">,</span> <span class="n">gl</span> <span class="o">=</span> <span class="n">plot_setup_north_atl</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1">## Plot data</span>
+<span class="n">t2m_plot</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span>
+    <span class="n">jul_jan_diff</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+    <span class="n">jul_jan_diff</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
+    <span class="n">jul_jan_diff</span><span class="p">,</span>
+    <span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;cmo.balance&quot;</span><span class="p">,</span>
+    <span class="n">extend</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">## add a colorbar and label</span>
+<span class="n">cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span>
+    <span class="n">t2m_plot</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$K$&quot;</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Jul – Jan difference&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/70bdfa6b945fbecf438490aa386e2c508ebf341d54a41d073960e249492d0b18.png" src="../../_images/70bdfa6b945fbecf438490aa386e2c508ebf341d54a41d073960e249492d0b18.png" />
+</div>
+</div>
+<p>Check that the order of averaging doesn’t matter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##  to spatial dataset</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">spatial_avg</span><span class="p">(</span><span class="n">seasonal_cyc_spatial</span><span class="p">),</span> <span class="n">seasonal_cyc</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interpolation-and-resampling">
+<span id="interp"></span><h2>Interpolation and resampling<a class="headerlink" href="#interpolation-and-resampling" title="Link to this heading">#</a></h2>
+<section id="averaging-in-time">
+<h3>Averaging in time<a class="headerlink" href="#averaging-in-time" title="Link to this heading">#</a></h3>
+<p>Below, let’s downsample from monthly data to 3-month averages, grouped into the following months: Dec-Jan-Feb (DJF), Mar-Apr-May (MAM), Jun-Jul-Aug (JJA), and Sep-Oct-Nov (SON).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Resample to quarterly (3-month) averages, where</span>
+<span class="c1">## the first quarter starts in December (&quot;QS-DEC&quot;),</span>
+<span class="c1">## and each point is labeled by the first month in the quarter</span>
+<span class="n">anomalies_seasonal</span> <span class="o">=</span> <span class="n">anomalies</span><span class="o">.</span><span class="n">resample</span><span class="p">({</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;QS-DEC&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1">## To extract the Dec-Jan-Feb season:</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1">## plot data</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">anomalies_seasonal</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">anomalies_seasonal</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;seasonal&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">anomalies</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">anomalies</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;monthly&quot;</span><span class="p">)</span>
+
+<span class="c1">## label plot</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$T$ anomaly ($K$)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticks</span><span class="p">()[::</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s2">&quot;%Y&quot;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6f7b9f275ec4485847231b399514d234c48a6da8c5d151908a563b9b169bda61.png" src="../../_images/6f7b9f275ec4485847231b399514d234c48a6da8c5d151908a563b9b169bda61.png" />
+</div>
+</div>
+<p>Next, downsample to annual data two different ways. Note that the resulting time axis differs for each method: one is labeled with a <code class="docutils literal notranslate"><span class="pre">datetime</span></code> object representing the first day in the year, while the other is labeled by an integer representing the year.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## annual mean, 2 different ways</span>
+<span class="n">anomalies_annual0</span> <span class="o">=</span> <span class="n">anomalies</span><span class="o">.</span><span class="n">resample</span><span class="p">({</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;YS-JAN&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">anomalies_annual1</span> <span class="o">=</span> <span class="n">anomalies</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;time.year&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">anomalies_annual0</span><span class="p">,</span> <span class="n">anomalies_annual1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="resampling-in-space">
+<h3>Resampling in space<a class="headerlink" href="#resampling-in-space" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">xarray</span></code>’s <code class="docutils literal notranslate"><span class="pre">interp</span></code> function can be used to resample in space:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Downsample by averaging in space</span>
+<span class="n">lat_coarse</span> <span class="o">=</span> <span class="n">T2m_trimmed</span><span class="o">.</span><span class="n">latitude</span><span class="p">[::</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">lon_coarse</span> <span class="o">=</span> <span class="n">T2m_trimmed</span><span class="o">.</span><span class="n">longitude</span><span class="p">[::</span><span class="mi">4</span><span class="p">]</span>
+
+<span class="c1">## Do the downsampling (linear interpolation is default)</span>
+<span class="n">T2m_coarse</span> <span class="o">=</span> <span class="n">T2m_trimmed</span><span class="o">.</span><span class="n">interp</span><span class="p">({</span><span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">lon_coarse</span><span class="p">,</span> <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">lat_coarse</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original shape:     </span><span class="si">{</span><span class="n">T2m_trimmed</span><span class="p">[</span><span class="s1">&#39;t2m&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;After downsampling: </span><span class="si">{</span><span class="n">T2m_coarse</span><span class="p">[</span><span class="s1">&#39;t2m&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original shape:     (36, 269, 400)
+After downsampling: (36, 68, 100)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="detrending">
+<span id="id5"></span><h2>Detrending<a class="headerlink" href="#detrending" title="Link to this heading">#</a></h2>
+<p>To illustrate detrending, let’s load in a longer timeseries</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## define a preprocessing function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">preprocess</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;pre-process data before loading it:</span>
+<span class="sd">    1. Downsample in space</span>
+<span class="sd">    2. only get DJF months</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">## 1. Downsample in space</span>
+    <span class="n">data_</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">interp</span><span class="p">({</span><span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">lon_coarse</span><span class="p">,</span> <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">lat_coarse</span><span class="p">})</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+    <span class="c1">## 2. Find indices of winter season</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="n">data_</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+    <span class="n">is_winter</span> <span class="o">=</span> <span class="p">(</span><span class="n">month</span> <span class="o">==</span> <span class="mi">12</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1">## select winter season</span>
+    <span class="n">data_</span> <span class="o">=</span> <span class="n">data_</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">is_winter</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data_</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">djf_avg</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;function to get Dec-Jan-Feb average&quot;&quot;&quot;</span>
+
+    <span class="c1">## first, resample from monthly to seasonal</span>
+    <span class="n">data_</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">({</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;QS-DEC&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="c1">## next, select DJF season</span>
+    <span class="n">is_winter</span> <span class="o">=</span> <span class="n">data_</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span> <span class="o">==</span> <span class="mi">12</span>
+    <span class="n">data_</span> <span class="o">=</span> <span class="n">data_</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">is_winter</span><span class="p">)</span>
+
+    <span class="c1">## for convenience, replace &quot;time&quot; index with &quot;year&quot;:</span>
+    <span class="c1">## label with year for Jan, (so Dec-&#39;78,Jan-&#39;79,Feb-&#39;79 -&gt; 1979)</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">data_</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">data_</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">year</span>
+    <span class="n">data_</span> <span class="o">=</span> <span class="n">data_</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;year&quot;</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">data_</span>
+
+
+<span class="c1">## load prepped data</span>
+<span class="n">T2m_long</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">file_list</span><span class="p">,</span> <span class="n">preprocess</span><span class="o">=</span><span class="n">preprocess</span><span class="p">)</span>
+
+<span class="c1">## Get DJF average</span>
+<span class="n">T2m_djf</span> <span class="o">=</span> <span class="n">djf_avg</span><span class="p">(</span><span class="n">T2m_long</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, write a function to compute a trend along a given dimension</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_trend</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get linear trend for an xr.dataarray along specified dimension&quot;&quot;&quot;</span>
+
+    <span class="c1">## Get coefficients for best fit</span>
+    <span class="n">polyfit_coefs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="s2">&quot;polyfit_coefficients&quot;</span><span class="p">]</span>
+
+    <span class="c1">## Get best fit line (linear trend in this case)</span>
+    <span class="n">trend</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">dim</span><span class="p">],</span> <span class="n">polyfit_coefs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">trend</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compute the trend and remove it from data to obtain a “detrended” version.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## compute the trend</span>
+<span class="n">T2m_trend</span> <span class="o">=</span> <span class="n">get_trend</span><span class="p">(</span><span class="n">T2m_djf</span><span class="p">[</span><span class="s2">&quot;t2m&quot;</span><span class="p">])</span>
+
+<span class="c1">## Get detrended version</span>
+<span class="n">T2m_detrended</span> <span class="o">=</span> <span class="n">T2m_djf</span><span class="p">[</span><span class="s2">&quot;t2m&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">T2m_trend</span>
+
+<span class="c1">## compute spatial averages</span>
+<span class="n">T2m_trend_avg</span> <span class="o">=</span> <span class="n">spatial_avg</span><span class="p">(</span><span class="n">T2m_trend</span><span class="p">)</span>
+<span class="n">T2m_detrended_avg</span> <span class="o">=</span> <span class="n">spatial_avg</span><span class="p">(</span><span class="n">T2m_detrended</span><span class="p">)</span>
+<span class="n">T2m_djf_avg</span> <span class="o">=</span> <span class="n">spatial_avg</span><span class="p">(</span><span class="n">T2m_djf</span><span class="p">[</span><span class="s2">&quot;t2m&quot;</span><span class="p">])</span>
+
+
+<span class="c1">## plot result</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T2m_djf_avg</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">T2m_djf_avg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;DJF&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T2m_trend_avg</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">T2m_trend_avg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;DJF trend&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">T2m_detrended_avg</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+    <span class="n">T2m_detrended_avg</span> <span class="o">+</span> <span class="n">T2m_trend_avg</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;DJF detrended&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">285</span><span class="p">,</span> <span class="mi">286</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">1980</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">2020</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;North Atlantic $T_</span><span class="si">{2m}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$T_</span><span class="si">{2m}</span><span class="s2">$ ($K$)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6780d139edf44b929d26cbc12263709d6f9438c303c2cb69b3188bb410a59e78.png" src="../../_images/6780d139edf44b929d26cbc12263709d6f9438c303c2cb69b3188bb410a59e78.png" />
+</div>
+</div>
+</section>
+<section id="correlation">
+<span id="id6"></span><h2>Correlation<a class="headerlink" href="#correlation" title="Link to this heading">#</a></h2>
+<p>Load in sea level pressure from ERA5 and detrend it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Get list of SLP files</span>
+<span class="n">slp_file_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">slp_path</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.nc&quot;</span><span class="p">))</span>
+
+<span class="c1">## Open SLP over N. Atlantic</span>
+<span class="n">slp</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">slp_file_list</span><span class="p">,</span> <span class="n">preprocess</span><span class="o">=</span><span class="n">preprocess</span><span class="p">)[</span><span class="s2">&quot;msl&quot;</span><span class="p">]</span>
+
+<span class="c1">## convert from Pa to hPa (1 hPa = 100 Pa)</span>
+<span class="n">slp</span> <span class="o">*=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">100</span>
+
+<span class="c1">## Get DJF average</span>
+<span class="n">slp_djf</span> <span class="o">=</span> <span class="n">djf_avg</span><span class="p">(</span><span class="n">slp</span><span class="p">)</span>
+
+<span class="c1">## detrend</span>
+<span class="n">slp_detrended</span> <span class="o">=</span> <span class="n">slp_djf</span> <span class="o">-</span> <span class="n">get_trend</span><span class="p">(</span><span class="n">slp_djf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="compute-point-wise-correlation-between-slp-and-t-2m">
+<h3>Compute point-wise correlation between SLP and <span class="math notranslate nohighlight">\(T_{2m}\)</span><a class="headerlink" href="#compute-point-wise-correlation-between-slp-and-t-2m" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">make_cb_range</span><span class="p">(</span><span class="n">amp</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Make colorbar_range for cmo.balance</span>
+<span class="sd">    Args:</span>
+<span class="sd">        - &#39;amp&#39;: amplitude of maximum value for colorbar</span>
+<span class="sd">        - &#39;delta&#39;: increment for colorbar</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">amp</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">delta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">amp</span> <span class="o">+</span> <span class="n">delta</span><span class="p">,</span> <span class="n">delta</span><span class="p">)]</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">make_correlation_plot</span><span class="p">(</span><span class="n">correlation</span><span class="p">):</span>
+
+    <span class="c1">## Plot results</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+    <span class="n">ax</span><span class="p">,</span> <span class="n">gl</span> <span class="o">=</span> <span class="n">plot_setup_north_atl</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+    <span class="c1">## Plot data</span>
+    <span class="n">corr_plot</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span>
+        <span class="n">correlation</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+        <span class="n">correlation</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
+        <span class="n">correlation</span><span class="p">,</span>
+        <span class="n">levels</span><span class="o">=</span><span class="n">make_cb_range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;cmo.balance&quot;</span><span class="p">,</span>
+        <span class="n">extend</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1">## add a colorbar and label</span>
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">corr_plot</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>
+
+
+<span class="c1">## compute correlation</span>
+<span class="n">slp_T2m_corr</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">slp_detrended</span><span class="p">,</span> <span class="n">T2m_detrended</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+
+<span class="c1">## plot results</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">make_correlation_plot</span><span class="p">(</span><span class="n">slp_T2m_corr</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Correlation b/n $T_</span><span class="si">{2m}</span><span class="s2">$ and SLP during winter&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6f0a43e12905fe5ba99ff287aef59da3c48df851d650e612a17c83c8fb667451.png" src="../../_images/6f0a43e12905fe5ba99ff287aef59da3c48df851d650e612a17c83c8fb667451.png" />
+</div>
+</div>
+</section>
+<section id="correlation-between-a-single-point-the-rest-of-the-grid">
+<h3>Correlation between a single point the rest of the grid<a class="headerlink" href="#correlation-between-a-single-point-the-rest-of-the-grid" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## get SLP near Woods Hole</span>
+<span class="n">T2m_woodshole</span> <span class="o">=</span> <span class="n">T2m_detrended</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mf">41.5</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="mf">288.5</span><span class="p">)</span>
+
+<span class="c1">## get correlation between Woods Hole T2m and North Atlantic SLP</span>
+<span class="n">T2mWH_slp_corr</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">T2m_woodshole</span><span class="p">,</span> <span class="n">slp_detrended</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">make_correlation_plot</span><span class="p">(</span><span class="n">T2mWH_slp_corr</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mf">288.5</span><span class="p">,</span> <span class="mf">41.5</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Correlation b/n Woods Hole SLP and $T_</span><span class="si">{2m}</span><span class="s2">$ during winter&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a84a7ff8fde3578f699412ff2163bd520f25904c5f5bef7f5b49486c2d42fb00.png" src="../../_images/a84a7ff8fde3578f699412ff2163bd520f25904c5f5bef7f5b49486c2d42fb00.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="regridding-data">
+<span id="regridding"></span><h2>Regridding data<a class="headerlink" href="#regridding-data" title="Link to this heading">#</a></h2>
+<p>Next, we’re going to load data on a non-regular grid (tripolar, in this case). Specifically, we’ll look at sea surface temperature (SST) from the MIROC6 model’s historical simulation. We’ll show how to plot the data on it’s native grid and how to regrid it to a regular lon/lat grid.</p>
+<p>Start by importing <code class="docutils literal notranslate"><span class="pre">xesmf</span></code> package for regridding</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xesmf</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xe</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First, load the data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## specify filename</span>
+<span class="n">sst_fname</span> <span class="o">=</span> <span class="s2">&quot;tos_Omon_MIROC6_historical_r1i1p1f1_gn_195001-201412.nc&quot;</span>
+<span class="n">sst_path_to_file</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">sst_path</span><span class="p">,</span> <span class="n">sst_fname</span><span class="p">)</span>
+
+<span class="c1">## open the data and trim in time</span>
+<span class="n">sst_miroc6</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">sst_path_to_file</span><span class="p">)</span>
+<span class="n">sst_miroc6</span> <span class="o">=</span> <span class="n">sst_miroc6</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">36</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, regrid to a “regular” lon/lat grid</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## should we use custom grid?</span>
+<span class="n">use_custom_grid</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">if</span> <span class="n">use_custom_grid</span><span class="p">:</span>
+    <span class="c1"># create regular lon/lat grid</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">),</span> <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">91</span><span class="p">)},</span>
+        <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;latitude&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># use ERA5 grid</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">T2m_detrended</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">## do the regridding</span>
+<span class="n">regridder</span> <span class="o">=</span> <span class="n">xe</span><span class="o">.</span><span class="n">Regridder</span><span class="p">(</span><span class="n">ds_in</span><span class="o">=</span><span class="n">sst_miroc6</span><span class="p">,</span> <span class="n">ds_out</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;bilinear&quot;</span><span class="p">)</span>
+<span class="n">sst_miroc6_regridded</span> <span class="o">=</span> <span class="n">regridder</span><span class="p">(</span><span class="n">sst_miroc6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xesmf/smm.py:131: UserWarning: Input array is not C_CONTIGUOUS. Will affect performance.
+  warnings.warn(&#39;Input array is not C_CONTIGUOUS. &#39; &#39;Will affect performance.&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xesmf/smm.py:131: UserWarning: Input array is not C_CONTIGUOUS. Will affect performance.
+  warnings.warn(&#39;Input array is not C_CONTIGUOUS. &#39; &#39;Will affect performance.&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot comparison of data on native and regular grids</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## set up the plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
+
+<span class="c1">## canvas for plot on native grid</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">ax</span><span class="p">,</span> <span class="n">gl</span> <span class="o">=</span> <span class="n">plot_setup_north_atl</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1">## canvas for plot with regridded data</span>
+<span class="n">ax_regridded</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">ax_regridded</span><span class="p">,</span> <span class="n">gl_regridded</span> <span class="o">=</span> <span class="n">plot_setup_north_atl</span><span class="p">(</span><span class="n">ax_regridded</span><span class="p">)</span>
+
+<span class="c1">## Plot data on native grid</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Native grid&quot;</span><span class="p">)</span>
+<span class="n">sst_plot</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span>
+    <span class="n">sst_miroc6</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+    <span class="n">sst_miroc6</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
+    <span class="n">sst_miroc6</span><span class="p">[</span><span class="s2">&quot;tos&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;cmo.thermal&quot;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sst_plot</span><span class="p">)</span>
+
+<span class="c1">## Plot regridded data</span>
+<span class="n">ax_regridded</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Regridded&quot;</span><span class="p">)</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">sst_miroc6_regridded</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span> <span class="n">sst_miroc6_regridded</span><span class="o">.</span><span class="n">latitude</span><span class="p">)</span>
+<span class="n">sst_plot_regridded</span> <span class="o">=</span> <span class="n">ax_regridded</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span>
+    <span class="n">xx</span><span class="p">,</span>
+    <span class="n">yy</span><span class="p">,</span>
+    <span class="n">sst_miroc6_regridded</span><span class="p">[</span><span class="s2">&quot;tos&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;cmo.thermal&quot;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sst_plot_regridded</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d9fbd21d6f9daa65e532c5d3828fb0ea37a1d215936f9913af0d7b69e1bd1ae9.png" src="../../_images/d9fbd21d6f9daa65e532c5d3828fb0ea37a1d215936f9913af0d7b69e1bd1ae9.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./pages/resources"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="FAQ.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">FAQ</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="git_basics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Git basics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-and-prepping-data-from-whoi-s-cmip-server">Loading and prepping data from WHOI’s “CMIP” server</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-data">Open the data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specify-file-paths">Specify file paths</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Opening data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-data">Plotting data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-setup-and-gridlines">Plot setup and gridlines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-in-the-pacific">Plotting in the Pacific</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-functions">Plotting functions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#make-plots-for-two-projection-types-platecarree-and-orthographic">Make plots for two projection types, PlateCarree and Orthographic</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#highlighting-specific-contours">Highlighting specific contours</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-data-and-highlight-the-280-k-contour">Plot the data (and highlight the <span class="math notranslate nohighlight">\(280 K\)</span> contour)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-averaging">Spatial averaging</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation-of-cos-latitude-weighting">Explanation of cos(latitude) weighting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seasonal-cycle">Seasonal cycle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolation-and-resampling">Interpolation and resampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#averaging-in-time">Averaging in time</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resampling-in-space">Resampling in space</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detrending">Detrending</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-point-wise-correlation-between-slp-and-t-2m">Compute point-wise correlation between SLP and <span class="math notranslate nohighlight">\(T_{2m}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-between-a-single-point-the-rest-of-the-grid">Correlation between a single point the rest of the grid</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regridding-data">Regridding data</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Theo Carr
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
