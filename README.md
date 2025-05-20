@@ -1,8 +1,8 @@
 ## Set-up
-Clone/fork repository  (```git clone ...```)
-Create virtual environment  (```mamba create ...```)
-Activate virtual environment (```mamba activate ...```)
-Install packages listed in ```env.yml``` file to virtual environment (```mamba env update --file env.yml```)
+1. Clone/fork repository  (```git clone ...```)
+2. Create virtual environment  (```mamba create ...```)
+3. Activate virtual environment (```mamba activate ...```)
+4. Install packages listed in ```env.yml``` file to virtual environment (```mamba env update --file env.yml```)
 
 ## building the site
 To build locally, use one of:
