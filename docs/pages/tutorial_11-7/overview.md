@@ -1,4 +1,4 @@
-# 6) Example (Azores high / glaciers) 
+# 6) Examples 
 
 __The goal__:  We're going to (loosely) reproduce results from Cresswell-Clay et al. (2022){sup}`1` from scratch, using data stored on WHOI's CMIP server. 
 
