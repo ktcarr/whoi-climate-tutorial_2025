@@ -25,7 +25,7 @@ chapters:
   - url: https://docs.google.com/presentation/d/1bAFB9mO22WYc6El3nojJgDyJqpis6xx5XXz0Tj2rMbI/edit?usp=sharing
     title: Slides
   - file: pages/tutorial_11-7/azores_prep.ipynb
-  - file: pages/tutorial_11-7/azores_analysis_tutorial.md
+  - file: pages/tutorial_11-7/azores_analysis.ipynb
 - file: pages/assignments/assignments_toc
   sections:
   - file: pages/assignments/assignment1
