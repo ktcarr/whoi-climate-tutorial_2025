@@ -1,4 +1,4 @@
-# 1) Computing climate statistics
+# 1) Climate diagnostics 
 
 <!---
 - Include EOFs here?

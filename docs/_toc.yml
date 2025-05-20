@@ -9,17 +9,19 @@ chapters:
   - file: pages/setup/setup_venv
   - file: pages/setup/connect_to_server
   - file: pages/setup/test
-- file: pages/tutorial_9-19/overview
+- file: pages/data_analysis/overview
   sections:
   - url: https://docs.google.com/presentation/d/1DZRXfNPGTo16g4iyo0TyZzevw06dgi5qklZvJoqnEQw/edit?usp=sharing
     title: Slides
-  - file: pages/tutorial_9-19/example.md
-  - file: pages/tutorial_9-19/hw1_starter.md
-- file: pages/tutorial_10-10/overview
+  - file: pages/data_analysis/example.md
+- file: pages/model_validation/overview.ipynb
+  sections:
+  - file: pages/model_validation/model_validation_stub.ipynb
+- file: pages/single_model_ensemble/overview
   sections:
   - url: https://docs.google.com/presentation/d/18Rp-7hCtp8fYvdGVZOlwaS4b_-PtmIVTkmM529wNN1Q/edit?usp=sharing 
     title: Slides
-  - file: pages/tutorial_10-10/ENSO_example
+  - file: pages/single_model_ensemble/ENSO_example
 - file: pages/tutorial_11-7/overview
   sections:
   - url: https://docs.google.com/presentation/d/1bAFB9mO22WYc6El3nojJgDyJqpis6xx5XXz0Tj2rMbI/edit?usp=sharing
