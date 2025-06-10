@@ -40,4 +40,6 @@ chapters:
   - file: pages/resources/xarray_reference
   - file: pages/resources/git_basics
   - file: pages/resources/eofs.ipynb
+  - file: pages/resources/ersst_cloud.ipynb
+  - file: pages/resources/cesm_cloud.ipynb
 
