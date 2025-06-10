@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Test the setup worked! &#8212; WHOI Climate Data Tutorial (2025)</title>
+    <title>Using data from the cloud &#8212; WHOI Climate Data Tutorial (2025)</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'pages/setup/test';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pages/resources/ersst_cloud';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1) Climate diagnostics" href="../data_analysis/overview.html" />
-    <link rel="prev" title="Accessing the CMIP data servers" href="connect_to_server.html" />
+    <link rel="next" title="Using data from the cloud" href="cesm_cloud.html" />
+    <link rel="prev" title="Intro to EOFs" href="eofs.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,10 +180,10 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="setup.html">0) Setup</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="setup_venv.html">Python / virtual environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="connect_to_server.html">Accessing the CMIP data servers</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Test the setup worked!</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../setup/setup.html">0) Setup</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../setup/setup_venv.html">Python / virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup/connect_to_server.html">Accessing the CMIP data servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup/test.html">Test the setup worked!</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../data_analysis/overview.html">1) Climate diagnostics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -214,13 +214,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../assignments/assignment1.html">Assignment 1: model validation</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../resources/resources.html">Resources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../resources/FAQ.html">FAQ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../resources/xarray_reference.html">Xarray reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../resources/git_basics.html">Git basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../resources/eofs.html">Intro to EOFs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../resources/ersst_cloud.html">Using data from the cloud</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../resources/cesm_cloud.html">Using data from the cloud</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="resources.html">Resources</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html">FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xarray_reference.html">Xarray reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_basics.html">Git basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eofs.html">Intro to EOFs</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Using data from the cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cesm_cloud.html">Using data from the cloud</a></li>
 </ul>
 </details></li>
 </ul>
@@ -277,7 +277,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/ktcarr/whoi-climate-tutorial_2025/blob/main/docs/pages/setup/test.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/ktcarr/whoi-climate-tutorial_2025/blob/main/docs/pages/resources/ersst_cloud.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -325,7 +325,7 @@
       
       
       
-      <li><a href="https://github.com/ktcarr/whoi-climate-tutorial_2025/issues/new?title=Issue%20on%20page%20%2Fpages/setup/test.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ktcarr/whoi-climate-tutorial_2025/issues/new?title=Issue%20on%20page%20%2Fpages/resources/ersst_cloud.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -355,7 +355,7 @@
       
       
       
-      <li><a href="../../_sources/pages/setup/test.ipynb" target="_blank"
+      <li><a href="../../_sources/pages/resources/ersst_cloud.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -439,7 +439,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Test the setup worked!</h1>
+    <h1>Using data from the cloud</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -450,11 +450,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-data">Open the data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-list-of-files-to-open">Get list of files to open</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-data-using-xarray">Open the data using <code class="docutils literal notranslate"><span class="pre">xarray</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-ersst-data">Open ERSST data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-a-sample">Plot a sample</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-functions-for-plotting">Define functions for plotting</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-the-plot">Make the plot</a></li>
@@ -477,8 +473,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="test-the-setup-worked">
-<h1>Test the setup worked!<a class="headerlink" href="#test-the-setup-worked" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="using-data-from-the-cloud">
+<h1>Using data from the cloud<a class="headerlink" href="#using-data-from-the-cloud" title="Link to this heading">#</a></h1>
 <div class="admonition-to-do admonition">
 <p class="admonition-title">To-do</p>
 <p><strong>Activate your virtual environment and start a jupyterlab session</strong>. For example, if your mamba/conda environment is called <code class="docutils literal notranslate"><span class="pre">12860_env</span></code>, enter the following lines in a command window (the first line activates the virtual environment and the second line starts the jupyter session):</p>
@@ -487,14 +483,6 @@ document.write(`
 </pre></div>
 </div>
 <p><strong>Then, execute the cells in the rest of this notebook</strong> (you can either copy/paste code to a blank notebook, or download this notebook directly).</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Running this notebook requires a functional virtual environment and connection to WHOI’s CMIP data server. For examples which don’t require either of these things, see the following example:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../resources/ersst_cloud.html"><span class="std std-doc"><strong>ERSST example</strong></span></a></p></li>
-<li><p><a class="reference internal" href="../resources/cesm_cloud.html"><span class="std std-doc"><strong>CESM example</strong></span></a></p></li>
-</ul>
 </div>
 <section id="packages">
 <h2>Packages<a class="headerlink" href="#packages" title="Link to this heading">#</a></h2>
@@ -508,6 +496,7 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mdates</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cmocean</span>
 
 <span class="c1">## (optional) remove gridlines from plots</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;axes.facecolor&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="s2">&quot;axes.grid&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
@@ -516,65 +505,25 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="open-the-data">
-<h2>Open the data<a class="headerlink" href="#open-the-data" title="Link to this heading">#</a></h2>
-<div class="admonition-to-do admonition">
-<p class="admonition-title">To-do</p>
-<p>Specify the path to the file server in the following code cell.</p>
-</div>
+<section id="open-ersst-data">
+<h2>Open ERSST data<a class="headerlink" href="#open-ersst-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## To-do: update path to WHOI file server on your machine</span>
-<span class="c1">## On Mac, the default location is &quot;/Volumes&quot;</span>
-<span class="n">server_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/Volumes&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="get-list-of-files-to-open">
-<h3>Get list of files to open<a class="headerlink" href="#get-list-of-files-to-open" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## path to the data (from the root of the server)</span>
-<span class="n">t2m_path_on_server</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span>
-    <span class="s2">&quot;cmip6/data/era5/reanalysis/single-levels/monthly-means/2m_temperature&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load from NOAA website</span>
+<span class="n">sst</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">&quot;http://psl.noaa.gov/thredds/dodsC/Datasets/noaa.ersst.v5/sst.mnmean.nc&quot;</span>
 <span class="p">)</span>
 
-<span class="c1">## combine these into single path</span>
-<span class="n">t2m_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">server_path</span><span class="p">,</span> <span class="n">t2m_path_on_server</span><span class="p">)</span>
-
-<span class="c1">## Get list of files and print out the first 5</span>
-<span class="n">t2m_files</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">t2m_path</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.nc&quot;</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">t2m_files</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Volumes/cmip6/data/era5/reanalysis/single-levels/monthly-means/2m_temperature/1979_2m_temperature.nc
-/Volumes/cmip6/data/era5/reanalysis/single-levels/monthly-means/2m_temperature/1980_2m_temperature.nc
-/Volumes/cmip6/data/era5/reanalysis/single-levels/monthly-means/2m_temperature/1981_2m_temperature.nc
-/Volumes/cmip6/data/era5/reanalysis/single-levels/monthly-means/2m_temperature/1982_2m_temperature.nc
-/Volumes/cmip6/data/era5/reanalysis/single-levels/monthly-means/2m_temperature/1983_2m_temperature.nc
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="open-the-data-using-xarray">
-<h3>Open the data using <code class="docutils literal notranslate"><span class="pre">xarray</span></code><a class="headerlink" href="#open-the-data-using-xarray" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t2m</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">t2m_files</span><span class="p">)[</span><span class="s2">&quot;t2m&quot;</span><span class="p">]</span>
+<span class="c1">## rename coordinates for consistency with other scripts</span>
+<span class="n">sst</span> <span class="o">=</span> <span class="n">sst</span><span class="p">[</span><span class="s2">&quot;sst&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="s2">&quot;latitude&quot;</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you get a <code class="docutils literal notranslate"><span class="pre">NetCDF:</span> <span class="pre">HDF</span></code> error, see the <a class="reference internal" href="../resources/FAQ.html"><span class="std std-doc">FAQ page</span></a>.</p>
+<p>If you get a <code class="docutils literal notranslate"><span class="pre">NetCDF:</span> <span class="pre">HDF</span></code> error, see the <a class="reference internal" href="FAQ.html"><span class="std std-doc">FAQ page</span></a>.</p>
 </div>
-</section>
 </section>
 <section id="plot-a-sample">
 <h2>Plot a sample<a class="headerlink" href="#plot-a-sample" title="Link to this heading">#</a></h2>
@@ -622,42 +571,62 @@ document.write(`
 </section>
 <section id="make-the-plot">
 <h3>Make the plot<a class="headerlink" href="#make-the-plot" title="Link to this heading">#</a></h3>
+<p>Select which time index to plot</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## specify time index to plot</span>
+<span class="n">t_idx</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1">## get year and month for labeling</span>
+<span class="n">year</span> <span class="o">=</span> <span class="n">sst</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">values</span>
+<span class="n">month</span> <span class="o">=</span> <span class="n">sst</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Create the plot</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## blank canvas to plot on</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
-<span class="c1">## draw background map of Pacific</span>
-<span class="c1"># ax = plot_setup_pacific(fig)</span>
+<span class="c1">## draw background map</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_setup_atlantic</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 
 <span class="c1">## plot the first timestep of 2m-temperature</span>
 <span class="n">plot_data</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span>
-    <span class="n">t2m</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
-    <span class="n">t2m</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
-    <span class="n">t2m</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">sst</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+    <span class="n">sst</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
+    <span class="n">sst</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
     <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
-    <span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;cmo.thermal&quot;</span><span class="p">,</span>
     <span class="n">extend</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="c1">## create colorbath</span>
-<span class="n">colorbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$K$&quot;</span><span class="p">)</span>
+<span class="n">colorbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$^{\circ}$C&quot;</span><span class="p">)</span>
 
 <span class="c1">## Mark Woods Hole on map</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
-    <span class="mf">288.5</span><span class="p">,</span> <span class="mf">41.5</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span>
+    <span class="mf">288.5</span><span class="p">,</span>
+    <span class="mf">41.5</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="s2">&quot;magenta&quot;</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+    <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="c1">## label</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;January 1979 $T_</span><span class="si">{2m}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SST (</span><span class="si">{</span><span class="n">year</span><span class="p">[</span><span class="n">t_idx</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">month</span><span class="p">[</span><span class="n">t_idx</span><span class="p">]</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f7a8d38100ce8e7948fb9ea5319f858c27f103e492fc135f07d0647bb135e4b3.png" src="../../_images/f7a8d38100ce8e7948fb9ea5319f858c27f103e492fc135f07d0647bb135e4b3.png" />
+<img alt="../../_images/e015ac393f38e387c401a372c584babe311db375a93bdc3d781d583d104197f7.png" src="../../_images/e015ac393f38e387c401a372c584babe311db375a93bdc3d781d583d104197f7.png" />
 </div>
 </div>
 </section>
@@ -668,21 +637,21 @@ document.write(`
 <h3>Write function to compute the index from global data<a class="headerlink" href="#write-function-to-compute-the-index-from-global-data" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_WH_idx</span><span class="p">(</span><span class="n">t2m</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_WH_idx</span><span class="p">(</span><span class="n">sst</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Input: &#39;t2m&#39; is a 3-D DataArray (lon,lat,time)</span>
+<span class="sd">    Input: &#39;sst&#39; is a 3-D DataArray (lon,lat,time)</span>
 
 <span class="sd">    Output: &#39;climate_index&#39; is a 1-D DataArray (time)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1">## Get temperature in grid cell near Woods Hole</span>
-    <span class="n">t2m_WH</span> <span class="o">=</span> <span class="n">t2m</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mf">41.5</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="mf">288.5</span><span class="p">)</span>
+    <span class="n">sst_idx</span> <span class="o">=</span> <span class="n">sst</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mf">41.5</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="mf">288.5</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
 
     <span class="c1">## Remove monthly mean (climatology)</span>
-    <span class="n">t2m_WH_clim</span> <span class="o">=</span> <span class="n">t2m_WH</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;time.month&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-    <span class="n">t2m_WH</span> <span class="o">=</span> <span class="n">t2m_WH</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;time.month&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="n">t2m_WH_clim</span>
+    <span class="n">sst_idx_clim</span> <span class="o">=</span> <span class="n">sst_idx</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;time.month&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">sst_idx</span> <span class="o">=</span> <span class="n">sst_idx</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;time.month&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="n">sst_idx_clim</span>
 
-    <span class="k">return</span> <span class="n">t2m_WH</span>
+    <span class="k">return</span> <span class="n">sst_idx</span>
 </pre></div>
 </div>
 </div>
@@ -692,7 +661,7 @@ document.write(`
 <h3>Compute the index<a class="headerlink" href="#compute-the-index" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t2m_WH</span> <span class="o">=</span> <span class="n">get_WH_idx</span><span class="p">(</span><span class="n">t2m</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sst_WH</span> <span class="o">=</span> <span class="n">get_WH_idx</span><span class="p">(</span><span class="n">sst</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -705,16 +674,17 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
 <span class="c1">## Plot the data</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t2m_WH</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">t2m_WH</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sst_WH</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">sst_WH</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="c1">## add line at y=0</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1">## label axes</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Woods Hole $T_</span><span class="si">{2m}</span><span class="s2">$ anomaly&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Woods Hole SST anomaly&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$K$&quot;</span><span class="p">)</span>
 
 <span class="c1">## label x-axis</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">1979</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)]</span>
-<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1850</span><span class="p">,</span> <span class="mi">1935</span><span class="p">,</span> <span class="mi">2020</span><span class="p">]])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s2">&quot;%Y&quot;</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -722,7 +692,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/624859f52bf7cbd0ec4fc6b7e762867bcec5769f75c5614edf9317c42fcb3da0.png" src="../../_images/624859f52bf7cbd0ec4fc6b7e762867bcec5769f75c5614edf9317c42fcb3da0.png" />
+<img alt="../../_images/a0e073913420d51a7f654ebffdd2a3b37898a9df1b7ef3106f8171afa9beb207.png" src="../../_images/a0e073913420d51a7f654ebffdd2a3b37898a9df1b7ef3106f8171afa9beb207.png" />
 </div>
 </div>
 </section>
@@ -742,7 +712,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./pages/setup"
+            path: "./pages/resources"
         },
         predefinedOutput: true
     }
@@ -760,20 +730,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="connect_to_server.html"
+       href="eofs.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Accessing the CMIP data servers</p>
+        <p class="prev-next-title">Intro to EOFs</p>
       </div>
     </a>
     <a class="right-next"
-       href="../data_analysis/overview.html"
+       href="cesm_cloud.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">1) Climate diagnostics</p>
+        <p class="prev-next-title">Using data from the cloud</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -794,11 +764,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-data">Open the data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-list-of-files-to-open">Get list of files to open</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-data-using-xarray">Open the data using <code class="docutils literal notranslate"><span class="pre">xarray</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-ersst-data">Open ERSST data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-a-sample">Plot a sample</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-functions-for-plotting">Define functions for plotting</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-the-plot">Make the plot</a></li>

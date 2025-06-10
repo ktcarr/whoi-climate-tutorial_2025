@@ -221,6 +221,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../resources/xarray_reference.html">Xarray reference</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../resources/git_basics.html">Git basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../resources/eofs.html">Intro to EOFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources/ersst_cloud.html">Using data from the cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources/cesm_cloud.html">Using data from the cloud</a></li>
 </ul>
 </details></li>
 </ul>
@@ -264,6 +266,37 @@
         <div class="header-article-item">
 
 <div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ktcarr/whoi-climate-tutorial_2025/blob/main/docs/pages/data_analysis/example.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
 
 
 
@@ -477,7 +510,12 @@ document.write(`
 </div>
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_setup</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">lon_range</span><span class="p">,</span> <span class="n">lat_range</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">yticks</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a subplot to the figure with the given map projection</span>
@@ -729,10 +767,16 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="region-specific-functions">
 <h3>Region-specific functions<a class="headerlink" href="#region-specific-functions" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">trim_to_north_atl</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;trim xr.DataArray to North Atlantic region&quot;&quot;&quot;</span>
@@ -789,6 +833,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 </section>
 </section>
