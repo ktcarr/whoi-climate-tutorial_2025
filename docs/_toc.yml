@@ -11,7 +11,7 @@ chapters:
   - file: pages/setup/test
 - file: pages/data_analysis/overview
   sections:
-  - url: https://docs.google.com/presentation/d/1DZRXfNPGTo16g4iyo0TyZzevw06dgi5qklZvJoqnEQw/edit?usp=sharing
+  - url: https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing
     title: Slides
   - file: pages/data_analysis/example.ipynb
 - file: pages/model_validation/overview
