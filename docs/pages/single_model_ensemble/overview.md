@@ -9,7 +9,7 @@ It's possible to estimate the "external forcing" signal without an ensemble: for
 
 
 ## Goal for tutorial 
-Today, we're going to going to use the CESM1 large ensemble ("CESM-LENS") to estimate the forced response to the RCP8.5 emissions scenario (we'll use the same Woods Hole SST-based index as in previous tutorials). After estimating the forced response, we'll look at its seasonality (and estimate its robustness). We'll also do one example of estimating changes in the standard deviation of SST.
+Today, we're going to going to use the CESM1 large ensemble ("CESM-LENS") to estimate the forced response to the RCP8.5 emissions scenario (we'll use the same Woods Hole SST-based index as in previous tutorials). After estimating the forced response (using up to 35 ensemble members), we'll look at its seasonality (and estimate its robustness). We'll also do one example of estimating changes in the standard deviation of SST.
 
 ## Example: forced changes in Woods Hole-adjacent SST
 (see notebook on the [following page](woods-hole_example.ipynb) for code to reproduce results)  
@@ -49,37 +49,17 @@ name: sigma-change
 
 
 ## To-dos
-1. Check to make sure you can run the example.
-2. Define your own climate index (e.g., pick a different region than Woods Hole). For reference, here's the area-averaged SST index used in the example:
-```python
-def compute_T_wh(x):
-    """Compute Woods Hole temperature index"""
-
-    ## define lon/lat range for averaging
-    ## (note latitude is in descending order in ERA5)
-    region = dict(
-        latitude = slice(44, 39), longitude=slice(-72.5, -66.5)
-    ) 
-
-    ## get subset of data inside the box
-    data_subset = x.sel(region)
-
-    ## compute spatial average
-    return spatial_avg(data_subset)
-```
-3. Re-run the diagnostics from the example with your index. Note that you may need to update/replace spatial plotting functions (e.g., ```plot_setup_woodshole```) depending on the index you pick.
-
+0. (optional) Run the example. Note that loading the data from all 35 ensemble members is time-consuming ($\sim 30$ minutes). As noted in the example, two options for reducing this time are (i) loading a subset of ensemble members or (ii) [use Google Colab](../resources/cesm_cloud.ipynb). We'd suggest starting with fewer ensemble members.
+1. Adapt example to look at forced response / internal variability in a different region and using a different index (see example for details about where to make these changes).
+2. Re-run the analyses using your index.
 
 ### Advanced (optional)
-1. Pick a different variable other than SST
+1. Pick a different variable other than SST.
+2. Look at change in autocorrelation over time.
+3. Look at change in standard deviation as a function of season.
 
 
 ### Other resources
-
-
-### References
-Hersbach, H. et al. The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society 146, 1999–2049 (2020).
-
 
 
 ```{tableofcontents}
