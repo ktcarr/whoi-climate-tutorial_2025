@@ -37,7 +37,7 @@ name: forced-response_by-season
 ```{figure} figs/histograms.svg
 ---
 height: 250px
-name: histograms 
+name: forced-response_histograms 
 ---
 ```
 

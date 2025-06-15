@@ -18,10 +18,8 @@ chapters:
   sections:
   - file: pages/model_validation/model_validation_stub.ipynb
 - file: pages/single_model_ensemble/overview
-  sections:
-  - url: https://docs.google.com/presentation/d/18Rp-7hCtp8fYvdGVZOlwaS4b_-PtmIVTkmM529wNN1Q/edit?usp=sharing 
-    title: Slides
-  - file: pages/single_model_ensemble/ENSO_example
+  sections: 
+  - file: pages/single_model_ensemble/woods-hole_example
 - file: pages/intermodel_comp/overview
   sections:
   - file: pages/intermodel_comp/example.ipynb
