@@ -36,7 +36,7 @@ name: trend
 ```{figure} figs/spatial-correlation.svg
 ---
 height: 250px
-name: correlation
+name: woodshole-correlation
 ---
 ```
 
