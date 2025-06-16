@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Example: Woods Hole temperature variability &#8212; WHOI Climate Data Tutorial (2025)</title>
+    <title>Example &#8212; WHOI Climate Data Tutorial (2025)</title>
   
   
   
@@ -189,8 +189,8 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="overview.html">1) Climate diagnostics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1DZRXfNPGTo16g4iyo0TyZzevw06dgi5qklZvJoqnEQw/edit?usp=sharing">Slides</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Example: Woods Hole temperature variability</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Example</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../model_validation/overview.html">2) Model validation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -198,8 +198,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../single_model_ensemble/overview.html">4) Single-model ensemble</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/18Rp-7hCtp8fYvdGVZOlwaS4b_-PtmIVTkmM529wNN1Q/edit?usp=sharing">Slides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/ENSO_example.html">ENSO example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/woods-hole_example.html">Example</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intermodel_comp/overview.html">5) Intermodel comparison</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -441,7 +440,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Example: Woods Hole temperature variability</h1>
+    <h1>Example</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -484,8 +483,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="example-woods-hole-temperature-variability">
-<h1>Example: Woods Hole temperature variability<a class="headerlink" href="#example-woods-hole-temperature-variability" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>In this example, we’ll compute climate diagnostics for Woods Hole sea surface temperature (SST) using the ERA5 reanalysis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
@@ -771,12 +771,11 @@ document.write(`
 </div>
 <section id="region-specific-functions">
 <h3>Region-specific functions<a class="headerlink" href="#region-specific-functions" title="Link to this heading">#</a></h3>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
+<div class="admonition-to-do-update-trimming-plotting-functions admonition">
+<p class="admonition-title">To-do: update trimming/plotting functions</p>
+<p>When implementing your own example, you may need to trim to a different spatial region. You may also want to adjust the region shown in the spatial plot.</p>
+</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">trim_to_north_atl</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;trim xr.DataArray to North Atlantic region&quot;&quot;&quot;</span>
@@ -833,7 +832,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-</details>
 </div>
 </section>
 </section>
@@ -841,6 +839,10 @@ document.write(`
 <h2>Loading and plotting the data<a class="headerlink" href="#loading-and-plotting-the-data" title="Link to this heading">#</a></h2>
 <section id="load-the-data">
 <h3>Load the data<a class="headerlink" href="#load-the-data" title="Link to this heading">#</a></h3>
+<div class="admonition-to-do-update-path-to-data admonition">
+<p class="admonition-title">To-do: update path to data</p>
+<p>Update the filepath <code class="docutils literal notranslate"><span class="pre">server_fp</span></code> in the code cell below. This is the location of the WHOI CMIP server on your computer (see <a class="reference internal" href="../setup/connect_to_server.html"><span class="std std-doc">server connection setup</span></a> for details).</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Path to file server</span>
@@ -886,7 +888,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## blank canvas to plot on</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;constrained&quot;</span><span class="p">)</span>
 
 <span class="c1">## draw background map of Atlantic</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_setup_atlantic</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
@@ -913,12 +915,15 @@ document.write(`
 <span class="c1">## label</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SST sample&quot;</span><span class="p">)</span>
 
+<span class="c1">## save to file</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;figs/sst-sample.svg&quot;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/518c9d2600257f561b763c780de2e668a3913f9bb36dc60d0182e6d1bb117206.png" src="../../_images/518c9d2600257f561b763c780de2e668a3913f9bb36dc60d0182e6d1bb117206.png" />
+<img alt="../../_images/406e931e522b2032f68959368ed968376e9a8904b5be912909fa0ef736955e1a.png" src="../../_images/406e931e522b2032f68959368ed968376e9a8904b5be912909fa0ef736955e1a.png" />
 </div>
 </div>
 </section>
@@ -926,23 +931,21 @@ document.write(`
 <section id="define-an-index">
 <h2>Define an index<a class="headerlink" href="#define-an-index" title="Link to this heading">#</a></h2>
 <p>Next, let’s define the “Woods Hole temperature index”, <span class="math notranslate nohighlight">\(T_{wh}\)</span> as the temperature averaged near Woods Hole.</p>
+<div class="admonition-to-do-define-your-own-index admonition">
+<p class="admonition-title">To-do: define your own index</p>
+<p>E.g., choose a different region.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## define outline of area for computing the index</span>
-<span class="n">T_WH_LON_RANGE</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">72.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">66.5</span><span class="p">]</span>
-<span class="n">T_WH_LAT_RANGE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">39</span><span class="p">,</span> <span class="mi">44</span><span class="p">]</span>
-
-
-<span class="c1">## a function to compute the index</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">compute_T_wh</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_T_wh</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute Woods Hole temperature index&quot;&quot;&quot;</span>
 
+    <span class="c1">## define lon/lat range for averaging</span>
+    <span class="c1">## (note latitude is in descending order in ERA5)</span>
+    <span class="n">region</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">39</span><span class="p">),</span> <span class="n">longitude</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mf">72.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">66.5</span><span class="p">))</span>
+
     <span class="c1">## get subset of data inside the box</span>
-    <span class="c1">## the &#39;[::-1]&#39; is needed because latitude is</span>
-    <span class="c1">## in descending order in this dataset.</span>
-    <span class="n">data_subset</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
-        <span class="n">latitude</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">*</span><span class="n">T_WH_LAT_RANGE</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">longitude</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">*</span><span class="n">T_WH_LON_RANGE</span><span class="p">)</span>
-    <span class="p">)</span>
+    <span class="n">data_subset</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">region</span><span class="p">)</span>
 
     <span class="c1">## compute spatial average</span>
     <span class="k">return</span> <span class="n">spatial_avg</span><span class="p">(</span><span class="n">data_subset</span><span class="p">)</span>
@@ -982,7 +985,7 @@ document.write(`
 <span class="p">)</span>
 
 <span class="c1">## plot outline of region used to compute index</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_box_outline</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lon_range</span><span class="o">=</span><span class="n">T_WH_LON_RANGE</span><span class="p">,</span> <span class="n">lat_range</span><span class="o">=</span><span class="n">T_WH_LAT_RANGE</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_box_outline</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">72.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">66.5</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">39</span><span class="p">,</span> <span class="mi">44</span><span class="p">])</span>
 
 <span class="c1">## label the plot</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SST sample&quot;</span><span class="p">)</span>
@@ -1033,6 +1036,8 @@ document.write(`
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$T_</span><span class="si">{wh}</span><span class="s2">$ climatology&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$K$&quot;</span><span class="p">)</span>
 
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;figs/seasonal-cycle.svg&quot;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1075,6 +1080,8 @@ document.write(`
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$T_</span><span class="si">{wh}</span><span class="s2">$ anomalies&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$K$&quot;</span><span class="p">)</span>
 
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;figs/trend.svg&quot;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1105,6 +1112,9 @@ document.write(`
 <span class="c1">## label</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$K$ anomaly&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Probability&quot;</span><span class="p">)</span>
+
+<span class="c1">## save to file</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;figs/histogram.svg&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1157,6 +1167,9 @@ document.write(`
 
 <span class="c1">## label</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Correlation with $T_</span><span class="si">{wh}</span><span class="s2">$&quot;</span><span class="p">)</span>
+
+<span class="c1">## save to file</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;figs/spatial-correlation.svg&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>

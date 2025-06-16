@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Intermodel comparison example" href="example.html" />
-    <link rel="prev" title="ENSO example" href="../single_model_ensemble/ENSO_example.html" />
+    <link rel="prev" title="Example" href="../single_model_ensemble/woods-hole_example.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -187,8 +187,8 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../data_analysis/overview.html">1) Climate diagnostics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1DZRXfNPGTo16g4iyo0TyZzevw06dgi5qklZvJoqnEQw/edit?usp=sharing">Slides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example: Woods Hole temperature variability</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../model_validation/overview.html">2) Model validation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -196,8 +196,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../single_model_ensemble/overview.html">4) Single-model ensemble</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/18Rp-7hCtp8fYvdGVZOlwaS4b_-PtmIVTkmM529wNN1Q/edit?usp=sharing">Slides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/ENSO_example.html">ENSO example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/woods-hole_example.html">Example</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">5) Intermodel comparison</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -395,7 +394,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -411,6 +412,25 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-of-lecture">Recap of lecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-for-tutorial">Goal for tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-climate-diagnostics-for-woods-hole-sst">Example: climate diagnostics for Woods Hole SST</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#to-dos">To-dos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-optional">Advanced (optional)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-resources">Other resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -422,12 +442,64 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="intermodel-comparison">
 <h1>5) Intermodel comparison<a class="headerlink" href="#intermodel-comparison" title="Link to this heading">#</a></h1>
-<p>To do…</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<section id="recap-of-lecture">
+<h3>Recap of lecture<a class="headerlink" href="#recap-of-lecture" title="Link to this heading">#</a></h3>
+<p>Today in lecture, we talked about data assimilation and reanalysis products. As discssed, reanalysis products use a combination of observations and models to produce a “best estimate” of climate variables (e.g., temperature, velocity, ozone, etc.) at specified intervals and space and time. The benefit of reanalysis products is that – unlike observations – there are no “gaps” in the data (the “gaps” are filled in by climate models), which makes data analysis easier. One important caveat is that there may be large uncertainty about the “true” value of a variable in regions with sparse observations (most reanalysis products also include estimates of this uncertainty). Another is that reanalysis products typically violate conservation principles (e.g., conservation of mass/heat/salt).</p>
+</section>
+<section id="goal-for-tutorial">
+<h3>Goal for tutorial<a class="headerlink" href="#goal-for-tutorial" title="Link to this heading">#</a></h3>
+<p>Today, we’re going to analyze sea surface temperature (SST) data from a widely-used reanalysis product, ERA5 (Hersbach et al, 2020). The goal is to become familiar with how to load, preprocess, and analyze (e.g., compute statistics on) gridded climate data. In particular, we’ll define an “index” (Cape Cod SST) and compute some statistics on the index over the recent historical period. We’ll use these statistics as baselines for the current climate; later in short course we’ll compute the same statistics on simulations of the future climate to see how they’re projected to change over time.</p>
+</section>
+<section id="example-climate-diagnostics-for-woods-hole-sst">
+<h3>Example: climate diagnostics for Woods Hole SST<a class="headerlink" href="#example-climate-diagnostics-for-woods-hole-sst" title="Link to this heading">#</a></h3>
+</section>
+<section id="to-dos">
+<h3>To-dos<a class="headerlink" href="#to-dos" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Check to make sure you can run the example.</p></li>
+<li><p>Define your own climate index (e.g., pick a different region than Woods Hole). For reference, here’s the area-averaged SST index used in the example:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_T_wh</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute Woods Hole temperature index&quot;&quot;&quot;</span>
+
+    <span class="c1">## define lon/lat range for averaging</span>
+    <span class="c1">## (note latitude is in descending order in ERA5)</span>
+    <span class="n">region</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">latitude</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">39</span><span class="p">),</span> <span class="n">longitude</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mf">72.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">66.5</span><span class="p">)</span>
+    <span class="p">)</span> 
+
+    <span class="c1">## get subset of data inside the box</span>
+    <span class="n">data_subset</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">region</span><span class="p">)</span>
+
+    <span class="c1">## compute spatial average</span>
+    <span class="k">return</span> <span class="n">spatial_avg</span><span class="p">(</span><span class="n">data_subset</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Re-run the diagnostics from the example with your index. Note that you may need to update/replace spatial plotting functions (e.g., <code class="docutils literal notranslate"><span class="pre">plot_setup_woodshole</span></code>) depending on the index you pick.</p></li>
+</ol>
+<section id="advanced-optional">
+<h4>Advanced (optional)<a class="headerlink" href="#advanced-optional" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Pick a different variable other than SST</p></li>
+</ol>
+</section>
+</section>
+<section id="other-resources">
+<h3>Other resources<a class="headerlink" href="#other-resources" title="Link to this heading">#</a></h3>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<p>Hersbach, H. et al. The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society 146, 1999–2049 (2020).</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Intermodel comparison example</a></li>
 </ul>
 </div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -461,12 +533,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../single_model_ensemble/ENSO_example.html"
+       href="../single_model_ensemble/woods-hole_example.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">ENSO example</p>
+        <p class="prev-next-title">Example</p>
       </div>
     </a>
     <a class="right-next"
@@ -484,6 +556,32 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-of-lecture">Recap of lecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-for-tutorial">Goal for tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-climate-diagnostics-for-woods-hole-sst">Example: climate diagnostics for Woods Hole SST</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#to-dos">To-dos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-optional">Advanced (optional)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-resources">Other resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

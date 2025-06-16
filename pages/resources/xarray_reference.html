@@ -189,8 +189,8 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../data_analysis/overview.html">1) Climate diagnostics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1DZRXfNPGTo16g4iyo0TyZzevw06dgi5qklZvJoqnEQw/edit?usp=sharing">Slides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example: Woods Hole temperature variability</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../model_validation/overview.html">2) Model validation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -198,8 +198,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../single_model_ensemble/overview.html">4) Single-model ensemble</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/18Rp-7hCtp8fYvdGVZOlwaS4b_-PtmIVTkmM529wNN1Q/edit?usp=sharing">Slides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/ENSO_example.html">ENSO example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/woods-hole_example.html">Example</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intermodel_comp/overview.html">5) Intermodel comparison</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -952,8 +951,8 @@ Note we have to specify the projection keyword (e.g., ccrs.PlateCarree or ccrs.O
 <section id="explanation-of-cos-latitude-weighting">
 <span id="coslat"></span><h3>Explanation of cos(latitude) weighting<a class="headerlink" href="#explanation-of-cos-latitude-weighting" title="Link to this heading">#</a></h3>
 <p>Not every element in our array represents an equal surface area of the earth: on a “regular” longitude-latitude grid (where the longitude and latitude spacing is constant) the area of gridcells decreases as you move away from the equator to the poles. Denoting longitude and latitude as <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span>, and longitude and latitude spacing as <span class="math notranslate nohighlight">\(\delta\theta\)</span> and <span class="math notranslate nohighlight">\(\delta\phi\)</span>, the area of each gridcell is given by <span class="math notranslate nohighlight">\(\delta A ~= R^2\cos(\phi)\delta\phi\delta\theta\)</span>, where <span class="math notranslate nohighlight">\(R\)</span> is the radius of the earth. The weighted average of a variable <span class="math notranslate nohighlight">\(f\)</span> on the sphere is then given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-104083cc-9300-4a4f-a8e4-861c3cfeaaa3">
-<span class="eqno">(1)<a class="headerlink" href="#equation-104083cc-9300-4a4f-a8e4-861c3cfeaaa3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6c4a9eeb-049e-4389-94b0-ab95f80d40a6">
+<span class="eqno">(1)<a class="headerlink" href="#equation-6c4a9eeb-049e-4389-94b0-ab95f80d40a6" title="Permalink to this equation">#</a></span>\[\begin{align}
     \overline{f} &amp;= \frac{\sum f~\delta A}{\sum \delta A} = \frac{\sum f~R^2\cos\left(\phi\right)~\delta\phi~\delta\theta}{\sum R^2\cos\left(\phi\right)~\delta\phi~\delta\theta} = \frac{R^2 ~\delta\phi~\delta\theta \sum f~\cos\left(\phi\right)}{R^2~\delta\phi~\delta\theta \sum \cos(\phi)} = \frac{\sum f\cos(\phi)}{\sum\cos(\phi)},
 \end{align}\]</div>
 <p>where we use the fact that <span class="math notranslate nohighlight">\(R^2\)</span>, <span class="math notranslate nohighlight">\(\delta\theta\)</span>, and <span class="math notranslate nohighlight">\(\delta\phi\)</span> are constant (and can be pulled out of the summation). Therefore, to compute <span class="math notranslate nohighlight">\(\overline{f}\)</span>, we need to compute a <em>weighted</em> average, where the weights are the cosine of the latitude.</p>

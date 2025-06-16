@@ -189,8 +189,8 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../data_analysis/overview.html">1) Climate diagnostics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1DZRXfNPGTo16g4iyo0TyZzevw06dgi5qklZvJoqnEQw/edit?usp=sharing">Slides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example: Woods Hole temperature variability</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../model_validation/overview.html">2) Model validation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -198,8 +198,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../single_model_ensemble/overview.html">4) Single-model ensemble</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/18Rp-7hCtp8fYvdGVZOlwaS4b_-PtmIVTkmM529wNN1Q/edit?usp=sharing">Slides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/ENSO_example.html">ENSO example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/woods-hole_example.html">Example</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intermodel_comp/overview.html">5) Intermodel comparison</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -639,15 +638,15 @@ document.write(`
 <section id="reconstruction-error">
 <h2>Reconstruction error<a class="headerlink" href="#reconstruction-error" title="Link to this heading">#</a></h2>
 <p>The squared length of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is <span class="math notranslate nohighlight">\(||\mathbf{x}||_2^2=\mathbf{x}^T\mathbf{x}\)</span>, and the length of the reconstruction vector is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ee0f791-6eec-4911-bf2f-0ae9b7129a52">
-<span class="eqno">()<a class="headerlink" href="#equation-7ee0f791-6eec-4911-bf2f-0ae9b7129a52" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-704575f1-54c2-439c-9270-8f95180bd602">
+<span class="eqno">()<a class="headerlink" href="#equation-704575f1-54c2-439c-9270-8f95180bd602" title="Permalink to this equation">#</a></span>\[\begin{align}
     ||\hat{\mathbf{x}}||_2^2 &amp;= \hat{\mathbf{x}}^T\hat{\mathbf{x}} = \left(\frac{\mathbf{p}^T\mathbf{x}}{\mathbf{p}^T\mathbf{p}}\mathbf{p}\right)^T\left(\frac{\mathbf{p}^T\mathbf{x}}{\mathbf{p}^T\mathbf{p}}\mathbf{p}\right)\\
     &amp;= \frac{\left(\mathbf{p}^T\mathbf{x}\right)^2}{\mathbf{p}^T\mathbf{p}} \\
     &amp;= \frac{\mathbf{p}^T\mathbf{x}\mathbf{x}^T\mathbf{p}}{\mathbf{p}^T\mathbf{p}}
 \end{align}\]</div>
 <p>Next, use the Pythagorean theorem to find the length of the error vector:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-00832923-63a7-46ef-9ecc-c5fb6ca14829">
-<span class="eqno">()<a class="headerlink" href="#equation-00832923-63a7-46ef-9ecc-c5fb6ca14829" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fd845820-6e1b-40bf-9aa4-17116942c487">
+<span class="eqno">()<a class="headerlink" href="#equation-fd845820-6e1b-40bf-9aa4-17116942c487" title="Permalink to this equation">#</a></span>\[\begin{align}
     \left| \left| \hat{\mathbf{x}} \right| \right|_2^2 + ||\mathbf{e}||_2^2 &amp;= ||\mathbf{x}||_2^2\\
     \implies ||\mathbf{e}||_2^2 &amp;= ||\mathbf{x}||_2^2 - \left| \left| \hat{\mathbf{x}} \right| \right|_2^2\\
     &amp;= \mathbf{x}^T\mathbf{x} - \frac{\mathbf{p}^T\mathbf{x}\mathbf{x}^T\mathbf{p}}{\mathbf{p}^T\mathbf{p}}
@@ -656,24 +655,24 @@ document.write(`
 <section id="choosing-the-optimal-mathbf-p">
 <h2>Choosing the “optimal” <span class="math notranslate nohighlight">\(\mathbf{p}\)</span><a class="headerlink" href="#choosing-the-optimal-mathbf-p" title="Link to this heading">#</a></h2>
 <p>Let’s define the “optimal” <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> as the pattern which minimizes the reconstruction data for the entire dataset. The mean reconstruction error for the full dataset is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e2063383-09d6-4342-bd0a-32d776d4767a">
-<span class="eqno">()<a class="headerlink" href="#equation-e2063383-09d6-4342-bd0a-32d776d4767a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-06645f82-d090-4086-9005-43fb75076704">
+<span class="eqno">()<a class="headerlink" href="#equation-06645f82-d090-4086-9005-43fb75076704" title="Permalink to this equation">#</a></span>\[\begin{align}
     \mathcal{R} &amp;= \frac{1}{n}\sum^n_j \mathbf{x}_j^T\mathbf{x}_j - \frac{\mathbf{p}^T\mathbf{x}_j\mathbf{x}_j^T\mathbf{p}}{\mathbf{p}^T\mathbf{p}}
 \end{align}\]</div>
 <p>Note that the choice of <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> which minimizes <span class="math notranslate nohighlight">\(\mathcal{R}\propto \sum_j - \frac{\mathbf{p}^T\mathbf{x}_j\mathbf{x}_j^T\mathbf{p}}{\mathbf{p}^T\mathbf{p}}\)</span> will <em>maximize</em> the squared projection length of the data onto the pattern, <span class="math notranslate nohighlight">\(\mathcal{P}=\frac{\sum_j \mathbf{p}^T\mathbf{x}_j\mathbf{x}_j^T\mathbf{p}}{\mathbf{p}^T\mathbf{p}}\)</span>! Therefore, without loss of generality, let’s write down the optimization problem as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bc92583f-56ae-432d-b4c0-b919cc5da14b">
-<span class="eqno">()<a class="headerlink" href="#equation-bc92583f-56ae-432d-b4c0-b919cc5da14b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-838552da-0391-4181-8140-bce868abc83d">
+<span class="eqno">()<a class="headerlink" href="#equation-838552da-0391-4181-8140-bce868abc83d" title="Permalink to this equation">#</a></span>\[\begin{align}
     \mathbf{p}^* &amp;= \text{argmax}_\mathbf{p} \left(\frac{\sum_j \mathbf{p}^T\mathbf{x}_j\mathbf{x}_j^T\mathbf{p}}{\mathbf{p}^T\mathbf{p}}\right)
 \end{align}\]</div>
 <p>To find <span class="math notranslate nohighlight">\(\mathbf{p}^*\)</span>, start by rewriting the squared projection length:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-806f7360-11b8-4a2d-bc11-498700990cbd">
-<span class="eqno">()<a class="headerlink" href="#equation-806f7360-11b8-4a2d-bc11-498700990cbd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a583c317-cf7e-4304-ac4c-d5b521dba91e">
+<span class="eqno">()<a class="headerlink" href="#equation-a583c317-cf7e-4304-ac4c-d5b521dba91e" title="Permalink to this equation">#</a></span>\[\begin{align}
     \frac{\sum_j \mathbf{p}^T\mathbf{x}_j\mathbf{x}_j^T\mathbf{p}}{\mathbf{p}^T\mathbf{p}} &amp;= \frac{\mathbf{p}^T\mathbf{C}_{xx}\mathbf{p}}{\mathbf{p}^T\mathbf{p}}
 \end{align}\]</div>
 <p>Where we set <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}=\sum_j\mathbf{x}_j\mathbf{x}_j^T\)</span>. Next, write <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}\)</span> in terms of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>’s singular value decomposition. Letting <span class="math notranslate nohighlight">\(\mathbf{X}=\mathbf{V}\boldsymbol{\Lambda}\mathbf{U}^T\)</span>, we have <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}=\mathbf{XX}^T=\mathbf{V}\boldsymbol{\Lambda}^2\mathbf{V}^T\)</span>, using the SVD property <span class="math notranslate nohighlight">\(\mathbf{U}^T\mathbf{U}=\mathbf{I}\)</span> (note that the columns of <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> are eigenvectors of <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}\)</span>; to see this, right multiply both sides by <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> and use the property <span class="math notranslate nohighlight">\(\mathbf{V}^T\mathbf{V}=\mathbf{I}\)</span>).</p>
 <p>Next, write <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> in terms of <span class="math notranslate nohighlight">\(\mathbf{V}\)</span>; that is <span class="math notranslate nohighlight">\(\mathbf{p}=\sum_i \alpha_i\mathbf{v}_i = \mathbf{V}\boldsymbol{\alpha}\)</span>. Substituting, we have:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-affe8680-976e-4b8d-a3bc-ab7b786b12d7">
-<span class="eqno">()<a class="headerlink" href="#equation-affe8680-976e-4b8d-a3bc-ab7b786b12d7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-44ec0c12-b07a-4dd4-9b5f-6d9ced17e765">
+<span class="eqno">()<a class="headerlink" href="#equation-44ec0c12-b07a-4dd4-9b5f-6d9ced17e765" title="Permalink to this equation">#</a></span>\[\begin{align}
     \frac{\mathbf{p}^T\mathbf{C}_{xx}\mathbf{p}}{\mathbf{p}^T\mathbf{p}} &amp;= \frac{\left(\boldsymbol{\alpha}^T \mathbf{V}^T\right)\left(\mathbf{V}\boldsymbol{\Lambda}^2\mathbf{V}^T\right)\mathbf{V}\boldsymbol{\alpha} }{\left(\boldsymbol{\alpha}^T \mathbf{V}^T\right)\left(\mathbf{V}\boldsymbol{\alpha}\right)}\\
     &amp;= \frac{\boldsymbol{\alpha^T\Lambda^2\alpha}}{\boldsymbol{\alpha}^T\boldsymbol{\alpha}}\\
     &amp;= \frac{\sum_j \lambda_j^2\alpha_j^2}{\sum_j\alpha_j^2}
@@ -683,31 +682,31 @@ document.write(`
 <section id="explained-variance">
 <h2>Explained variance<a class="headerlink" href="#explained-variance" title="Link to this heading">#</a></h2>
 <p>Recall we decomposed each sample into a reconstruction and an error, with the square of the sample length equal to the square of the reconstruction length plus the square of the error length:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-95c50622-4af7-4f66-813f-62fe28ab2f77">
-<span class="eqno">()<a class="headerlink" href="#equation-95c50622-4af7-4f66-813f-62fe28ab2f77" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3e19d2ad-a263-4329-b74c-4511000656b8">
+<span class="eqno">()<a class="headerlink" href="#equation-3e19d2ad-a263-4329-b74c-4511000656b8" title="Permalink to this equation">#</a></span>\[\begin{align}
     ||\mathbf{x}_j||^2 &amp;= ||\hat{\mathbf{x}}_j||^2 + ||\mathbf{e}_j||^2
 \end{align}\]</div>
 <p>Summing over all samples, we have:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ad7266d-d83b-4a7f-a6f4-8e67f02e1694">
-<span class="eqno">()<a class="headerlink" href="#equation-2ad7266d-d83b-4a7f-a6f4-8e67f02e1694" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1f9be455-e90c-4344-bfb9-68c966cdd036">
+<span class="eqno">()<a class="headerlink" href="#equation-1f9be455-e90c-4344-bfb9-68c966cdd036" title="Permalink to this equation">#</a></span>\[\begin{align}
     \sum_j||\mathbf{x}_j||^2 &amp;= \sum_j ||\hat{\mathbf{x}}_j||^2 + \sum_j||\mathbf{e}_j||^2
 \end{align}\]</div>
 <p>The fraction of explained variance is the ratio of the length of the reconstruction term to the total term:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-11120c7a-5195-4b8b-9770-5ea7798db558">
-<span class="eqno">()<a class="headerlink" href="#equation-11120c7a-5195-4b8b-9770-5ea7798db558" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ebc18636-be53-4727-b641-c4bb8d8e257b">
+<span class="eqno">()<a class="headerlink" href="#equation-ebc18636-be53-4727-b641-c4bb8d8e257b" title="Permalink to this equation">#</a></span>\[\begin{align}
     r &amp;= \frac{\sum_j ||\hat{\mathbf{x}}_j||^2}{\sum_j ||\mathbf{x}_j||^2}\\
     &amp;= \frac{\text{tr}\left[\left(\mathbf{pp}^T\mathbf{X}\right)^T\left(\mathbf{pp}^T\mathbf{X}\right)\right]}{\text{tr}\left(\mathbf{X}^T\mathbf{X}\right)}\\
     &amp;= \frac{\text{tr}\left[\mathbf{X}^T\mathbf{pp}^T \mathbf{pp}^T\mathbf{X} \right]}{\text{tr}\left(\mathbf{X}^T\mathbf{X}\right)} =  \frac{\text{tr}\left[\mathbf{X}^T\mathbf{p} \mathbf{p}^T\mathbf{X} \right]}{\text{tr}\left(\mathbf{X}^T\mathbf{X}\right)}\\
     &amp;= \frac{\mathbf{p}^T\mathbf{X} \mathbf{X}^T\mathbf{p}}{\text{tr}\left(\mathbf{X}\mathbf{X}^T\right)}
 \end{align}\]</div>
 <p>Where we used the commutative property of trace: <span class="math notranslate nohighlight">\(\text{tr}\left(\mathbf{A}\mathbf{B}^T\right)=\text{tr}\left(\mathbf{A}^T\mathbf{B}\right)\)</span>. Then, using the eigenvalue property of <span class="math notranslate nohighlight">\(\mathbf{p}\)</span>, we have <span class="math notranslate nohighlight">\(\mathbf{p}^T\mathbf{X} \mathbf{X}^T\mathbf{p} = \mathbf{p}^T\left(\lambda^2 \mathbf{p}\right)=\lambda^2\)</span>. For the numerator, write <span class="math notranslate nohighlight">\(\mathbf{XX}^T\)</span> in terms of it’s eigenvalue decomposition:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d9beb074-57e1-4da2-a12a-04ab3cf83311">
-<span class="eqno">()<a class="headerlink" href="#equation-d9beb074-57e1-4da2-a12a-04ab3cf83311" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-42fab45d-8ea6-4978-a48c-15c9b62a8ccd">
+<span class="eqno">()<a class="headerlink" href="#equation-42fab45d-8ea6-4978-a48c-15c9b62a8ccd" title="Permalink to this equation">#</a></span>\[\begin{align}
     \text{tr}\left(\mathbf{XX}^T\right) &amp;= \text{tr}\left(\sum_j\lambda_j^2 \mathbf{v}_j\mathbf{v}_j^T\right) = \sum_j\lambda_j^2\cdot\text{tr}\left( \mathbf{v}_j\mathbf{v}_j^T\right)= \sum_j\lambda_j^2\cdot\text{tr}\left( \mathbf{v}_j^T\mathbf{v}_j\right) = \sum_j\lambda_j^2
 \end{align}\]</div>
 <p>Therefore, the ratio of variance explained by the <span class="math notranslate nohighlight">\(i^{th}\)</span> pattern is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8e60efa2-6df9-4db7-8133-291a436a7754">
-<span class="eqno">()<a class="headerlink" href="#equation-8e60efa2-6df9-4db7-8133-291a436a7754" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5de24a43-d0ed-4b1b-9646-0a1ce3d5a4c7">
+<span class="eqno">()<a class="headerlink" href="#equation-5de24a43-d0ed-4b1b-9646-0a1ce3d5a4c7" title="Permalink to this equation">#</a></span>\[\begin{align}
     r &amp;= \frac{\lambda_i^2}{\sum_j\lambda_j^2}
 \end{align}\]</div>
 </section>

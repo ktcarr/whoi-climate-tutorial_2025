@@ -57,10 +57,12 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'pages/single_model_ensemble/overview';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ENSO example" href="ENSO_example.html" />
+    <link rel="next" title="Example" href="woods-hole_example.html" />
     <link rel="prev" title="Assignment 1 template" href="../model_validation/model_validation_stub.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -187,8 +189,8 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../data_analysis/overview.html">1) Climate diagnostics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1DZRXfNPGTo16g4iyo0TyZzevw06dgi5qklZvJoqnEQw/edit?usp=sharing">Slides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example: Woods Hole temperature variability</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../model_validation/overview.html">2) Model validation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -196,8 +198,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">4) Single-model ensemble</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/18Rp-7hCtp8fYvdGVZOlwaS4b_-PtmIVTkmM529wNN1Q/edit?usp=sharing">Slides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ENSO_example.html">ENSO example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="woods-hole_example.html">Example</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intermodel_comp/overview.html">5) Intermodel comparison</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -418,7 +419,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-access">Data access</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-of-lecture">Recap of lecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-for-tutorial">Goal for tutorial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-forced-changes-in-woods-hole-adjacent-sst">Example: forced changes in Woods Hole-adjacent SST</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-dos">To-dos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-optional">Advanced (optional)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-resources">Other resources</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -432,23 +440,71 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="single-model-ensemble">
 <h1>4) Single-model ensemble<a class="headerlink" href="#single-model-ensemble" title="Link to this heading">#</a></h1>
-<p>The goal of this tutorial is to improve understanding of climate modes and how to study them using an ensemble of climate simulations. In Assignment 3 you’ll be analyzing a particular climate mode using (part of) the CESM large ensemble. In the tutorial, we’ll focus on an example mode, the El Niño - Southern Oscillation (ENSO). We’ll start by recapping the physics of ENSO before digging into <em>how</em> to analyze ENSO in the ensemble of simulations. We’ll look at how to compute/plot spatial and temporal characteristics of ENSO and assess how these characteristics change over time.</p>
-<section id="data-access">
-<h2>Data access<a class="headerlink" href="#data-access" title="Link to this heading">#</a></h2>
-<p>The CESM large ensemble data is located at the following directory on the CMIP6 server:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cmip6</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">cmip6</span><span class="o">/</span><span class="n">CMIP</span><span class="o">/</span><span class="n">NCAR</span><span class="o">/</span><span class="n">LENS</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The CMIP6 server is located on Poseidon in the directory <code class="docutils literal notranslate"><span class="pre">/vortexfs1/share</span></code>.</p>
-</div>
+<section id="recap-of-lecture">
+<h2>Recap of lecture<a class="headerlink" href="#recap-of-lecture" title="Link to this heading">#</a></h2>
+<p>Today in lecture, we talked about (single-model) ensembles. The benefit of using an “ensemble” of simulations – rather than a single simulation – is that it becomes easier to separate the climate system’s “forced” response to external forcing from its natural, “internal” variability. The forced response (the “climate change signal”) is often estimated as the mean of all simulations in the ensemble at a given timestep. By definition, “internal variability” is the difference between the total signal and the forced component (i.e., “total” minus “forced”). The idea is that by averaging over ensemble members, we “filter out” the naturally ocurring month-to-month and year-to-year variations in the climate (e.g., due to El Niño and La Niña). This works because this natural variability occurs independently in each ensemble member (e.g., El Niño events are not synchronized across ensemble members[^1]).</p>
+<p>It’s possible to estimate the “external forcing” signal without an ensemble: for example, a linear trend fit to a single ensemble member filters out the higher-frequency fluctuations associated with natural climate variability, and provides an estimate of the climate to gradually increasing GHG emissions. Ensembles make it possible to estimate the time-varying nature of the response (e.g., the response to volcanic eruptions is typically fast and short-lived compared to the response to gradually-increasing GHG emissions). They also make it easier to estimate the uncertainties associated with the forced response and diagnose changes in higher-order statistics (e.g., will the standard deviation of SST increase?): for example, with a 35-member ensemble of simulations, each 30-year period of the simulation has 35x30=1,050 simulation years.</p>
+<p>[^1] So if there is a 20% chance of an El Niño in any given year, there is a <span class="math notranslate nohighlight">\(\left(20\%\right)^3=0.8\%\)</span> chance that three particular ensemble members will all have an El Niño in a given year. Note that external forcing – e.g., volcanic eruptions – may affect these probabilities…</p>
+</section>
+<section id="goal-for-tutorial">
+<h2>Goal for tutorial<a class="headerlink" href="#goal-for-tutorial" title="Link to this heading">#</a></h2>
+<p>Today, we’re going to going to use the CESM1 large ensemble (“CESM-LENS”) to estimate the forced response to the RCP8.5 emissions scenario (we’ll use the same Woods Hole SST-based index as in previous tutorials). After estimating the forced response (using up to 35 ensemble members), we’ll look at its seasonality (and estimate its robustness). We’ll also do one example of estimating changes in the standard deviation of SST.</p>
+</section>
+<section id="example-forced-changes-in-woods-hole-adjacent-sst">
+<h2>Example: forced changes in Woods Hole-adjacent SST<a class="headerlink" href="#example-forced-changes-in-woods-hole-adjacent-sst" title="Link to this heading">#</a></h2>
+<p>(see notebook on the <a class="reference internal" href="woods-hole_example.html"><span class="std std-doc">following page</span></a> for code to reproduce results)</p>
+<ol class="arabic simple">
+<li><p>First, we’ll estimate the (annual-average) forced response in our climate index:</p></li>
+</ol>
+<figure class="align-default" id="forced-resopnse">
+<a class="reference internal image-reference" href="../../_images/forced-response.svg"><img alt="../../_images/forced-response.svg" src="../../_images/forced-response.svg" style="height: 250px;" />
+</a>
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Next, we’ll look at the forced response in March and September</p></li>
+</ol>
+<figure class="align-default" id="forced-response-by-season">
+<a class="reference internal image-reference" href="../../_images/forced-response_by-seasonal.svg"><img alt="../../_images/forced-response_by-seasonal.svg" src="../../_images/forced-response_by-seasonal.svg" style="height: 250px;" />
+</a>
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>The March/September responses seem to happen on slightly different timescales; we’ll estimate the robustness by looking at histograms of changes for the first half of the simulation and for the second half:</p></li>
+</ol>
+<figure class="align-default" id="forced-response-histograms">
+<a class="reference internal image-reference" href="../../_images/histograms.svg"><img alt="../../_images/histograms.svg" src="../../_images/histograms.svg" style="height: 250px;" />
+</a>
+</figure>
+<ol class="arabic simple" start="4">
+<li><p>As an example of looking at changes in higher-order statistics, we also plot the change in standard deviation of SST between the first 30 years and last 30 years of the simulation:</p></li>
+</ol>
+<figure class="align-default" id="sigma-change">
+<a class="reference internal image-reference" href="../../_images/sigma-change.svg"><img alt="../../_images/sigma-change.svg" src="../../_images/sigma-change.svg" style="height: 250px;" />
+</a>
+</figure>
+</section>
+<section id="to-dos">
+<h2>To-dos<a class="headerlink" href="#to-dos" title="Link to this heading">#</a></h2>
+<ol class="arabic simple" start="0">
+<li><p>(optional) Run the example. Note that loading the data from all 35 ensemble members is time-consuming (<span class="math notranslate nohighlight">\(\sim 30\)</span> minutes). As noted in the example, two options for reducing this time are (i) loading a subset of ensemble members or (ii) <a class="reference internal" href="../resources/cesm_cloud.html"><span class="std std-doc">use Google Colab</span></a>. We’d suggest starting with fewer ensemble members.</p></li>
+<li><p>Adapt example to look at forced response / internal variability in a different region and using a different index (see example for details about where to make these changes).</p></li>
+<li><p>Re-run the analyses using your index.</p></li>
+</ol>
+<section id="advanced-optional">
+<h3>Advanced (optional)<a class="headerlink" href="#advanced-optional" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Pick a different variable other than SST.</p></li>
+<li><p>Look at change in autocorrelation over time.</p></li>
+<li><p>Look at change in standard deviation as a function of season.</p></li>
+</ol>
+</section>
+<section id="other-resources">
+<h3>Other resources<a class="headerlink" href="#other-resources" title="Link to this heading">#</a></h3>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://docs.google.com/presentation/d/18Rp-7hCtp8fYvdGVZOlwaS4b_-PtmIVTkmM529wNN1Q/edit?usp=sharing">Slides</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ENSO_example.html">ENSO example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="woods-hole_example.html">Example</a></li>
 </ul>
 </div>
+</section>
 </section>
 </section>
 
@@ -492,11 +548,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="ENSO_example.html"
+       href="woods-hole_example.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ENSO example</p>
+        <p class="prev-next-title">Example</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -516,7 +572,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-access">Data access</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-of-lecture">Recap of lecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-for-tutorial">Goal for tutorial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-forced-changes-in-woods-hole-adjacent-sst">Example: forced changes in Woods Hole-adjacent SST</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-dos">To-dos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-optional">Advanced (optional)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-resources">Other resources</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
