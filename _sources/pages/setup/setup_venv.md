@@ -3,8 +3,14 @@ First, we'll create a "virtual environment" for the class, which contains python
 
 ## (optional) Set up virtual environment
 If you don't have a preferred package manager, I recommend using ```mamba``` (a faster version of the ```conda``` package manager). To use mamba:
-1. Check if conda is installed by typing ```conda info``` at the command line. If not, download and install miniforge following the instructions here: [https://github.com/conda-forge/miniforge](https://github.com/conda-forge/miniforge).
-2. Create a virtual environment for the project with: ```mamba create -n 12860_env``` and activate the environment with ```conda activate 12860_env```
+1. Check if conda is installed by typing ```conda info``` at the command line. Also check if mamba is installed (if you have conda but not mamba installed you can run ```conda install -n base -c conda-forge mamba```). If you have neither, download and install miniforge following the instructions here: [https://github.com/conda-forge/miniforge](https://github.com/conda-forge/miniforge).
+
+2. Create a virtual environment for the project with: ```mamba create -n my_new_env``` and activate your environment with ```conda activate my_new_env```
+
+Using a package manager is benefitial because it:
+- Allows you to install packages in an isolated environment, preventing clutter in your base Python environment with packages needed only for specific projects.
+- Manages dependencies (as some packages rely on others) and resolves version conflicts (since some packages are only compatible with specific versions of others) for you.
+- Keeps your system organized.
 
 (dependencies)=
 ## Install python packages
@@ -19,11 +25,11 @@ Next, we'll install python packages needed for the tutorials and class assignmen
   - cftime
   - cartopy
   - matplotlib
+  - cmocean
 ```
 
 **Optional packages**
 ```
-  - cmocean
   - seaborn
   - xesmf
   - scipy
@@ -33,6 +39,9 @@ Next, we'll install python packages needed for the tutorials and class assignmen
 
 If using ```mamba```, the command line syntax to install the packages is:
 ```
+#activate your environment if it is not already
+mamba activate my_new_env
+
 ## install required dependencies
 mamba install -c conda-forge xarray jupyterlab dask netcdf4 cftime cartopy matplotlib
 

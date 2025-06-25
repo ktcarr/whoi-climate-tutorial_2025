@@ -8,7 +8,7 @@ To connect to the server, you must be on the WHOI network (i.e., on the WHOI wif
 ```
 
 ### Connecting from a Mac PC
-Open Finder, then select "Go" from the top menu bar and click "Connect to Server". Then, enter ```smb://vast.whoi.edu/proj/cmip6```. If prompted, enter your WHOI username (*without* "@whoi.edu") and password. Note the default mount location for the server is ```/Volumes/data```. 
+Open Finder, then select "Go" from the top menu bar and click "Connect to Server" (at the very bottom of the dropdown). Then, enter ```smb://vast.whoi.edu/proj/cmip6```. If prompted, enter your WHOI username (*without* "@whoi.edu") and password. Note the default mount location for the server is ```/Volumes/data```.
 
 
 ### Connecting from a Windows PC

@@ -502,7 +502,10 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">scipy.signal</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">tqdm</span>
+
+<span class="c1">#this package shows our data loading progress</span>
+<span class="c1">#Install, import, and then change the data loading line in the load_ensemble_helper func if you want to use</span>
+<span class="c1">#import tqdm </span>
 
 <span class="c1">## (optional) remove gridlines from plots</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;axes.facecolor&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="s2">&quot;axes.grid&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
@@ -774,7 +777,11 @@ document.write(`
     <span class="n">member_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_members</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
     <span class="c1">## put results in list</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">load_simulation</span><span class="p">(</span><span class="n">member_id</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">member_ids</span><span class="p">)]</span>
+    
+    <span class="c1">#USE tqdm TO SHOW PROGRESS IF YOU WOULD LIKE (NEED TO INSTALL)</span>
+    <span class="c1">#data = [load_simulation(member_id=i, **kwargs) for i in tqdm.tqdm(member_ids)]</span>
+    <span class="c1">#otherwise:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">load_simulation</span><span class="p">(</span><span class="n">member_id</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">member_ids</span><span class="p">]</span>
 
     <span class="c1">## concatenate data along the &quot;ensemble&quot; dimension</span>
     <span class="n">ensemble_dim</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">member_ids</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;member&quot;</span><span class="p">)</span>
@@ -1044,7 +1051,8 @@ document.write(`
     <span class="n">data</span><span class="o">.</span><span class="n">TLONG</span><span class="p">,</span>
     <span class="n">data</span><span class="o">.</span><span class="n">TLAT</span><span class="p">,</span>
     <span class="n">data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">member</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
-    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;cmo.thermal&quot;</span><span class="p">,</span>
+    <span class="c1"># cmap=&quot;cmo.thermal&quot;,</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;plasma&quot;</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
     <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
@@ -1061,7 +1069,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/5aca5ad4e34e3ecc6315a25c25db77fbb5e16cb33f44da049d5c36982214e459.png" src="../../_images/5aca5ad4e34e3ecc6315a25c25db77fbb5e16cb33f44da049d5c36982214e459.png" />
+<img alt="../../_images/52d8fe36000578a6a64d10b0c000e55c626ebe183ad39b77d49d0e6cddf6baab.png" src="../../_images/52d8fe36000578a6a64d10b0c000e55c626ebe183ad39b77d49d0e6cddf6baab.png" />
 </div>
 </div>
 </section>

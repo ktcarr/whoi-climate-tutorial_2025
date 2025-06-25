@@ -437,9 +437,15 @@ document.write(`
 <h2>(optional) Set up virtual environment<a class="headerlink" href="#optional-set-up-virtual-environment" title="Link to this heading">#</a></h2>
 <p>If you don’t have a preferred package manager, I recommend using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> (a faster version of the <code class="docutils literal notranslate"><span class="pre">conda</span></code> package manager). To use mamba:</p>
 <ol class="arabic simple">
-<li><p>Check if conda is installed by typing <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">info</span></code> at the command line. If not, download and install miniforge following the instructions here: <a class="github reference external" href="https://github.com/conda-forge/miniforge">conda-forge/miniforge</a>.</p></li>
-<li><p>Create a virtual environment for the project with: <code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">12860_env</span></code> and activate the environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">12860_env</span></code></p></li>
+<li><p>Check if conda is installed by typing <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">info</span></code> at the command line. Also check if mamba is installed (if you have conda but not mamba installed you can run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-n</span> <span class="pre">base</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">mamba</span></code>). If you have neither, download and install miniforge following the instructions here: <a class="github reference external" href="https://github.com/conda-forge/miniforge">conda-forge/miniforge</a>.</p></li>
+<li><p>Create a virtual environment for the project with: <code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">my_new_env</span></code> and activate your environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">my_new_env</span></code></p></li>
 </ol>
+<p>Using a package manager is benefitial because it:</p>
+<ul class="simple">
+<li><p>Allows you to install packages in an isolated environment, preventing clutter in your base Python environment with packages needed only for specific projects.</p></li>
+<li><p>Manages dependencies (as some packages rely on others) and resolves version conflicts (since some packages are only compatible with specific versions of others) for you.</p></li>
+<li><p>Keeps your system organized.</p></li>
+</ul>
 </section>
 <section id="install-python-packages">
 <span id="dependencies"></span><h2>Install python packages<a class="headerlink" href="#install-python-packages" title="Link to this heading">#</a></h2>
@@ -452,11 +458,11 @@ document.write(`
   <span class="o">-</span> <span class="n">cftime</span>
   <span class="o">-</span> <span class="n">cartopy</span>
   <span class="o">-</span> <span class="n">matplotlib</span>
+  <span class="o">-</span> <span class="n">cmocean</span>
 </pre></div>
 </div>
 <p><strong>Optional packages</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">-</span> <span class="n">cmocean</span>
-  <span class="o">-</span> <span class="n">seaborn</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">-</span> <span class="n">seaborn</span>
   <span class="o">-</span> <span class="n">xesmf</span>
   <span class="o">-</span> <span class="n">scipy</span>
   <span class="o">-</span> <span class="n">bottleneck</span>
@@ -464,7 +470,10 @@ document.write(`
 </pre></div>
 </div>
 <p>If using <code class="docutils literal notranslate"><span class="pre">mamba</span></code>, the command line syntax to install the packages is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## install required dependencies</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#activate your environment if it is not already</span>
+<span class="n">mamba</span> <span class="n">activate</span> <span class="n">my_new_env</span>
+
+<span class="c1">## install required dependencies</span>
 <span class="n">mamba</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">xarray</span> <span class="n">jupyterlab</span> <span class="n">dask</span> <span class="n">netcdf4</span> <span class="n">cftime</span> <span class="n">cartopy</span> <span class="n">matplotlib</span>
 
 <span class="c1">## install optional dependencies</span>

@@ -18,33 +18,155 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-## Path to file server
-server_fp = pathlib.Path("/Volumes")
+## blank canvas to plot on
+fig = plt.figure(layout="constrained")
 
-## Filepath to the ERA5 reanalysis
-era5_fp = pathlib.Path("cmip6/data/era5/reanalysis/single-levels/monthly-means")
+## draw background map of Atlantic
+fig, ax = plot_setup_atlantic(fig)
 
-## sea surface temperature (SST) filepaths
-era5_fp_sst = server_fp / era5_fp / pathlib.Path("sea_surface_temperature")
+## plot the data
+plot_data = ax.contourf(
+    data.longitude,
+    data.latitude,
+    data.isel(time=-1),
+    transform=ccrs.PlateCarree(),
+    levels=10,
+    extend="both",
+    cmap="cmo.thermal",
+    # cmap="plasma",
+)
 
-## open the data
-data = xr.open_mfdataset(era5_fp_sst.glob("*.nc"))["sst"]
+## create colorbath
+colorbar = fig.colorbar(plot_data, label=r"$K$")
+
+## Mark Woods Hole on map
+ax.scatter(
+    288.5, 41.5, transform=ccrs.PlateCarree(), marker="*", c="k", s=50, zorder=10
+)
+
+## label
+ax.set_title(f"SST sample")
+
+## save fig if you would like
+# fig.savefig("Your_directory/sst-sample.svg")
+
+plt.show()
 ------------------
 
 
 [31m---------------------------------------------------------------------------[39m
-[31mOSError[39m                                   Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 11[39m
-[32m      8[39m era5_fp_sst = server_fp / era5_fp / pathlib.Path([33m"[39m[33msea_surface_temperature[39m[33m"[39m)
-[32m     10[39m [38;5;66;03m## open the data[39;00m
-[32m---> [39m[32m11[39m data = [43mxr[49m[43m.[49m[43mopen_mfdataset[49m[43m([49m[43mera5_fp_sst[49m[43m.[49m[43mglob[49m[43m([49m[33;43m"[39;49m[33;43m*.nc[39;49m[33;43m"[39;49m[43m)[49m[43m)[49m[[33m"[39m[33msst[39m[33m"[39m]
+[31mValueError[39m                                Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[6][39m[32m, line 8[39m
+[32m      5[39m fig, ax = plot_setup_atlantic(fig)
+[32m      7[39m [38;5;66;03m## plot the data[39;00m
+[32m----> [39m[32m8[39m plot_data = [43max[49m[43m.[49m[43mcontourf[49m[43m([49m
+[32m      9[39m [43m    [49m[43mdata[49m[43m.[49m[43mlongitude[49m[43m,[49m
+[32m     10[39m [43m    [49m[43mdata[49m[43m.[49m[43mlatitude[49m[43m,[49m
+[32m     11[39m [43m    [49m[43mdata[49m[43m.[49m[43misel[49m[43m([49m[43mtime[49m[43m=[49m[43m-[49m[32;43m1[39;49m[43m)[49m[43m,[49m
+[32m     12[39m [43m    [49m[43mtransform[49m[43m=[49m[43mccrs[49m[43m.[49m[43mPlateCarree[49m[43m([49m[43m)[49m[43m,[49m
+[32m     13[39m [43m    [49m[43mlevels[49m[43m=[49m[32;43m10[39;49m[43m,[49m
+[32m     14[39m [43m    [49m[43mextend[49m[43m=[49m[33;43m"[39;49m[33;43mboth[39;49m[33;43m"[39;49m[43m,[49m
+[32m     15[39m [43m    [49m[43mcmap[49m[43m=[49m[33;43m"[39;49m[33;43mcmo.thermal[39;49m[33;43m"[39;49m[43m,[49m
+[32m     16[39m [43m    [49m[38;5;66;43;03m# cmap="plasma",[39;49;00m
+[32m     17[39m [43m)[49m
+[32m     19[39m [38;5;66;03m## create colorbath[39;00m
+[32m     20[39m colorbar = fig.colorbar(plot_data, label=[33mr[39m[33m"[39m[33m$K$[39m[33m"[39m)
 
-[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/xarray/backends/api.py:1597[39m, in [36mopen_mfdataset[39m[34m(paths, chunks, concat_dim, compat, preprocess, engine, data_vars, coords, combine, parallel, join, attrs_file, combine_attrs, **kwargs)[39m
-[32m   1594[39m paths = _find_absolute_paths(paths, engine=engine, **kwargs)
-[32m   1596[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m paths:
-[32m-> [39m[32m1597[39m     [38;5;28;01mraise[39;00m [38;5;167;01mOSError[39;00m([33m"[39m[33mno files to open[39m[33m"[39m)
-[32m   1599[39m paths1d: [38;5;28mlist[39m[[38;5;28mstr[39m | ReadBuffer]
-[32m   1600[39m [38;5;28;01mif[39;00m combine == [33m"[39m[33mnested[39m[33m"[39m:
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/cartopy/mpl/geoaxes.py:306[39m, in [36m_add_transform.<locals>.wrapper[39m[34m(self, *args, **kwargs)[39m
+[32m    301[39m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([33mf[39m[33m'[39m[33mInvalid transform: Spherical [39m[38;5;132;01m{[39;00mfunc.[34m__name__[39m[38;5;132;01m}[39;00m[33m [39m[33m'[39m
+[32m    302[39m                      [33m'[39m[33mis not supported - consider using [39m[33m'[39m
+[32m    303[39m                      [33m'[39m[33mPlateCarree/RotatedPole.[39m[33m'[39m)
+[32m    305[39m kwargs[[33m'[39m[33mtransform[39m[33m'[39m] = transform
+[32m--> [39m[32m306[39m [38;5;28;01mreturn[39;00m [43mfunc[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
 
-[31mOSError[39m: no files to open
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/cartopy/mpl/geoaxes.py:350[39m, in [36m_add_transform_first.<locals>.wrapper[39m[34m(self, *args, **kwargs)[39m
+[32m    348[39m     [38;5;66;03m# Use the new points as the input arguments[39;00m
+[32m    349[39m     args = (x, y, z) + args[[32m3[39m:]
+[32m--> [39m[32m350[39m [38;5;28;01mreturn[39;00m [43mfunc[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/cartopy/mpl/geoaxes.py:1646[39m, in [36mGeoAxes.contourf[39m[34m(self, *args, **kwargs)[39m
+[32m   1625[39m [38;5;129m@_add_transform[39m
+[32m   1626[39m [38;5;129m@_add_transform_first[39m
+[32m   1627[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mcontourf[39m([38;5;28mself[39m, *args, **kwargs):
+[32m   1628[39m [38;5;250m    [39m[33;03m"""[39;00m
+[32m   1629[39m [33;03m    Add the "transform" keyword to :func:`~matplotlib.pyplot.contourf`.[39;00m
+[32m   1630[39m 
+[32m   (...)[39m[32m   1644[39m [33;03m        The default is False, to compute the contours in data-space.[39;00m
+[32m   1645[39m [33;03m    """[39;00m
+[32m-> [39m[32m1646[39m     result = [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[43m.[49m[43mcontourf[49m[43m([49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m   1648[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m _MPL_38:
+[32m   1649[39m         [38;5;66;03m# We need to compute the dataLim correctly for contours.[39;00m
+[32m   1650[39m         bboxes = [col.get_datalim([38;5;28mself[39m.transData)
+[32m   1651[39m                   [38;5;28;01mfor[39;00m col [38;5;129;01min[39;00m result.collections
+[32m   1652[39m                   [38;5;28;01mif[39;00m col.get_paths()]
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/matplotlib/__init__.py:1521[39m, in [36m_preprocess_data.<locals>.inner[39m[34m(ax, data, *args, **kwargs)[39m
+[32m   1518[39m [38;5;129m@functools[39m.wraps(func)
+[32m   1519[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34minner[39m(ax, *args, data=[38;5;28;01mNone[39;00m, **kwargs):
+[32m   1520[39m     [38;5;28;01mif[39;00m data [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m-> [39m[32m1521[39m         [38;5;28;01mreturn[39;00m [43mfunc[49m[43m([49m
+[32m   1522[39m [43m            [49m[43max[49m[43m,[49m
+[32m   1523[39m [43m            [49m[43m*[49m[38;5;28;43mmap[39;49m[43m([49m[43mcbook[49m[43m.[49m[43msanitize_sequence[49m[43m,[49m[43m [49m[43margs[49m[43m)[49m[43m,[49m
+[32m   1524[39m [43m            [49m[43m*[49m[43m*[49m[43m{[49m[43mk[49m[43m:[49m[43m [49m[43mcbook[49m[43m.[49m[43msanitize_sequence[49m[43m([49m[43mv[49m[43m)[49m[43m [49m[38;5;28;43;01mfor[39;49;00m[43m [49m[43mk[49m[43m,[49m[43m [49m[43mv[49m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[43mkwargs[49m[43m.[49m[43mitems[49m[43m([49m[43m)[49m[43m}[49m[43m)[49m
+[32m   1526[39m     bound = new_sig.bind(ax, *args, **kwargs)
+[32m   1527[39m     auto_label = (bound.arguments.get(label_namer)
+[32m   1528[39m                   [38;5;129;01mor[39;00m bound.kwargs.get(label_namer))
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/matplotlib/axes/_axes.py:6794[39m, in [36mAxes.contourf[39m[34m(self, *args, **kwargs)[39m
+[32m   6783[39m [38;5;250m[39m[33;03m"""[39;00m
+[32m   6784[39m [33;03mPlot filled contours.[39;00m
+[32m   6785[39m 
+[32m   (...)[39m[32m   6791[39m [33;03m%(contour_doc)s[39;00m
+[32m   6792[39m [33;03m"""[39;00m
+[32m   6793[39m kwargs[[33m'[39m[33mfilled[39m[33m'[39m] = [38;5;28;01mTrue[39;00m
+[32m-> [39m[32m6794[39m contours = [43mmcontour[49m[43m.[49m[43mQuadContourSet[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m   6795[39m [38;5;28mself[39m._request_autoscale_view()
+[32m   6796[39m [38;5;28;01mreturn[39;00m contours
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/matplotlib/contour.py:746[39m, in [36mContourSet.__init__[39m[34m(self, ax, levels, filled, linewidths, linestyles, hatches, alpha, origin, extent, cmap, colors, norm, vmin, vmax, colorizer, extend, antialiased, nchunk, locator, transform, negative_linestyles, clip_path, *args, **kwargs)[39m
+[32m    743[39m [38;5;28mself[39m.labelTexts = []
+[32m    744[39m [38;5;28mself[39m.labelCValues = []
+[32m--> [39m[32m746[39m [38;5;28;43mself[39;49m[43m.[49m[43mset_cmap[49m[43m([49m[43mcmap[49m[43m)[49m
+[32m    747[39m [38;5;28;01mif[39;00m norm [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m    748[39m     [38;5;28mself[39m.set_norm(norm)
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/matplotlib/colorizer.py:419[39m, in [36m_ColorizerInterface.set_cmap[39m[34m(self, cmap)[39m
+[32m    411[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mset_cmap[39m([38;5;28mself[39m, cmap):
+[32m    412[39m [38;5;250m    [39m[33;03m"""[39;00m
+[32m    413[39m [33;03m    Set the colormap for luminance data.[39;00m
+[32m    414[39m 
+[32m   (...)[39m[32m    417[39m [33;03m    cmap : `.Colormap` or str or None[39;00m
+[32m    418[39m [33;03m    """[39;00m
+[32m--> [39m[32m419[39m     [38;5;28;43mself[39;49m[43m.[49m[43mcmap[49m = cmap
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/matplotlib/colorizer.py:405[39m, in [36m_ColorizerInterface.cmap[39m[34m(self, cmap)[39m
+[32m    403[39m [38;5;129m@cmap[39m.setter
+[32m    404[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mcmap[39m([38;5;28mself[39m, cmap):
+[32m--> [39m[32m405[39m     [38;5;28;43mself[39;49m[43m.[49m[43m_colorizer[49m[43m.[49m[43mcmap[49m = cmap
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/matplotlib/colorizer.py:247[39m, in [36mColorizer.cmap[39m[34m(self, cmap)[39m
+[32m    245[39m [38;5;129m@cmap[39m.setter
+[32m    246[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mcmap[39m([38;5;28mself[39m, cmap):
+[32m--> [39m[32m247[39m     [38;5;28;43mself[39;49m[43m.[49m[43m_set_cmap[49m[43m([49m[43mcmap[49m[43m)[49m
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/matplotlib/colorizer.py:237[39m, in [36mColorizer._set_cmap[39m[34m(self, cmap)[39m
+[32m    235[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmatplotlib[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m cm
+[32m    236[39m in_init = [38;5;28mself[39m._cmap [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m
+[32m--> [39m[32m237[39m [38;5;28mself[39m._cmap = [43mcm[49m[43m.[49m[43m_ensure_cmap[49m[43m([49m[43mcmap[49m[43m)[49m
+[32m    238[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m in_init:
+[32m    239[39m     [38;5;28mself[39m.changed()
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/matplotlib/cm.py:309[39m, in [36m_ensure_cmap[39m[34m(cmap)[39m
+[32m    306[39m [38;5;66;03m# use check_in_list to ensure type stability of the exception raised by[39;00m
+[32m    307[39m [38;5;66;03m# the internal usage of this (ValueError vs KeyError)[39;00m
+[32m    308[39m [38;5;28;01mif[39;00m cmap_name [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m _colormaps:
+[32m--> [39m[32m309[39m     [43m_api[49m[43m.[49m[43mcheck_in_list[49m[43m([49m[38;5;28;43msorted[39;49m[43m([49m[43m_colormaps[49m[43m)[49m[43m,[49m[43m [49m[43mcmap[49m[43m=[49m[43mcmap_name[49m[43m)[49m
+[32m    310[39m [38;5;28;01mreturn[39;00m mpl.colormaps[cmap_name]
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/matplotlib/_api/__init__.py:130[39m, in [36mcheck_in_list[39m[34m(values, _print_supported_values, **kwargs)[39m
+[32m    128[39m [38;5;28;01mif[39;00m _print_supported_values:
+[32m    129[39m     msg += [33mf[39m[33m"[39m[33m; supported values are [39m[38;5;132;01m{[39;00m[33m'[39m[33m, [39m[33m'[39m.join([38;5;28mmap[39m([38;5;28mrepr[39m,[38;5;250m [39mvalues))[38;5;132;01m}[39;00m[33m"[39m
+[32m--> [39m[32m130[39m [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(msg)
+
+[31mValueError[39m: 'cmo.thermal' is not a valid value for cmap; supported values are 'Accent', 'Accent_r', 'Blues', 'Blues_r', 'BrBG', 'BrBG_r', 'BuGn', 'BuGn_r', 'BuPu', 'BuPu_r', 'CMRmap', 'CMRmap_r', 'Dark2', 'Dark2_r', 'GnBu', 'GnBu_r', 'Grays', 'Grays_r', 'Greens', 'Greens_r', 'Greys', 'Greys_r', 'OrRd', 'OrRd_r', 'Oranges', 'Oranges_r', 'PRGn', 'PRGn_r', 'Paired', 'Paired_r', 'Pastel1', 'Pastel1_r', 'Pastel2', 'Pastel2_r', 'PiYG', 'PiYG_r', 'PuBu', 'PuBuGn', 'PuBuGn_r', 'PuBu_r', 'PuOr', 'PuOr_r', 'PuRd', 'PuRd_r', 'Purples', 'Purples_r', 'RdBu', 'RdBu_r', 'RdGy', 'RdGy_r', 'RdPu', 'RdPu_r', 'RdYlBu', 'RdYlBu_r', 'RdYlGn', 'RdYlGn_r', 'Reds', 'Reds_r', 'Set1', 'Set1_r', 'Set2', 'Set2_r', 'Set3', 'Set3_r', 'Spectral', 'Spectral_r', 'Wistia', 'Wistia_r', 'YlGn', 'YlGnBu', 'YlGnBu_r', 'YlGn_r', 'YlOrBr', 'YlOrBr_r', 'YlOrRd', 'YlOrRd_r', 'afmhot', 'afmhot_r', 'autumn', 'autumn_r', 'berlin', 'berlin_r', 'binary', 'binary_r', 'bone', 'bone_r', 'brg', 'brg_r', 'bwr', 'bwr_r', 'cividis', 'cividis_r', 'cool', 'cool_r', 'coolwarm', 'coolwarm_r', 'copper', 'copper_r', 'crest', 'crest_r', 'cubehelix', 'cubehelix_r', 'flag', 'flag_r', 'flare', 'flare_r', 'gist_earth', 'gist_earth_r', 'gist_gray', 'gist_gray_r', 'gist_grey', 'gist_grey_r', 'gist_heat', 'gist_heat_r', 'gist_ncar', 'gist_ncar_r', 'gist_rainbow', 'gist_rainbow_r', 'gist_stern', 'gist_stern_r', 'gist_yarg', 'gist_yarg_r', 'gist_yerg', 'gist_yerg_r', 'gnuplot', 'gnuplot2', 'gnuplot2_r', 'gnuplot_r', 'gray', 'gray_r', 'grey', 'grey_r', 'hot', 'hot_r', 'hsv', 'hsv_r', 'icefire', 'icefire_r', 'inferno', 'inferno_r', 'jet', 'jet_r', 'magma', 'magma_r', 'mako', 'mako_r', 'managua', 'managua_r', 'nipy_spectral', 'nipy_spectral_r', 'ocean', 'ocean_r', 'pink', 'pink_r', 'plasma', 'plasma_r', 'prism', 'prism_r', 'rainbow', 'rainbow_r', 'rocket', 'rocket_r', 'seismic', 'seismic_r', 'spring', 'spring_r', 'summer', 'summer_r', 'tab10', 'tab10_r', 'tab20', 'tab20_r', 'tab20b', 'tab20b_r', 'tab20c', 'tab20c_r', 'terrain', 'terrain_r', 'turbo', 'turbo_r', 'twilight', 'twilight_r', 'twilight_shifted', 'twilight_shifted_r', 'vanimo', 'vanimo_r', 'viridis', 'viridis_r', 'vlag', 'vlag_r', 'winter', 'winter_r'
 

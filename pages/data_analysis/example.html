@@ -496,6 +496,7 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mdates</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">cmocean</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpatches</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mticker</span>
@@ -609,7 +610,8 @@ document.write(`
         <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
         <span class="n">levels</span><span class="o">=</span><span class="n">make_cb_range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
         <span class="n">extend</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span>
-        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;cmo.balance&quot;</span><span class="p">,</span>
+        <span class="c1"># cmap=&quot;cmo.balance&quot;,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;seismic&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1">## create colorbath</span>
@@ -860,6 +862,8 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Did you get error <code class="docutils literal notranslate"><span class="pre">KeyError</span> <span class="pre">or</span> <span class="pre">OSError:</span> <span class="pre">[Errno</span> <span class="pre">-101]</span> <span class="pre">NetCDF:</span> <span class="pre">HDF</span> <span class="pre">error</span></code>? Go to FAQ page under the resources section…</p>
+<p>NOTE: after preventing file locking rewill have to relaunch jupyter from your terminal. Save your changes and close this tab.</p>
 </section>
 <section id="pre-processing">
 <h3>Pre-processing<a class="headerlink" href="#pre-processing" title="Link to this heading">#</a></h3>
@@ -885,6 +889,7 @@ document.write(`
 </section>
 <section id="plot-a-sample-from-the-data">
 <h3>Plot a sample from the data<a class="headerlink" href="#plot-a-sample-from-the-data" title="Link to this heading">#</a></h3>
+<p>if you have not installed cmocean you will need to do so (conda/mamba install -c conda-forge cmocean) or swap lines or use “plasma” instead of cmo.thermal (ie switch which cmap line is commented out)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## blank canvas to plot on</span>
@@ -902,6 +907,7 @@ document.write(`
     <span class="n">levels</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">extend</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span>
     <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;cmo.thermal&quot;</span><span class="p">,</span>
+    <span class="c1"># cmap=&quot;plasma&quot;,</span>
 <span class="p">)</span>
 
 <span class="c1">## create colorbath</span>
@@ -915,15 +921,15 @@ document.write(`
 <span class="c1">## label</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SST sample&quot;</span><span class="p">)</span>
 
-<span class="c1">## save to file</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;figs/sst-sample.svg&quot;</span><span class="p">)</span>
+<span class="c1">## save fig if you would like</span>
+<span class="c1"># fig.savefig(&quot;Your_directory/sst-sample.svg&quot;)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/406e931e522b2032f68959368ed968376e9a8904b5be912909fa0ef736955e1a.png" src="../../_images/406e931e522b2032f68959368ed968376e9a8904b5be912909fa0ef736955e1a.png" />
+<img alt="../../_images/7bd6425e9059d2a4b7f671e57f0972428ec52445296233cd694ed4dece85b87f.png" src="../../_images/7bd6425e9059d2a4b7f671e57f0972428ec52445296233cd694ed4dece85b87f.png" />
 </div>
 </div>
 </section>
@@ -973,7 +979,8 @@ document.write(`
     <span class="n">yy</span><span class="p">,</span>
     <span class="n">data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
     <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
-    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;cmo.thermal&quot;</span><span class="p">,</span>
+    <span class="c1"># cmap=&quot;cmo.thermal&quot;,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;plasma&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="c1">## create colorbar</span>
@@ -995,7 +1002,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d2dcf73d9cb507a4c390ccb8401e45178241a020196f5f8ab29bdec70f1ba2dd.png" src="../../_images/d2dcf73d9cb507a4c390ccb8401e45178241a020196f5f8ab29bdec70f1ba2dd.png" />
+<img alt="../../_images/710517f818175bb29a4cd83da0a45eb3e7937d7a649fbc3ca9e1740b15ba6764.png" src="../../_images/710517f818175bb29a4cd83da0a45eb3e7937d7a649fbc3ca9e1740b15ba6764.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1029,21 +1036,42 @@ document.write(`
 <span class="n">seasonal_std</span> <span class="o">=</span> <span class="n">idx</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;time.month&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
 
 <span class="c1">## make the plot</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_seasonal_cycle</span><span class="p">(</span><span class="n">seasonal_mean</span><span class="p">,</span> <span class="n">seasonal_std</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># plot mean</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">seasonal_mean</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">],</span>
+    <span class="n">seasonal_mean</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Mean&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Plot shaded std as band (optional)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">seasonal_mean</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">],</span>
+    <span class="n">seasonal_mean</span> <span class="o">-</span> <span class="n">seasonal_std</span><span class="p">,</span>
+    <span class="n">seasonal_mean</span> <span class="o">+</span> <span class="n">seasonal_std</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;±1 std dev&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="c1">## add some labels</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Jan&quot;</span><span class="p">,</span> <span class="s2">&quot;Mar&quot;</span><span class="p">,</span> <span class="s2">&quot;Aug&quot;</span><span class="p">,</span> <span class="s2">&quot;Dec&quot;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Jan&quot;</span><span class="p">,</span> <span class="s2">&quot;Apr&quot;</span><span class="p">,</span> <span class="s2">&quot;Aug&quot;</span><span class="p">,</span> <span class="s2">&quot;Dec&quot;</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$T_</span><span class="si">{wh}</span><span class="s2">$ climatology&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$K$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;figs/seasonal-cycle.svg&quot;</span><span class="p">)</span>
+<span class="c1"># fig.savefig(&quot;your_dir/seasonal-cycle.svg&quot;)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/35b79db8dce366d6ac741c0e38d9829fa4cb93eb868a20bdd32ac57d2772eee5.png" src="../../_images/35b79db8dce366d6ac741c0e38d9829fa4cb93eb868a20bdd32ac57d2772eee5.png" />
+<img alt="../../_images/bcce049984b897d2b86cb79496a51773c21af9d83eacc684b4d2b2fb11499ef0.png" src="../../_images/bcce049984b897d2b86cb79496a51773c21af9d83eacc684b4d2b2fb11499ef0.png" />
 </div>
 </div>
 </section>
@@ -1080,7 +1108,7 @@ document.write(`
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$T_</span><span class="si">{wh}</span><span class="s2">$ anomalies&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$K$&quot;</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;figs/trend.svg&quot;</span><span class="p">)</span>
+<span class="c1"># fig.savefig(&quot;figs/trend.svg&quot;)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1114,7 +1142,7 @@ document.write(`
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Probability&quot;</span><span class="p">)</span>
 
 <span class="c1">## save to file</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;figs/histogram.svg&quot;</span><span class="p">)</span>
+<span class="c1"># fig.savefig(&quot;figs/histogram.svg&quot;)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1169,14 +1197,14 @@ document.write(`
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Correlation with $T_</span><span class="si">{wh}</span><span class="s2">$&quot;</span><span class="p">)</span>
 
 <span class="c1">## save to file</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;figs/spatial-correlation.svg&quot;</span><span class="p">)</span>
+<span class="c1"># fig.savefig(&quot;figs/spatial-correlation.svg&quot;)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ca8a1bbff36131ac2e76c025b2527fb70c62050090fd53b69dacfe5d336af7dd.png" src="../../_images/ca8a1bbff36131ac2e76c025b2527fb70c62050090fd53b69dacfe5d336af7dd.png" />
+<img alt="../../_images/0c864dda9352387ce09208164397400fda06d22c87ce450d3ca84ca6d8264b20.png" src="../../_images/0c864dda9352387ce09208164397400fda06d22c87ce450d3ca84ca6d8264b20.png" />
 </div>
 </div>
 </section>

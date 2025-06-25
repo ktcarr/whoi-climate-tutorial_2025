@@ -463,6 +463,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-function-to-compute-the-index-from-global-data">Write function to compute the index from global data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-index">Compute the index</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-result">Plot the result</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-sure-the-other-required-packages-made-it-into-our-env">Making sure the other required packages made it into our env:</a></li>
 </ul>
 </li>
 </ul>
@@ -506,10 +507,12 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mdates</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+
+<span class="c1"># seaborn was listed as option in the installation tutorial - comment out import or install if you want to use it</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 
 <span class="c1">## (optional) remove gridlines from plots</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;axes.facecolor&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="s2">&quot;axes.grid&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
+<span class="c1"># sns.set(rc={&quot;axes.facecolor&quot;: &quot;white&quot;, &quot;axes.grid&quot;: False})</span>
 </pre></div>
 </div>
 </div>
@@ -565,6 +568,14 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t2m</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">t2m_files</span><span class="p">)[</span><span class="s2">&quot;t2m&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment below line to examing the array</span>
+<span class="c1"># t2m</span>
 </pre></div>
 </div>
 </div>
@@ -632,7 +643,7 @@ document.write(`
 
 <span class="c1">## plot the first timestep of 2m-temperature</span>
 <span class="n">plot_data</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span>
-    <span class="n">t2m</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+    <span class="n">t2m</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>  <span class="c1"># extracting coordinates from the t2m array</span>
     <span class="n">t2m</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
     <span class="n">t2m</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
     <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
@@ -656,7 +667,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f7a8d38100ce8e7948fb9ea5319f858c27f103e492fc135f07d0647bb135e4b3.png" src="../../_images/f7a8d38100ce8e7948fb9ea5319f858c27f103e492fc135f07d0647bb135e4b3.png" />
+<img alt="../../_images/08d941e8cd549d33c8db8408841edc13d8ed1441464b2ecd57a6dff9911eca80.png" src="../../_images/08d941e8cd549d33c8db8408841edc13d8ed1441464b2ecd57a6dff9911eca80.png" />
 </div>
 </div>
 </section>
@@ -721,9 +732,35 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/624859f52bf7cbd0ec4fc6b7e762867bcec5769f75c5614edf9317c42fcb3da0.png" src="../../_images/624859f52bf7cbd0ec4fc6b7e762867bcec5769f75c5614edf9317c42fcb3da0.png" />
+<img alt="../../_images/f0b40f8cea61b8bb1b5f17c185fecc551d7fcb5f8ae96f4adc1565d820f1f389.png" src="../../_images/f0b40f8cea61b8bb1b5f17c185fecc551d7fcb5f8ae96f4adc1565d820f1f389.png" />
 </div>
 </div>
+</section>
+<section id="making-sure-the-other-required-packages-made-it-into-our-env">
+<h3>Making sure the other required packages made it into our env:<a class="headerlink" href="#making-sure-the-other-required-packages-made-it-into-our-env" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># importing</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dask</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cftime</span>
+
+<span class="c1"># examining versions</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dask version:&quot;</span><span class="p">,</span> <span class="n">dask</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;netCDF4 version:&quot;</span><span class="p">,</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cftime version:&quot;</span><span class="p">,</span> <span class="n">cftime</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dask version: 2025.5.0
+netCDF4 version: 1.7.2
+cftime version: 1.6.4
+</pre></div>
+</div>
+</div>
+</div>
+<p>If all of these operations worked, your environment should be ready for the remainder of the course!</p>
 </section>
 </section>
 </section>
@@ -807,6 +844,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-function-to-compute-the-index-from-global-data">Write function to compute the index from global data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-index">Compute the index</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-result">Plot the result</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-sure-the-other-required-packages-made-it-into-our-env">Making sure the other required packages made it into our env:</a></li>
 </ul>
 </li>
 </ul>

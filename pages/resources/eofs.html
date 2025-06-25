@@ -541,8 +541,8 @@ document.write(`
 <section id="math-behind-eofs">
 <h2>Math behind EOFs<a class="headerlink" href="#math-behind-eofs" title="Link to this heading">#</a></h2>
 <p>Consider a set of <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(m\)</span>-dimensional vectors, concatenated into a data matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c81029c9-a163-4544-982d-2909adab135a">
-<span class="eqno">(2)<a class="headerlink" href="#equation-c81029c9-a163-4544-982d-2909adab135a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e0a6a653-ba09-4a1e-a4db-9570f2e7f37f">
+<span class="eqno">(2)<a class="headerlink" href="#equation-e0a6a653-ba09-4a1e-a4db-9570f2e7f37f" title="Permalink to this equation">#</a></span>\[\begin{align}
     \mathbf{X} &amp;= \begin{bmatrix} \mathbf{x}_1 &amp; \mathbf{x}_2 &amp; \cdots &amp; \mathbf{x}_n \end{bmatrix}
 \end{align}\]</div>
 <section id="what-do-we-mean-by-dominant-pattern">
@@ -565,38 +565,38 @@ document.write(`
 <section id="how-to-find-the-dominant-pattern">
 <h3>How to find the dominant pattern?<a class="headerlink" href="#how-to-find-the-dominant-pattern" title="Link to this heading">#</a></h3>
 <p>We want to choose the pattern <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> which maximizes <span class="math notranslate nohighlight">\(\mathbf{p}^T\mathbf{C}_{xx}\mathbf{p}\)</span> subject to the constraint <span class="math notranslate nohighlight">\(||\mathbf{p}||=\mathbf{p}^T\mathbf{p}=1\)</span>. We can solve for this <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> using a <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange multiplier</a>. Defining the Lagrange multiplier as <span class="math notranslate nohighlight">\(\mu\)</span>, write down an “augmented” cost function:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0e140f94-36fa-4fb9-8d7b-3b563d663132">
-<span class="eqno">(3)<a class="headerlink" href="#equation-0e140f94-36fa-4fb9-8d7b-3b563d663132" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-398f1dff-30bc-47f4-912b-fcac804fd3fd">
+<span class="eqno">(3)<a class="headerlink" href="#equation-398f1dff-30bc-47f4-912b-fcac804fd3fd" title="Permalink to this equation">#</a></span>\[\begin{align}
     \mathcal{L}(\mathbf{p}, \mu) &amp;= \mathbf{p}^T\mathbf{C}_{xx}\mathbf{p} + \mu \left(1-\mathbf{p}^T\mathbf{p}\right).
 \end{align}\]</div>
 <p>The first term on the LHS is the original cost function and the second term is the constraint term. Computing the gradient of the augmented cost function with respect to <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> we have:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1e58479a-bdfa-43f0-bbcd-15e83246f6a4">
-<span class="eqno">(4)<a class="headerlink" href="#equation-1e58479a-bdfa-43f0-bbcd-15e83246f6a4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a6d60fa9-befe-4742-a8d5-f1b438f9482a">
+<span class="eqno">(4)<a class="headerlink" href="#equation-a6d60fa9-befe-4742-a8d5-f1b438f9482a" title="Permalink to this equation">#</a></span>\[\begin{align}
     \frac{\partial \mathcal{L}}{\partial \mathbf{p}} &amp;= \mathbf{C}_{xx} \mathbf{p} - \mu \mathbf{p}
 \end{align}\]</div>
 <p>Setting this gradient to zero, we find:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e05c76ed-46dc-4460-a0aa-646fd0f50bcc">
-<span class="eqno">(5)<a class="headerlink" href="#equation-e05c76ed-46dc-4460-a0aa-646fd0f50bcc" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d6826ede-5b84-45af-aef0-91a9bc3b1a04">
+<span class="eqno">(5)<a class="headerlink" href="#equation-d6826ede-5b84-45af-aef0-91a9bc3b1a04" title="Permalink to this equation">#</a></span>\[\begin{align}
     \mathbf{C}_{xx} \mathbf{p} &amp;= \mu \mathbf{p}.
 \end{align}\]</div>
 <p>(note that setting <span class="math notranslate nohighlight">\(\frac{\partial \mathcal{L}}{\partial\mu}=1-\mathbf{p}^T\mathbf{p}:=0\)</span> yields the original constraint, <span class="math notranslate nohighlight">\(\mathbf{p}^T\mathbf{p}=1\)</span>). Note that to satisfy the equation above, <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> must be an eigenvector of <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}\)</span> (and has corresponding eigenvalue <span class="math notranslate nohighlight">\(\mu\)</span>). Note that if <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> is an eigenvector with eigenvalue <span class="math notranslate nohighlight">\(\mu\)</span> and length 1, then we have <span class="math notranslate nohighlight">\(\mathbf{p}^T\mathbf{C}_{xx}\mathbf{p} = \mathbf{p}^T\left(\mu\mathbf{p}\right)=\mu\)</span>. Therefore, the pattern which maximizes <span class="math notranslate nohighlight">\(\mathbf{p}^T\mathbf{C}_{xx}\mathbf{p}\)</span> is the eigenvector of <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}\)</span> with the largest eigenvalue.</p>
 <section id="connection-to-svd">
 <h4>Connection to SVD<a class="headerlink" href="#connection-to-svd" title="Link to this heading">#</a></h4>
 <p>Before explaining how to compute the projection timeseries and explained variance of each pattern, let’s look at the connection between the eigenvectors of <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}\)</span> and the singular value decomposition (SVD) of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. Let’s start by writing <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> in terms of its singular value decomposition:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f882e1f6-20b3-42ea-a927-f4e90faedb29">
-<span class="eqno">(6)<a class="headerlink" href="#equation-f882e1f6-20b3-42ea-a927-f4e90faedb29" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d76ca56d-a7db-42b2-9dbe-bd260852fe7a">
+<span class="eqno">(6)<a class="headerlink" href="#equation-d76ca56d-a7db-42b2-9dbe-bd260852fe7a" title="Permalink to this equation">#</a></span>\[\begin{align}
     \mathbf{X}&amp;=\mathbf{U}\boldsymbol{\Lambda}\mathbf{V}^T,
 \end{align}\]</div>
 <p>Then the covariance matrix can be written as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aa015c3d-e36a-49f7-ac79-fcc0e7377bf8">
-<span class="eqno">(7)<a class="headerlink" href="#equation-aa015c3d-e36a-49f7-ac79-fcc0e7377bf8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9ac37f02-64f0-49a3-a3dd-430ac5937770">
+<span class="eqno">(7)<a class="headerlink" href="#equation-9ac37f02-64f0-49a3-a3dd-430ac5937770" title="Permalink to this equation">#</a></span>\[\begin{align}
     \mathbf{C}_{xx} &amp;=\mathbf{XX}^T\\
     &amp;= \left(\mathbf{U}\boldsymbol{\Lambda} \mathbf{V}^T\right)\left(\mathbf{V} \boldsymbol{\Lambda} \mathbf{U}^T\right)\\
     &amp;= \mathbf{U}\boldsymbol{\Lambda}^2\mathbf{U}^T
 \end{align}\]</div>
 <p>Where we used the property of orthogonal matrices <span class="math notranslate nohighlight">\(\mathbf{V}^T\mathbf{V}=\mathbf{I}\)</span>. Next, right-multiply by <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-29a46550-67f9-417c-8f2c-8187bf8e49a3">
-<span class="eqno">(8)<a class="headerlink" href="#equation-29a46550-67f9-417c-8f2c-8187bf8e49a3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-be22f7b4-d125-438f-a547-e97fe0e47bc6">
+<span class="eqno">(8)<a class="headerlink" href="#equation-be22f7b4-d125-438f-a547-e97fe0e47bc6" title="Permalink to this equation">#</a></span>\[\begin{align}
     \mathbf{C}_{xx}\mathbf{U} &amp;= \mathbf{U}\boldsymbol{\Lambda}^2
 \end{align}\]</div>
 <p>Therefore, the left singular vectors of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> are eigenvectors of <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}\)</span>. In particular, the <span class="math notranslate nohighlight">\(i^{th}\)</span> left singular vector satisfies the eigenvector equation <span class="math notranslate nohighlight">\(\mathbf{C}_{xx}\mathbf{u}_i = \lambda_i^2\mathbf{u}_i\)</span>.</p>
@@ -605,28 +605,28 @@ document.write(`
 <section id="projection-timeseries-and-explained-variance">
 <h3>Projection timeseries and explained variance<a class="headerlink" href="#projection-timeseries-and-explained-variance" title="Link to this heading">#</a></h3>
 <p>The principal component timeseries is given by projecting the data onto the pattern:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dc330464-92de-4dfa-90a0-e75ccd096b82">
-<span class="eqno">(9)<a class="headerlink" href="#equation-dc330464-92de-4dfa-90a0-e75ccd096b82" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-58e72d19-c2c7-4672-aefd-475185ce4389">
+<span class="eqno">(9)<a class="headerlink" href="#equation-58e72d19-c2c7-4672-aefd-475185ce4389" title="Permalink to this equation">#</a></span>\[\begin{align}
     \mathbf{q}_i^T &amp;= \mathbf{p}_i^T\mathbf{X}
 \end{align}\]</div>
 <p>Setting <span class="math notranslate nohighlight">\(\mathbf{p}_i\)</span> to the <span class="math notranslate nohighlight">\(i^{th}\)</span> singular vector of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, we have:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-34195add-e5e9-4244-aa28-1042b22cec12">
-<span class="eqno">(10)<a class="headerlink" href="#equation-34195add-e5e9-4244-aa28-1042b22cec12" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-de9d9f81-70e9-4f07-b605-893531df1c63">
+<span class="eqno">(10)<a class="headerlink" href="#equation-de9d9f81-70e9-4f07-b605-893531df1c63" title="Permalink to this equation">#</a></span>\[\begin{align}
     \mathbf{q}_i^T &amp;=\mathbf{u}_i^T\mathbf{X}\\
     &amp;= \mathbf{u}_i^T\left(\mathbf{U}\boldsymbol{\Lambda}\mathbf{V}^T\right)\\
     &amp;=\sum_{j}\mathbf{u}_i\mathbf{u}_j\lambda_j\mathbf{v}_j^T\\
     &amp;= \lambda_i\mathbf{v}_i^T,
 \end{align}\]</div>
 <p>where the last equality comes from noticing that <span class="math notranslate nohighlight">\(\mathbf{u}_i^T\mathbf{u}_j=1\)</span> if <span class="math notranslate nohighlight">\(i=j\)</span> and 0 otherwise. That is, the projection of the data onto the pattern is given by the right singular vectors, scaled by the singular values. Note that the variance of the data’s projection onto <span class="math notranslate nohighlight">\(\mathbf{u}_i\)</span> is then given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-17c002b2-21e6-4cea-b9c5-ba1ad2fa8bb0">
-<span class="eqno">(11)<a class="headerlink" href="#equation-17c002b2-21e6-4cea-b9c5-ba1ad2fa8bb0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1764eeb2-3f6c-40aa-9db3-f0163366aaf9">
+<span class="eqno">(11)<a class="headerlink" href="#equation-1764eeb2-3f6c-40aa-9db3-f0163366aaf9" title="Permalink to this equation">#</a></span>\[\begin{align}
     \text{var}(\mathbf{q}_i) &amp;= \left(\lambda_i\mathbf{v}_i^T\right)\left(\lambda_i\mathbf{v}_i^T\right)^T\\
     &amp;=\lambda_i^2\mathbf{v}_i^T\mathbf{v}_i\\
     &amp;=\lambda_i^2,
 \end{align}\]</div>
 <p>and the fraction of variance explained by the <span class="math notranslate nohighlight">\(i^{th}\)</span> singular vector is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-57705389-3bb7-4276-8c96-ab9de01d6d23">
-<span class="eqno">(12)<a class="headerlink" href="#equation-57705389-3bb7-4276-8c96-ab9de01d6d23" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bcfa0ede-de6b-49de-9715-a2b11e2050d1">
+<span class="eqno">(12)<a class="headerlink" href="#equation-bcfa0ede-de6b-49de-9715-a2b11e2050d1" title="Permalink to this equation">#</a></span>\[\begin{align}
     \frac{\text{var}(\mathbf{q}_i)}{\sum_j \text{var}(\mathbf{q}_j)} &amp;= \frac{\lambda_i^2}{\sum_j\lambda_j^2}
 \end{align}\]</div>
 <p><strong>In summary,</strong> if we write <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> in terms of its SVD as <span class="math notranslate nohighlight">\(\mathbf{X}=\mathbf{USV}^T\)</span>, we have:</p>
