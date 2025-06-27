@@ -26,11 +26,11 @@ Next, we'll install python packages needed for the tutorials and class assignmen
   - cartopy
   - matplotlib
   - cmocean
+  - seaborn
 ```
 
 **Optional packages**
 ```
-  - seaborn
   - xesmf
   - scipy
   - bottleneck
@@ -39,14 +39,14 @@ Next, we'll install python packages needed for the tutorials and class assignmen
 
 If using ```mamba```, the command line syntax to install the packages is:
 ```
-#activate your environment if it is not already
+## activate your environment if it is not already
 mamba activate my_new_env
 
 ## install required dependencies
-mamba install -c conda-forge xarray jupyterlab dask netcdf4 cftime cartopy matplotlib
+mamba install -c conda-forge xarray jupyterlab dask netcdf4 cftime cartopy matplotlib cmocean seaborn
 
 ## install optional dependencies
-mamba install -c conda-forge cmocean seaborn xesmf scipy bottleneck h5netcdf
+mamba install -c conda-forge xesmf scipy bottleneck h5netcdf
 ```
 
 (This should also work if you replace ```mamba``` with ```conda```, but will take longer). Note the "```-c conda-forge```" flag tells the package manager to download the packages located from the conda-forge channel. 

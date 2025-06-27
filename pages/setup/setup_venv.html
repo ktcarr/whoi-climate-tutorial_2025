@@ -181,45 +181,18 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="setup.html">0) Setup</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1yKFb-_fa_Z-WPbMJax3rHNFw9lOVioPsFmkPtsnXynI/edit?usp=sharing">Slides</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Python / virtual environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="connect_to_server.html">Accessing the CMIP data servers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test.html">Test the setup worked!</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../data_analysis/overview.html">1) Climate diagnostics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing">Slides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../model_validation/overview.html">2) Model validation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../model_validation/model_validation_stub.html">Assignment 1 template</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../single_model_ensemble/overview.html">4) Single-model ensemble</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/woods-hole_example.html">Example</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../intermodel_comp/overview.html">5) Intermodel comparison</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../intermodel_comp/example.html">Intermodel comparison example</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/overview.html">6) Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1bAFB9mO22WYc6El3nojJgDyJqpis6xx5XXz0Tj2rMbI/edit?usp=sharing">Slides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/azores_prep.html">Azores high: data prep</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/azores_analysis.html">Azores high: analysis</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../assignments/assignments_toc.html">Assignments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../assignments/assignment1.html">Assignment 1: model validation</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../resources/resources.html">Resources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../resources/FAQ.html">FAQ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../resources/xarray_reference.html">Xarray reference</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../resources/git_basics.html">Git basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../resources/eofs.html">Intro to EOFs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../resources/ersst_cloud.html">Using data from the cloud</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../resources/cesm_cloud.html">Using data from the cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources/ersst_cloud.html">Accessing ERSST on the cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources/cesm_cloud.html">Accessing CESM2-LENS on the cloud</a></li>
 </ul>
 </details></li>
 </ul>
@@ -459,25 +432,25 @@ document.write(`
   <span class="o">-</span> <span class="n">cartopy</span>
   <span class="o">-</span> <span class="n">matplotlib</span>
   <span class="o">-</span> <span class="n">cmocean</span>
+  <span class="o">-</span> <span class="n">seaborn</span>
 </pre></div>
 </div>
 <p><strong>Optional packages</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">-</span> <span class="n">seaborn</span>
-  <span class="o">-</span> <span class="n">xesmf</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">-</span> <span class="n">xesmf</span>
   <span class="o">-</span> <span class="n">scipy</span>
   <span class="o">-</span> <span class="n">bottleneck</span>
   <span class="o">-</span> <span class="n">h5netcdf</span>
 </pre></div>
 </div>
 <p>If using <code class="docutils literal notranslate"><span class="pre">mamba</span></code>, the command line syntax to install the packages is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#activate your environment if it is not already</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## activate your environment if it is not already</span>
 <span class="n">mamba</span> <span class="n">activate</span> <span class="n">my_new_env</span>
 
 <span class="c1">## install required dependencies</span>
-<span class="n">mamba</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">xarray</span> <span class="n">jupyterlab</span> <span class="n">dask</span> <span class="n">netcdf4</span> <span class="n">cftime</span> <span class="n">cartopy</span> <span class="n">matplotlib</span>
+<span class="n">mamba</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">xarray</span> <span class="n">jupyterlab</span> <span class="n">dask</span> <span class="n">netcdf4</span> <span class="n">cftime</span> <span class="n">cartopy</span> <span class="n">matplotlib</span> <span class="n">cmocean</span> <span class="n">seaborn</span>
 
 <span class="c1">## install optional dependencies</span>
-<span class="n">mamba</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">cmocean</span> <span class="n">seaborn</span> <span class="n">xesmf</span> <span class="n">scipy</span> <span class="n">bottleneck</span> <span class="n">h5netcdf</span>
+<span class="n">mamba</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">xesmf</span> <span class="n">scipy</span> <span class="n">bottleneck</span> <span class="n">h5netcdf</span>
 </pre></div>
 </div>
 <p>(This should also work if you replace <code class="docutils literal notranslate"><span class="pre">mamba</span></code> with <code class="docutils literal notranslate"><span class="pre">conda</span></code>, but will take longer). Note the “<code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">conda-forge</span></code>” flag tells the package manager to download the packages located from the conda-forge channel.</p>
