@@ -1,0 +1,45 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: pages/intro
+chapters:
+- file: pages/setup/setup
+  sections:
+  - url: https://docs.google.com/presentation/d/1yKFb-_fa_Z-WPbMJax3rHNFw9lOVioPsFmkPtsnXynI/edit?usp=sharing
+    title: Slides
+  - file: pages/setup/setup_venv
+  - file: pages/setup/connect_to_server
+  - file: pages/setup/test
+- file: pages/data_analysis/overview
+  sections:
+  - url: https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing
+    title: Slides
+  - file: pages/data_analysis/example.ipynb
+- file: pages/model_validation/overview
+  sections:
+  - file: pages/model_validation/model_validation_stub.ipynb
+- file: pages/single_model_ensemble/overview
+  sections: 
+  - file: pages/single_model_ensemble/woods-hole_example
+- file: pages/intermodel_comp/overview
+  sections:
+  - file: pages/intermodel_comp/example.ipynb
+- file: pages/examples/overview
+  sections:
+  - url: https://docs.google.com/presentation/d/1bAFB9mO22WYc6El3nojJgDyJqpis6xx5XXz0Tj2rMbI/edit?usp=sharing
+    title: Slides
+  - file: pages/examples/azores_prep.ipynb
+  - file: pages/examples/azores_analysis.ipynb
+- file: pages/assignments/assignments_toc
+  sections:
+  - file: pages/assignments/assignment1
+- file: pages/resources/resources
+  sections:
+  - file: pages/resources/FAQ
+  - file: pages/resources/xarray_reference
+  - file: pages/resources/git_basics
+  - file: pages/resources/eofs.ipynb
+  - file: pages/resources/ersst_cloud.ipynb
+  - file: pages/resources/cesm_cloud.ipynb
+
