@@ -6,6 +6,8 @@ root: pages/intro
 chapters:
 - file: pages/setup/setup
   sections:
+  - url: https://docs.google.com/presentation/d/1yKFb-_fa_Z-WPbMJax3rHNFw9lOVioPsFmkPtsnXynI/edit?usp=sharing
+    title: Slides
   - file: pages/setup/setup_venv
   - file: pages/setup/connect_to_server
   - file: pages/setup/test
