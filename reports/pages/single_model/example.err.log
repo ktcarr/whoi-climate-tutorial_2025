@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+## shared arguments for loading data
+load_kwargs = dict(
+    varname="SST", preprocess_func=preprocess, save_fp=save_fp, n_members=35
+)
+
+## Load data
+data_hist = load_ensemble(simulation_type="hist", **load_kwargs)
+data_rcp = load_ensemble(simulation_type="rcp85", **load_kwargs)
+
+## concatenate in time
+data = xr.concat([data_hist, data_rcp], dim="time")
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mNameError[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 7[39m
+[32m      2[39m load_kwargs = [38;5;28mdict[39m(
+[32m      3[39m     varname=[33m"[39m[33mSST[39m[33m"[39m, preprocess_func=preprocess, save_fp=save_fp, n_members=[32m35[39m
+[32m      4[39m )
+[32m      6[39m [38;5;66;03m## Load data[39;00m
+[32m----> [39m[32m7[39m data_hist = [43mload_ensemble[49m(simulation_type=[33m"[39m[33mhist[39m[33m"[39m, **load_kwargs)
+[32m      8[39m data_rcp = load_ensemble(simulation_type=[33m"[39m[33mrcp85[39m[33m"[39m, **load_kwargs)
+[32m     10[39m [38;5;66;03m## concatenate in time[39;00m
+
+[31mNameError[39m: name 'load_ensemble' is not defined
+

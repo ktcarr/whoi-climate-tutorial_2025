@@ -59,7 +59,7 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'pages/single_model_ensemble/woods-hole_example';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pages/single_model/example';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -251,7 +251,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/ktcarr/whoi-climate-tutorial_2025/blob/main/docs/pages/single_model_ensemble/woods-hole_example.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/ktcarr/whoi-climate-tutorial_2025/blob/main/docs/pages/single_model/example.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -299,7 +299,7 @@
       
       
       
-      <li><a href="https://github.com/ktcarr/whoi-climate-tutorial_2025/issues/new?title=Issue%20on%20page%20%2Fpages/single_model_ensemble/woods-hole_example.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ktcarr/whoi-climate-tutorial_2025/issues/new?title=Issue%20on%20page%20%2Fpages/single_model/example.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -329,7 +329,7 @@
       
       
       
-      <li><a href="../../_sources/pages/single_model_ensemble/woods-hole_example.ipynb" target="_blank"
+      <li><a href="../../_sources/pages/single_model/example.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -725,186 +725,6 @@ document.write(`
     <span class="n">data</span> <span class="o">=</span> <span class="n">preprocess_func</span><span class="p">(</span><span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">decode_timedelta</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">load_ensemble_helper</span><span class="p">(</span><span class="n">varname</span><span class="p">,</span> <span class="n">simulation_type</span><span class="p">,</span> <span class="n">preprocess_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_members</span><span class="o">=</span><span class="mi">35</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Load all ensemble members for given simulation type and variable.</span>
-<span class="sd">    Arguments:</span>
-<span class="sd">        - varname: name of variable to load, one of {&quot;SST&quot;,&quot;PSL&quot;}</span>
-<span class="sd">        - simulation_type: one of {&quot;hist&quot;, &quot;rcp85&quot;}</span>
-<span class="sd">        - preprocess func: optional preprocessing function to apply to the simulation</span>
-<span class="sd">    Returns:</span>
-<span class="sd">        - xarray dataarray with given data and &#39;ensemble&#39; dimension</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1">## put arguments in dictionary</span>
-    <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">varname</span><span class="o">=</span><span class="n">varname</span><span class="p">,</span>
-        <span class="n">simulation_type</span><span class="o">=</span><span class="n">simulation_type</span><span class="p">,</span>
-        <span class="n">preprocess_func</span><span class="o">=</span><span class="n">preprocess_func</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="c1">## get array of ensemble IDs</span>
-    <span class="n">member_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_members</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-
-    <span class="c1">## put results in list</span>
-    
-    <span class="c1">#USE tqdm TO SHOW PROGRESS IF YOU WOULD LIKE (NEED TO INSTALL)</span>
-    <span class="c1">#data = [load_simulation(member_id=i, **kwargs) for i in tqdm.tqdm(member_ids)]</span>
-    <span class="c1">#otherwise:</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">load_simulation</span><span class="p">(</span><span class="n">member_id</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">member_ids</span><span class="p">]</span>
-
-    <span class="c1">## concatenate data along the &quot;ensemble&quot; dimension</span>
-    <span class="n">ensemble_dim</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">member_ids</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;member&quot;</span><span class="p">)</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">ensemble_dim</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">data</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">load_ensemble</span><span class="p">(</span>
-    <span class="n">varname</span><span class="p">,</span> <span class="n">simulation_type</span><span class="p">,</span> <span class="n">preprocess_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_fp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_members</span><span class="o">=</span><span class="mi">35</span>
-<span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Load all ensemble members for given simulation type and variable.</span>
-<span class="sd">    (Checks if data exists locally first).</span>
-<span class="sd">    Arguments:</span>
-<span class="sd">        - varname: name of variable to load, one of {&quot;SST&quot;,&quot;PSL&quot;}</span>
-<span class="sd">        - simulation_type: one of {&quot;hist&quot;, &quot;rcp85&quot;}</span>
-<span class="sd">        - preprocess func: optional preprocessing function to apply to the simulation</span>
-<span class="sd">        - save_fp: pathlib.Path object (save the result here if specified)</span>
-<span class="sd">    Returns:</span>
-<span class="sd">        - xarray dataarray with given data and &#39;ensemble&#39; dimension</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1">## put arguments in dictionary</span>
-    <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">varname</span><span class="o">=</span><span class="n">varname</span><span class="p">,</span>
-        <span class="n">simulation_type</span><span class="o">=</span><span class="n">simulation_type</span><span class="p">,</span>
-        <span class="n">preprocess_func</span><span class="o">=</span><span class="n">preprocess_func</span><span class="p">,</span>
-        <span class="n">n_members</span><span class="o">=</span><span class="n">n_members</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="c1">## load pre-computed data if it exists</span>
-    <span class="k">if</span> <span class="n">save_fp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-        <span class="c1">## path to file</span>
-        <span class="n">save_fp</span> <span class="o">=</span> <span class="n">save_fp</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">varname</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">simulation_type</span><span class="si">}</span><span class="s2">.nc&quot;</span>
-
-        <span class="c1">## check if file exists:</span>
-        <span class="k">if</span> <span class="n">save_fp</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="n">save_fp</span><span class="p">)</span>
-
-        <span class="k">else</span><span class="p">:</span>
-
-            <span class="c1">## load the data and save to file for next time</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">load_ensemble_helper</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;saving to file&quot;</span><span class="p">)</span>
-            <span class="n">data</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">save_fp</span><span class="p">)</span>
-
-    <span class="k">else</span><span class="p">:</span>
-
-        <span class="c1">## don&#39;t load/save the data</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">load_ensemble_helper</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">data</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">plot_quantiles</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;plot .1, .5, and .9 quantiles on given ax object&quot;&quot;&quot;</span>
-
-    <span class="c1">## filter for month if specified</span>
-    <span class="k">if</span> <span class="n">month</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span> <span class="o">==</span> <span class="n">month</span><span class="p">))</span>
-
-    <span class="c1">## compute quantiles</span>
-    <span class="n">x_quantiles</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;member&quot;</span><span class="p">)</span>
-
-    <span class="c1">## plot median</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-        <span class="n">x_quantiles</span><span class="p">[</span><span class="n">time_dim</span><span class="p">],</span>
-        <span class="n">x_quantiles</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">quantile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
-        <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-        <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="c1">## plot upper/lower bounds</span>
-    <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]:</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-            <span class="n">x_quantiles</span><span class="p">[</span><span class="n">time_dim</span><span class="p">],</span>
-            <span class="n">x_quantiles</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">),</span>
-            <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-        <span class="p">)</span>
-
-    <span class="k">return</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">rolling_fn_helper</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to get rolling standard deviation (&#39;sigma&#39;).</span>
-<span class="sd">    &#39;window_size&#39; is number of timesteps to include in each averaging window&quot;&quot;&quot;</span>
-
-    <span class="c1">## get rolling object</span>
-    <span class="n">rolling_obj</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">rolling</span><span class="p">({</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">window_size</span><span class="p">},</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="c1">## apply function</span>
-    <span class="n">fn_eval</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">rolling_obj</span><span class="p">)</span>
-
-    <span class="c1">## get half window size</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-
-    <span class="c1">## trim to remove NaNs</span>
-    <span class="k">return</span> <span class="n">fn_eval</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="o">-</span><span class="n">n</span><span class="p">))</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">rolling_fn_bymonth</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply rolling function to each month separately&quot;&quot;&quot;</span>
-
-    <span class="c1">## get rolling function to pass to apply to each month</span>
-    <span class="n">rolling_fn_</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">rolling_fn_helper</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="n">window_size</span><span class="p">)</span>
-
-    <span class="c1">## evaluate</span>
-    <span class="n">fn_eval</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;time.month&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">rolling_fn_</span><span class="p">)</span>
-
-    <span class="c1">## reindex so time is ascending</span>
-    <span class="n">fn_eval</span> <span class="o">=</span> <span class="n">fn_eval</span><span class="o">.</span><span class="n">reindex</span><span class="p">({</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">fn_eval</span><span class="o">.</span><span class="n">time</span><span class="p">)})</span>
-
-    <span class="k">return</span> <span class="n">fn_eval</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">rolling_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">by_month</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;apply rolling function; handle by_month cases (True or False)&quot;&quot;&quot;</span>
-
-    <span class="c1">## keyword args</span>
-    <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="n">window_size</span><span class="p">)</span>
-
-    <span class="c1">## handle cases</span>
-    <span class="k">if</span> <span class="n">by_month</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">rolling_fn_bymonth</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">rolling_fn_helper</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">get_rolling_stddev</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span> <span class="n">by_month</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to get rolling standard deviation (&#39;sigma&#39;).&quot;&quot;&quot;</span>
-
-    <span class="c1">## get sigma function</span>
-    <span class="n">fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">y</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-
-    <span class="k">return</span> <span class="n">rolling_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="n">window_size</span><span class="p">,</span> <span class="n">by_month</span><span class="o">=</span><span class="n">by_month</span><span class="p">)</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">get_rolling_mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span> <span class="n">by_month</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to get rolling standard deviation (&#39;sigma&#39;).&quot;&quot;&quot;</span>
-
-    <span class="c1">## get sigma function</span>
-    <span class="n">fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-
-    <span class="k">return</span> <span class="n">rolling_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="n">window_size</span><span class="p">,</span> <span class="n">by_month</span><span class="o">=</span><span class="n">by_month</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -997,6 +817,22 @@ document.write(`
 
 <span class="c1">## concatenate in time</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data_hist</span><span class="p">,</span> <span class="n">data_rcp</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">load_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">varname</span><span class="o">=</span><span class="s2">&quot;SST&quot;</span><span class="p">,</span> <span class="n">preprocess_func</span><span class="o">=</span><span class="n">preprocess</span><span class="p">,</span> <span class="n">save_fp</span><span class="o">=</span><span class="n">save_fp</span><span class="p">,</span> <span class="n">n_members</span><span class="o">=</span><span class="mi">35</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1">## Load data</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">data_hist</span> <span class="o">=</span> <span class="n">load_ensemble</span><span class="p">(</span><span class="n">simulation_type</span><span class="o">=</span><span class="s2">&quot;hist&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">load_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">data_rcp</span> <span class="o">=</span> <span class="n">load_ensemble</span><span class="p">(</span><span class="n">simulation_type</span><span class="o">=</span><span class="s2">&quot;rcp85&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">load_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="c1">## concatenate in time</span>
+
+<span class="ne">NameError</span>: name &#39;load_ensemble&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1393,7 +1229,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./pages/single_model_ensemble"
+            path: "./pages/single_model"
         },
         predefinedOutput: true
     }

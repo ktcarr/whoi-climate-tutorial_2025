@@ -27,6 +27,7 @@ Next, we'll install python packages needed for the tutorials and class assignmen
   - matplotlib
   - cmocean
   - seaborn
+  - tqdm
 ```
 
 **Optional packages**
@@ -43,7 +44,7 @@ If using ```mamba```, the command line syntax to install the packages is:
 mamba activate my_new_env
 
 ## install required dependencies
-mamba install -c conda-forge xarray jupyterlab dask netcdf4 cftime cartopy matplotlib cmocean seaborn
+mamba install -c conda-forge xarray jupyterlab dask netcdf4 cftime cartopy matplotlib cmocean seaborn tqdm
 
 ## install optional dependencies
 mamba install -c conda-forge xesmf scipy bottleneck h5netcdf
