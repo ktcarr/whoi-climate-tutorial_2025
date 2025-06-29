@@ -13,7 +13,7 @@ To look at projected changes this, we're going to use a CESM simulation forced w
 
 
 ## Example: Woods Hole and the North Atlantic "warming hole"
-(see notebook on the [following page](woods-hole_example.ipynb) for code to reproduce results)  
+(see notebook on the [following page](example.ipynb) for code to reproduce results)
 
 1. First, we'll estimate the "forced component" of the Woods Hole climate index, for the fall season (September/October/November, or "SON"). To do this, we plot raw index over time (gray line on left side), and fit a trend line to the data (in red, we show two trend lines: one linear and one quadratic). The right side shows the difference between the raw timeseries and the quadratic trend. This difference represents the climate system's natural variability.
 ```{figure} figs/forced-internal-sep.svg
