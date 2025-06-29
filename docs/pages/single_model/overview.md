@@ -30,10 +30,10 @@ Historical and projected change to Woods Hole climate index. **Left**: raw index
 height: 325px
 name: warming-pattern 
 ---
-Spatial pattern of SST change in the North Atlantic. White contours show the 1980-2010 climatology, in 4$^{\circ}$C increments. Western-most black box outlines region used to compute Woods Hole climate index. Eastern-most black box outlines the North Atlantic "warming hole" region[^2].
+Spatial pattern of SST change in the North Atlantic. White contours show the 1980-2010 climatology, in 4$^{\circ}$C increments. Western-most black box outlines region used to compute Woods Hole climate index. Eastern-most black box outlines the North Atlantic "warming hole" region (e.g., see Keil et al, 2020).
 ```
 
-3. Next, we'll compare the robustness of the warming trend for the Woods Hole index (Fig 1) to that over the so-called North Atlantic "warming hole"[^2] (outlined by larger black box in Fig 2). For each region, we plot histograms of the area-average temperature for the periods (i) 1980-2010 and (ii) 2050-2080.
+3. Next, we'll compare the robustness of the warming trend for the Woods Hole index (Fig 1) to that over the so-called North Atlantic "warming hole" (outlined by larger black box in Fig 2). For each region, we plot histograms of the area-average temperature for the periods (i) 1980-2010 and (ii) 2050-2080.
 ```{figure} figs/pdfs_total.svg
 ---
 height: 225px
@@ -51,10 +51,6 @@ name: pdfs-anom
 Same as Figure 3, but after removing quadratic trend from both indices (and including data from all seasons, not just SON).
 ```
 
-[^2]Keil, P. et al. "Multiple drivers of the North Atlantic warming hole." *Nat. Clim. Chang. 10*, 667–671 (2020).
-
-
-
 
 ## To-dos
 0. Run the example.
@@ -65,7 +61,8 @@ Same as Figure 3, but after removing quadratic trend from both indices (and incl
 1. Compute linear trend at each grid point (e.g., for period 2006-2080, when the warming signal looks more linear in Figure 1). Then, plot the slope of each linear trend as a spatial map (as in Fig 2).
 
 
-### Other resources
+### References
+Keil, P. et al. "Multiple drivers of the North Atlantic warming hole." *Nat. Clim. Chang. 10*, 667–671 (2020).
 
 
 ```{tableofcontents}

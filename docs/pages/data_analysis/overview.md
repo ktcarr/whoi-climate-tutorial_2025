@@ -21,6 +21,7 @@ Today, we're going to analyze sea surface temperature (SST) data from a widely-u
 height: 250px
 name: sst-sample 
 ---
+North Atlantic SST during September, 2022. Black star shows Woods Hole.
 ```
 
 2. After computing the index, we'll compute its seasonal cycle and trend over time (shown here):
@@ -29,6 +30,7 @@ name: sst-sample
 height: 250px
 name: trend 
 ---
+Woods Hole climate index (blue line), defined as SST averaged over region 72.5$^{\circ}$–66.5$^{\circ}$W and 39$^{\circ}$–44$^{\circ}$N (time-mean value has been removed). Black line shows linear trend. 
 ```
 
 
@@ -38,6 +40,7 @@ name: trend
 height: 250px
 name: woodshole-correlation
 ---
+SST correlation at each gridpoint with Woods Hole climate index.
 ```
 
 
@@ -71,7 +74,7 @@ def compute_T_wh(x):
 
 
 ### References
-Hersbach, H. et al. The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society 146, 1999–2049 (2020).
+Hersbach, H. et al. "The ERA5 global reanalysis." *Quarterly Journal of the Royal Meteorological Society 146*, 1999–2049 (2020).
 
 
 
