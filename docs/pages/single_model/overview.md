@@ -1,62 +1,68 @@
 # 3) Single-model climate-change
 
-## Recap of lecture
-Today in lecture, we talked about (single-model) ensembles. The benefit of using an "ensemble" of simulations -- rather than a single simulation -- is that it becomes easier to separate the climate system's "forced" response to external forcing from its natural, "internal" variability. The forced response (the "climate change signal") is often estimated as the mean of all simulations in the ensemble at a given timestep. By definition, "internal variability" is the difference between the total signal and the forced component (i.e., "total" minus "forced"). The idea is that by averaging over ensemble members, we "filter out" the naturally ocurring month-to-month and year-to-year variations in the climate (e.g., due to El Niño and La Niña). This works because this natural variability occurs independently in each ensemble member (e.g., El Niño events are not synchronized across ensemble members[^1]). 
-
-It's possible to estimate the "external forcing" signal without an ensemble: for example, a linear trend fit to a single ensemble member filters out the higher-frequency fluctuations associated with natural climate variability, and provides an estimate of the climate to gradually increasing GHG emissions. Ensembles make it possible to estimate the time-varying nature of the response (e.g., the response to volcanic eruptions is typically fast and short-lived compared to the response to gradually-increasing GHG emissions). They also make it easier to estimate the uncertainties associated with the forced response and diagnose changes in higher-order statistics (e.g., will the standard deviation of SST increase?): for example, with a 35-member ensemble of simulations, each 30-year period of the simulation has 35x30=1,050 simulation years. 
-
-[^1] So if there is a 20\% chance of an El Niño in any given year, there is a $\left(20\%\right)^3=0.8\%$ chance that three particular ensemble members will all have an El Niño in a given year. Note that external forcing -- e.g., volcanic eruptions -- may affect these probabilities...
+## Recap
+In the first two tutorials, we (i) analyzed the variability of a climate index in the "real world" (a reanlysis dataset) and (ii) assessed the CESM1 climate model's ability to represent this variability. Now that we have an idea of the model's ability to represent our climate index, we're going to look at the model's projected future changes in the index. 
 
 
 ## Goal for tutorial 
-Today, we're going to going to use the CESM1 large ensemble ("CESM-LENS") to estimate the forced response to the RCP8.5 emissions scenario (we'll use the same Woods Hole SST-based index as in previous tutorials). After estimating the forced response (using up to 35 ensemble members), we'll look at its seasonality (and estimate its robustness). We'll also do one example of estimating changes in the standard deviation of SST.
+
+To look at projected changes this, we're going to use a CESM simulation forced with the RCP8.5 protocol[^1], which spans the simulated years 2006 to 2080 (the corresponding "historical" simulation spans the years 1920-2006). The goal is to estimate the "forced component" of our climate index (in practice, the trend over time) and assess its statistical significance.
+
+[^1]"RCP" stands for "representative concentration pathway"; the number references a 8.5 $W/m^2$ radiative forcing. RCP8.5 was the "worst-case" emissions scenario used in CMIP5.
+
+
 
 ## Example: forced changes in Woods Hole-adjacent SST
 (see notebook on the [following page](woods-hole_example.ipynb) for code to reproduce results)  
 
-1. First, we'll estimate the (annual-average) forced response in our climate index: 
+1. First, we'll estimate the "forced component" of the Woods Hole climate index, for the fall season (September/October/November, or "SON"). To do this, we plot raw index over time (gray line on left side), and fit a trend line to the data (in red, we show two trend lines: one linear and one quadratic). The right side shows the difference between the raw timeseries and the quadratic trend. This difference represents the climate system's natural variability.
 ```{figure} figs/forced-internal-sep.svg
 ---
 height: 250px
 name: forced-internal-sep 
 ---
+Historical and projected change to Woods Hole climate index. **Left**: raw index and estimated trends. **Right**: difference between raw index and quadratic (degree 2) trend.
 ```
 
-2. First, we'll estimate the (annual-average) forced response in our climate index: 
+2. Next, we'll check: is this warming trend spatially homogeneous? No, it turns out, as shown below.
 ```{figure} figs/warming-pattern.svg
 ---
 height: 325px
 name: warming-pattern 
 ---
+Spatial pattern of SST change in the North Atlantic. White contours show the 1980-2010 climatology, in 4$^{\circ}$C increments. Western-most black box outlines region used to compute Woods Hole climate index. Eastern-most black box outlines the North Atlantic "warming hole" region[^2].
 ```
 
-3. First, we'll estimate the (annual-average) forced response in our climate index: 
+3. Next, we'll compare the robustness of the warming trend for the Woods Hole index (Fig 1) to that over the so-called North Atlantic "warming hole"[^2] (outlined by larger black box in Fig 2). For each region, we plot histograms of the area-average temperature for the periods (i) 1980-2010 and (ii) 2050-2080.
 ```{figure} figs/pdfs_total.svg
 ---
 height: 225px
 name: pdfs-total 
 ---
+Histograms of area-averaged temperature during SON for (**left**) the Woods Hole SST index and (**right**) North Atlantic warming hole.
 ```
 
-4. First, we'll estimate the (annual-average) forced response in our climate index: 
+4. While Figure 3 suggests the means of the distributions for both climate indices have increased, changes in the *variability* of the indices are more subtle, as shown in histograms of the indices after removing the trend: 
 ```{figure} figs/pdfs_anom.svg
 ---
 height: 225px
 name: pdfs-anom 
 ---
+Same as Figure 3, but after removing quadratic trend from both indices.
 ```
+
+[^2]Keil, P. et al. "Multiple drivers of the North Atlantic warming hole." *Nat. Clim. Chang. 10*, 667–671 (2020).
+
 
 
 
 ## To-dos
-0. (optional) Run the example. Note that loading the data from all 35 ensemble members is time-consuming ($\sim 30$ minutes). As noted in the example, two options for reducing this time are (i) loading a subset of ensemble members or (ii) [use Google Colab](../resources/cesm_cloud.ipynb). We'd suggest starting with fewer ensemble members.
-1. Adapt example to look at forced response / internal variability in a different region and using a different index (see example for details about where to make these changes).
+0. Run the example.
+1. Adapt example to look at trend / internal variability in a different region and/or using a different variable (see example for details about where to make these changes).
 2. Re-run the analyses using your index.
 
 ### Advanced (optional)
-1. Pick a different variable other than SST.
-2. Look at change in autocorrelation over time.
-3. Look at change in standard deviation as a function of season.
+1. Compute linear trend at each grid point (e.g., for period 2006-2080, when the warming signal looks more linear in Figure 1). Then, plot the slope of each linear trend as a spatial map (as in Fig 2).
 
 
 ### Other resources
