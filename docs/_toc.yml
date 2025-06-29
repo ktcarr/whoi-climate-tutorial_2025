@@ -39,4 +39,5 @@ chapters:
 #   - file: pages/resources/eofs.ipynb
   - file: pages/resources/ersst_cloud.ipynb
   - file: pages/resources/cesm_cloud.ipynb
+  - file: pages/resources/setup_hpc.md
 
