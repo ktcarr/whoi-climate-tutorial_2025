@@ -189,12 +189,36 @@
 <li class="toctree-l2"><a class="reference internal" href="../setup/test.html">Test the setup worked!</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_analysis/overview.html">1) Climate diagnostics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../single_model/overview.html">3) Single-model climate-change</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../single_model/example.html">Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../single_model_ensemble/overview.html">4) Single-model ensemble</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/woods-hole_example.html">Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intermodel_comp/overview.html">5) Intermodel comparison</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intermodel_comp/example.html">Intermodel comparison example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/overview.html">6) Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1bAFB9mO22WYc6El3nojJgDyJqpis6xx5XXz0Tj2rMbI/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/azores_prep.html">Azores high: data prep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/azores_analysis.html">Azores high: analysis</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="resources.html">Resources</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="FAQ.html">FAQ</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Xarray reference</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_basics.html">Git basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ersst_cloud.html">Accessing ERSST on the cloud</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cesm_cloud.html">Accessing CESM2-LENS on the cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_hpc.html">High-performance computing</a></li>
 </ul>
 </details></li>
 </ul>
@@ -924,8 +948,8 @@ Note we have to specify the projection keyword (e.g., ccrs.PlateCarree or ccrs.O
 <section id="explanation-of-cos-latitude-weighting">
 <span id="coslat"></span><h3>Explanation of cos(latitude) weighting<a class="headerlink" href="#explanation-of-cos-latitude-weighting" title="Link to this heading">#</a></h3>
 <p>Not every element in our array represents an equal surface area of the earth: on a “regular” longitude-latitude grid (where the longitude and latitude spacing is constant) the area of gridcells decreases as you move away from the equator to the poles. Denoting longitude and latitude as <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span>, and longitude and latitude spacing as <span class="math notranslate nohighlight">\(\delta\theta\)</span> and <span class="math notranslate nohighlight">\(\delta\phi\)</span>, the area of each gridcell is given by <span class="math notranslate nohighlight">\(\delta A ~= R^2\cos(\phi)\delta\phi\delta\theta\)</span>, where <span class="math notranslate nohighlight">\(R\)</span> is the radius of the earth. The weighted average of a variable <span class="math notranslate nohighlight">\(f\)</span> on the sphere is then given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-871f013e-69b4-4869-bd4d-8b8a34d86e0e">
-<span class="eqno">(1)<a class="headerlink" href="#equation-871f013e-69b4-4869-bd4d-8b8a34d86e0e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ebcb3c1e-8753-46ed-88c1-1640b443b087">
+<span class="eqno">(1)<a class="headerlink" href="#equation-ebcb3c1e-8753-46ed-88c1-1640b443b087" title="Permalink to this equation">#</a></span>\[\begin{align}
     \overline{f} &amp;= \frac{\sum f~\delta A}{\sum \delta A} = \frac{\sum f~R^2\cos\left(\phi\right)~\delta\phi~\delta\theta}{\sum R^2\cos\left(\phi\right)~\delta\phi~\delta\theta} = \frac{R^2 ~\delta\phi~\delta\theta \sum f~\cos\left(\phi\right)}{R^2~\delta\phi~\delta\theta \sum \cos(\phi)} = \frac{\sum f\cos(\phi)}{\sum\cos(\phi)},
 \end{align}\]</div>
 <p>where we use the fact that <span class="math notranslate nohighlight">\(R^2\)</span>, <span class="math notranslate nohighlight">\(\delta\theta\)</span>, and <span class="math notranslate nohighlight">\(\delta\phi\)</span> are constant (and can be pulled out of the summation). Therefore, to compute <span class="math notranslate nohighlight">\(\overline{f}\)</span>, we need to compute a <em>weighted</em> average, where the weights are the cosine of the latitude.</p>

@@ -62,6 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'pages/examples/azores_analysis';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Resources" href="../resources/resources.html" />
+    <link rel="prev" title="Azores high: data prep" href="azores_prep.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -181,12 +181,35 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../setup/setup.html">0) Setup</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1yKFb-_fa_Z-WPbMJax3rHNFw9lOVioPsFmkPtsnXynI/edit?usp=sharing">Slides</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup/setup_venv.html">Python / virtual environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup/connect_to_server.html">Accessing the CMIP data servers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup/test.html">Test the setup worked!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_analysis/overview.html">1) Climate diagnostics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../single_model/overview.html">3) Single-model climate-change</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../single_model/example.html">Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../single_model_ensemble/overview.html">4) Single-model ensemble</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/woods-hole_example.html">Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intermodel_comp/overview.html">5) Intermodel comparison</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intermodel_comp/example.html">Intermodel comparison example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="overview.html">6) Examples</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1bAFB9mO22WYc6El3nojJgDyJqpis6xx5XXz0Tj2rMbI/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="azores_prep.html">Azores high: data prep</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Azores high: analysis</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../resources/resources.html">Resources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -195,6 +218,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../resources/git_basics.html">Git basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../resources/ersst_cloud.html">Accessing ERSST on the cloud</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../resources/cesm_cloud.html">Accessing CESM2-LENS on the cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources/setup_hpc.html">High-performance computing</a></li>
 </ul>
 </details></li>
 </ul>
@@ -483,7 +507,12 @@ document.write(`
 </section>
 <section id="utility-functions">
 <h2>Utility functions<a class="headerlink" href="#utility-functions" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_empirical_pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bin_edges</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -508,6 +537,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 </section>
 <section id="load-data">
@@ -551,7 +581,12 @@ document.write(`
 <section id="lme-model-validation-fig-2c">
 <h3>LME model validation (Fig 2c)<a class="headerlink" href="#lme-model-validation-fig-2c" title="Link to this heading">#</a></h3>
 <p>Metric: 25-year rolling count of AHA extremes</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">count_extremes</span><span class="p">(</span><span class="n">AHA</span><span class="p">,</span> <span class="n">cutoff_perc</span><span class="o">=</span><span class="mf">90.0</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">25</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get rolling count of Azores High extreme events.</span>
@@ -578,6 +613,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -630,7 +666,12 @@ document.write(`
 <h3>LME single-forcing comparison (Fig 3d,3e)<a class="headerlink" href="#lme-single-forcing-comparison-fig-3d-3e" title="Link to this heading">#</a></h3>
 <section id="functions-for-loading-paleo-data-and-binning-by-century">
 <h4>Functions for loading paleo data and binning by century<a class="headerlink" href="#functions-for-loading-paleo-data-and-binning-by-century" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_paleo_data</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -680,6 +721,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 </section>
 <section id="compute-stats">
@@ -713,7 +755,12 @@ document.write(`
 </section>
 <section id="plotting-functions">
 <h4>Plotting functions<a class="headerlink" href="#plotting-functions" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_LME_extremes</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">extreme_count</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;function to plot LME extremes on ax object&quot;&quot;&quot;</span>
@@ -784,6 +831,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 </section>
 <section id="make-plot">
@@ -1003,7 +1051,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/034cd0c32453ef6a3a7fd91395d3dbde8803d4679da58a95b92545379686d361.png" src="../../_images/034cd0c32453ef6a3a7fd91395d3dbde8803d4679da58a95b92545379686d361.png" />
+<img alt="../../_images/3985ec65c13b08ad8d3e4a68e78f1fdb71a18b7142087ee9c66c5e78b8e6020c.png" src="../../_images/3985ec65c13b08ad8d3e4a68e78f1fdb71a18b7142087ee9c66c5e78b8e6020c.png" />
 </div>
 </div>
 </section>
@@ -1041,6 +1089,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="azores_prep.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Azores high: data prep</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../resources/resources.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Resources</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

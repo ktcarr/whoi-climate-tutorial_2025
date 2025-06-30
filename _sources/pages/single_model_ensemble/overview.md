@@ -50,13 +50,12 @@ name: sigma-change
 
 ## To-dos
 0. (optional) Run the example. Note that loading the data from all 35 ensemble members is time-consuming ($\sim 30$ minutes). As noted in the example, two options for reducing this time are (i) loading a subset of ensemble members or (ii) [use Google Colab](../resources/cesm_cloud.ipynb). We'd suggest starting with fewer ensemble members.
-1. Adapt example to look at forced response / internal variability in a different region and using a different index (see example for details about where to make these changes).
+1. Adapt example to look at forced response / internal variability in a different region and/or using a different variable (see example for details about where to make these changes).
 2. Re-run the analyses using your index.
 
 ### Advanced (optional)
-1. Pick a different variable other than SST.
-2. Look at change in autocorrelation over time.
-3. Look at change in standard deviation as a function of season.
+1. Look at change in autocorrelation over time.
+2. Look at change in standard deviation as a function of season.
 
 
 ### Other resources

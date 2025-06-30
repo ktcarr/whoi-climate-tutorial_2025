@@ -6,12 +6,12 @@ Welcome to the tutorial website for the 2025 WHOI short course on climate model 
 Part | Topic
 -- | --
 0 | [Python setup and connecting to the CMIP6 data server](setup/setup.md)
-1 | Climate diagnostics (*Coming soon*)
+1 | [Climate diagnostics](data_analysis/overview.md)
 2 | Model validation (*Coming soon*)
-3 | Climate change 1/3 (single-model; *coming soon*)
-4 | Climate change 2/3 (single-model ensemble; *coming soon*)
-5 | Climate change 3/3 (inter-model comparison; *coming soon*)
-6 | Examples (*coming soon*)
+3 | [Climate change 1/3 (single-model)](single_model/overview.md)
+4 | [Climate change 2/3 (single-model ensemble](single_model_ensemble/overview.md)
+5 | [Climate change 3/3 (inter-model comparison)](intermodel_comp/overview.md)
+6 | [Examples](examples/overview.md)
 
 
 ## Table of contents

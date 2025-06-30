@@ -55,5 +55,8 @@ sudo mkdir /mnt/cmip6-data
 sudo mount -t cifs -ouser=USERNAME,password=PASSWORD //vast.whoi.edu/proj/cmip6 /mnt/cmip6-data
 ```
 
+### Connecting from Poseidon
+The CMIP6 server is accessible on Poseidon at ```/vortexfs1/share/cmip6```.
+
 ## CMIP5
 For CMIP5 (instead of CMIP6), use the same process but replace ```vast.whoi.edu/proj/cmip6``` with ```cmip5.whoi.edu```.

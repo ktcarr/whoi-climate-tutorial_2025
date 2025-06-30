@@ -1,0 +1,72 @@
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+## comment out this import if you are using data from Google Drive
+## (and don't have xesmf installed)
+import xesmf as xe
+
+## list of (model center, model) tuples
+model_names = [
+    ("NCAR", "CESM2"),
+    ("NCAR", "CESM2-WACCM"),
+    ("CSIRO", "ACCESS-ESM1-5"),
+    ("MIROC", "MIROC6"),
+    ("MPI-M", "MPI-ESM1-2-LR"),
+    ("IPSL", "IPSL-CM6A-LR"),
+    ("NASA-GISS", "GISS-E2-2-G"),
+]
+
+## get target grid
+grid = get_grid(server_fp, lon_range=[260, 360], lat_range=[10, 70])
+
+## load data
+kwargs = dict(server_fp=server_fp, save_fp=save_fp, grid=grid, model_names=model_names)
+data = load_models(**kwargs)
+
+## swap longitude range from [0,360) to (-180, 180]
+data = swap_longitude_range(data)
+
+## make sure longitude is in ascending order
+data = sort_longitude(data)
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mIndexError[39m                                Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 17[39m
+[32m      6[39m model_names = [
+[32m      7[39m     ([33m"[39m[33mNCAR[39m[33m"[39m, [33m"[39m[33mCESM2[39m[33m"[39m),
+[32m      8[39m     ([33m"[39m[33mNCAR[39m[33m"[39m, [33m"[39m[33mCESM2-WACCM[39m[33m"[39m),
+[32m   (...)[39m[32m     13[39m     ([33m"[39m[33mNASA-GISS[39m[33m"[39m, [33m"[39m[33mGISS-E2-2-G[39m[33m"[39m),
+[32m     14[39m ]
+[32m     16[39m [38;5;66;03m## get target grid[39;00m
+[32m---> [39m[32m17[39m grid = [43mget_grid[49m[43m([49m[43mserver_fp[49m[43m,[49m[43m [49m[43mlon_range[49m[43m=[49m[43m[[49m[32;43m260[39;49m[43m,[49m[43m [49m[32;43m360[39;49m[43m][49m[43m,[49m[43m [49m[43mlat_range[49m[43m=[49m[43m[[49m[32;43m10[39;49m[43m,[49m[43m [49m[32;43m70[39;49m[43m][49m[43m)[49m
+[32m     19[39m [38;5;66;03m## load data[39;00m
+[32m     20[39m kwargs = [38;5;28mdict[39m(server_fp=server_fp, save_fp=save_fp, grid=grid, model_names=model_names)
+
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 178[39m, in [36mget_grid[39m[34m(server_fp, lon_range, lat_range)[39m
+[32m    176[39m [38;5;66;03m## get filepath[39;00m
+[32m    177[39m fp = get_filepath(server_fp, model_center=[33m"[39m[33mNCAR[39m[33m"[39m, model=[33m"[39m[33mCESM2[39m[33m"[39m)
+[32m--> [39m[32m178[39m filename = [38;5;28;43mlist[39;49m[43m([49m[43mfp[49m[43m.[49m[43mglob[49m[43m([49m[33;43m"[39;49m[33;43m*.nc[39;49m[33;43m"[39;49m[43m)[49m[43m)[49m[43m[[49m[32;43m0[39;49m[43m][49m
+[32m    180[39m [38;5;66;03m## load first timestep for cesm2 (ignore serialization warning)[39;00m
+[32m    181[39m [38;5;28;01mwith[39;00m warnings.catch_warnings():
+
+[31mIndexError[39m: list index out of range
+

@@ -57,9 +57,13 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'pages/intermodel_comp/example';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6) Examples" href="../examples/overview.html" />
+    <link rel="prev" title="5) Intermodel comparison" href="overview.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,12 +181,35 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../setup/setup.html">0) Setup</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1yKFb-_fa_Z-WPbMJax3rHNFw9lOVioPsFmkPtsnXynI/edit?usp=sharing">Slides</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup/setup_venv.html">Python / virtual environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup/connect_to_server.html">Accessing the CMIP data servers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup/test.html">Test the setup worked!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_analysis/overview.html">1) Climate diagnostics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../single_model/overview.html">3) Single-model climate-change</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../single_model/example.html">Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../single_model_ensemble/overview.html">4) Single-model ensemble</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/woods-hole_example.html">Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="overview.html">5) Intermodel comparison</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Intermodel comparison example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/overview.html">6) Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1bAFB9mO22WYc6El3nojJgDyJqpis6xx5XXz0Tj2rMbI/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/azores_prep.html">Azores high: data prep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/azores_analysis.html">Azores high: analysis</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../resources/resources.html">Resources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -193,6 +218,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../resources/git_basics.html">Git basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../resources/ersst_cloud.html">Accessing ERSST on the cloud</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../resources/cesm_cloud.html">Accessing CESM2-LENS on the cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources/setup_hpc.html">High-performance computing</a></li>
 </ul>
 </details></li>
 </ul>
@@ -422,15 +448,23 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filepaths">Filepaths</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-index">Climate index</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-climate-index">Compute climate index</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loop-through-models">Loop through models</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-in-single-data-array">Combine in single data array</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalized-version-of-data">Normalized version of data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading">Data loading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filepaths">Filepaths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-the-dataloading">Do the dataloading</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-results">Plot results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-climatologies-for-two-of-the-models">Compare climatologies for two of the models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-ensemble-mean-warming-pattern">Plot ensemble-mean warming pattern</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-index">Climate index</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-index">Compute index</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#change-over-time">Change over time</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#change-vs-climatology">Change vs. climatology</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -453,343 +487,740 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cmocean</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mticker</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpatches</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 
+<span class="c1">## (optional) remove gridlines from plots</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;axes.facecolor&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="s2">&quot;axes.grid&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="filepaths">
-<h2>Filepaths<a class="headerlink" href="#filepaths" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Get prefix common to all filepaths</span>
-<span class="n">prefix</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/Volumes/cmip6/data/cmip6/CMIP&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">trim</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">lon_range</span><span class="p">,</span> <span class="n">lat_range</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;select part of data in given longitude/latitude range&quot;&quot;&quot;</span>
 
-<span class="c1">## function to add prefix to path</span>
-<span class="n">add_prefix</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">path</span><span class="p">:</span> <span class="n">prefix</span> <span class="o">/</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="c1">## helper function to check if &#39;x&#39; is in &#39;x_range&#39;</span>
+    <span class="n">isin_range</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">x_range</span><span class="p">:</span> <span class="p">(</span><span class="n">x_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">x_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-<span class="c1">## finally, a dictionary with the filepaths</span>
-<span class="n">fp_dict</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;CSIRO&quot;</span><span class="p">:</span> <span class="n">add_prefix</span><span class="p">(</span><span class="s2">&quot;CSIRO/ACCESS-ESM1-5/1pctCO2/r1i1p1f1/Amon/tas/gn/1&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;NCAR&quot;</span><span class="p">:</span> <span class="n">add_prefix</span><span class="p">(</span><span class="s2">&quot;NCAR/CESM2/1pctCO2/r1i1p1f1/Amon/tas/gn/1&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;MIROC&quot;</span><span class="p">:</span> <span class="n">add_prefix</span><span class="p">(</span><span class="s2">&quot;MIROC/MIROC6/1pctCO2/r1i1p1f1/Amon/tas/gn/1&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;MPI&quot;</span><span class="p">:</span> <span class="n">add_prefix</span><span class="p">(</span><span class="s2">&quot;MPI-M/MPI-ESM1-2-LR/1pctCO2/r1i1p1f1/Amon/tas/gn/1&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;IPSL&quot;</span><span class="p">:</span> <span class="n">add_prefix</span><span class="p">(</span><span class="s2">&quot;IPSL/IPSL-CM6A-LR/1pctCO2/r1i1p1f1/Amon/tas/gr/1&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;NASA&quot;</span><span class="p">:</span> <span class="n">add_prefix</span><span class="p">(</span><span class="s2">&quot;NASA-GISS/GISS-E2-2-G/1pctCO2/r1i1p1f1/Amon/tas/gn/1&quot;</span><span class="p">),</span>
-<span class="p">}</span>
+    <span class="c1">## get mask for data in given lon/lat range</span>
+    <span class="n">in_lon_range</span> <span class="o">=</span> <span class="n">isin_range</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">],</span> <span class="n">lon_range</span><span class="p">)</span>
+    <span class="n">in_lat_range</span> <span class="o">=</span> <span class="n">isin_range</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">],</span> <span class="n">lat_range</span><span class="p">)</span>
+    <span class="n">in_lonlat_range</span> <span class="o">=</span> <span class="n">in_lon_range</span> <span class="o">&amp;</span> <span class="n">in_lat_range</span>
 
-<span class="c1">## Get list of models</span>
-<span class="n">models</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">fp_dict</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="climate-index">
-<h2>Climate index<a class="headerlink" href="#climate-index" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">WH_index</span><span class="p">(</span><span class="n">T2m</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to compute &#39;Woods Hole climate index. We&#39;ll define</span>
-<span class="sd">    this index as the annual-average temperature in the gridcell</span>
-<span class="sd">    closest to the (lon, lat) point (288.5, 41.5).</span>
+    <span class="c1">## load to memory</span>
+    <span class="n">in_lonlat_range</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        T2m: xr.DataArray with dimensions (lon, lat, time)</span>
+    <span class="c1">## Retain all points with at least one valid grid cell</span>
+    <span class="n">x_idx</span> <span class="o">=</span> <span class="n">in_lonlat_range</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="s2">&quot;nlat&quot;</span><span class="p">)</span>
+    <span class="n">y_idx</span> <span class="o">=</span> <span class="n">in_lonlat_range</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="s2">&quot;nlon&quot;</span><span class="p">)</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        T2m_WH: xr. DataArray with dimension (year)</span>
+    <span class="c1">## select given points</span>
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">isel</span><span class="p">({</span><span class="s2">&quot;nlon&quot;</span><span class="p">:</span> <span class="n">x_idx</span><span class="p">,</span> <span class="s2">&quot;nlat&quot;</span><span class="p">:</span> <span class="n">y_idx</span><span class="p">})</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_setup</span><span class="p">(</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">lon_range</span><span class="p">,</span> <span class="n">lat_range</span><span class="p">,</span> <span class="n">posn</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">xticks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">yticks</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a subplot to the figure with the given map projection</span>
+<span class="sd">    and lon/lat range. Returns an Axes object.&quot;&quot;&quot;</span>
+
+    <span class="c1">## increase resolution for projection</span>
+    <span class="c1">## (otherwise lines plotted on surface won&#39;t follow curved trajectories)</span>
+    <span class="n">projection</span><span class="o">.</span><span class="n">threshold</span> <span class="o">/=</span> <span class="mi">1000</span>
+
+    <span class="c1">## Create subplot with given projection</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="o">*</span><span class="n">posn</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+
+    <span class="c1">## Subset to given region</span>
+    <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">lon_range</span><span class="p">,</span> <span class="o">*</span><span class="n">lat_range</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+    <span class="c1">## draw coastlines</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="c1">## add tick labels</span>
+    <span class="k">if</span> <span class="n">xticks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="c1">## add lon/lat labels</span>
+        <span class="n">gl</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span>
+            <span class="n">draw_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+            <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+            <span class="n">zorder</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1">## specify which axes to label</span>
+        <span class="n">gl</span><span class="o">.</span><span class="n">top_labels</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">gl</span><span class="o">.</span><span class="n">right_labels</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1">## specify ticks</span>
+        <span class="n">gl</span><span class="o">.</span><span class="n">ylocator</span> <span class="o">=</span> <span class="n">mticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">yticks</span><span class="p">)</span>
+        <span class="n">gl</span><span class="o">.</span><span class="n">xlocator</span> <span class="o">=</span> <span class="n">mticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">xticks</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ax</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_box_outline</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lon_range</span><span class="p">,</span> <span class="n">lat_range</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot box outlining the specifed lon/lat range on given</span>
+<span class="sd">    ax object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1">## first, interpolate close to Woods Hole</span>
-    <span class="n">T2m_WH</span> <span class="o">=</span> <span class="n">T2m</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="mf">41.5</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">288.5</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">)</span>
+    <span class="c1">## get width and height</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">lat_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">lat_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="n">lon_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">lon_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="c1">## then, get annual average</span>
-    <span class="n">T2m_WH</span> <span class="o">=</span> <span class="n">T2m_WH</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;time.year&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-
-    <span class="k">return</span> <span class="n">T2m_WH</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="compute-climate-index">
-<h2>Compute climate index<a class="headerlink" href="#compute-climate-index" title="Link to this heading">#</a></h2>
-<section id="loop-through-models">
-<h3>Loop through models<a class="headerlink" href="#loop-through-models" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## empty list to hold result</span>
-<span class="n">T2m_idx</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="c1">## loop through each (model, filepath) pair</span>
-<span class="k">for</span> <span class="n">model</span><span class="p">,</span> <span class="n">fp</span> <span class="ow">in</span> <span class="n">fp_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-
-    <span class="c1">## get file pattern</span>
-    <span class="n">file_pattern</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s2">&quot;*.nc&quot;</span><span class="p">)</span>
-
-    <span class="c1">## open dataset and append to list</span>
-    <span class="n">T2m_idx</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s2">&quot;*.nc&quot;</span><span class="p">),</span>
-            <span class="n">use_cftime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">mask_and_scale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">preprocess</span><span class="o">=</span><span class="n">WH_index</span><span class="p">,</span>
-        <span class="p">)[</span><span class="s2">&quot;tas&quot;</span><span class="p">]</span>
+    <span class="c1">## add rectangle to plot</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span>
+        <span class="n">mpatches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+            <span class="n">xy</span><span class="o">=</span><span class="p">[</span><span class="n">lon_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lat_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+            <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+            <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
+            <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
     <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ax</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_setup_atlantic</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">posn</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Atlantic region&quot;&quot;&quot;</span>
+
+    <span class="c1"># ## adjust figure size</span>
+    <span class="c1"># fig.set_size_inches(7.5, 3.75)</span>
+
+    <span class="c1">## specify map projection</span>
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Orthographic</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mi">50</span><span class="p">,</span> <span class="n">central_latitude</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+
+    <span class="c1">## get ax object</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_setup</span><span class="p">(</span>
+        <span class="n">fig</span><span class="p">,</span>
+        <span class="n">proj</span><span class="p">,</span>
+        <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">],</span>
+        <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>
+        <span class="n">xticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">],</span>
+        <span class="n">yticks</span><span class="o">=</span><span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
+        <span class="n">posn</span><span class="o">=</span><span class="n">posn</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ax</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_setup_woodshole</span><span class="p">(</span><span class="n">fig</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot zoomed-in view of Woods Hole&quot;&quot;&quot;</span>
+
+    <span class="c1">## adjust figure size</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1">## set map projection to orthographic</span>
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Orthographic</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mf">67.5</span><span class="p">,</span> <span class="n">central_latitude</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+
+    <span class="c1">## Get ax object based on generic plotting function</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_setup</span><span class="p">(</span>
+        <span class="n">fig</span><span class="p">,</span>
+        <span class="n">proj</span><span class="p">,</span>
+        <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">],</span>
+        <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
+        <span class="n">xticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">],</span>
+        <span class="n">yticks</span><span class="o">=</span><span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">make_cb_range</span><span class="p">(</span><span class="n">amp</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Make colorbar_range for cmo.balance</span>
+<span class="sd">    Args:</span>
+<span class="sd">        - &#39;amp&#39;: amplitude of maximum value for colorbar</span>
+<span class="sd">        - &#39;delta&#39;: increment for colorbar</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">amp</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">delta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">amp</span> <span class="o">+</span> <span class="n">delta</span><span class="p">,</span> <span class="n">delta</span><span class="p">)]</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_filepath</span><span class="p">(</span><span class="n">server_fp</span><span class="p">,</span> <span class="n">model_center</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;get filepath to given model output&quot;&quot;&quot;</span>
+
+    <span class="c1">## Path to cmip6 server</span>
+    <span class="n">cmip_fp</span> <span class="o">=</span> <span class="n">server_fp</span> <span class="o">/</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;cmip6/data/cmip6/CMIP&quot;</span><span class="p">)</span>
+
+    <span class="c1">## suffix (shared by all models)</span>
+    <span class="n">suffix</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;1pctCO2/r1i1p1f1/Omon/tos/gn/1&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">cmip_fp</span><span class="p">,</span> <span class="n">model_center</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">suffix</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_grid_mask</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x_coord</span><span class="o">=</span><span class="s2">&quot;lon&quot;</span><span class="p">,</span> <span class="n">y_coord</span><span class="o">=</span><span class="s2">&quot;lat&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;get mask for NaN values (useful for xesmf regridder)&quot;&quot;&quot;</span>
+
+    <span class="c1">## drop time as a coordinate</span>
+    <span class="k">if</span> <span class="s2">&quot;time&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">dims</span><span class="p">:</span>
+        <span class="n">data0</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data0</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="k">return</span> <span class="n">xr</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data0</span><span class="p">[</span><span class="s2">&quot;tos&quot;</span><span class="p">]),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_grid</span><span class="p">(</span><span class="n">server_fp</span><span class="p">,</span> <span class="n">lon_range</span><span class="p">,</span> <span class="n">lat_range</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get grid based on lon/lat grid for given CESM2&quot;&quot;&quot;</span>
+
+    <span class="c1">## get filepath</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="n">get_filepath</span><span class="p">(</span><span class="n">server_fp</span><span class="p">,</span> <span class="n">model_center</span><span class="o">=</span><span class="s2">&quot;NCAR&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;CESM2&quot;</span><span class="p">)</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.nc&quot;</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1">## load first timestep for cesm2 (ignore serialization warning)</span>
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">SerializationWarning</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1">## drop time as a coord</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+
+    <span class="c1">## trim in lon/lat space</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">trim</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">lon_range</span><span class="p">,</span> <span class="n">lat_range</span><span class="p">)</span>
+
+    <span class="c1">## get grid</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;lon&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">]]</span>
+
+    <span class="c1">## mask NaN values</span>
+    <span class="n">grid</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_grid_mask</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">grid</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_model_fromserver</span><span class="p">(</span><span class="n">server_fp</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">model_center</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="o">**</span><span class="n">load_kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load data for given model&quot;&quot;&quot;</span>
+
+    <span class="c1">## get filepath</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="n">get_filepath</span><span class="p">(</span><span class="n">server_fp</span><span class="p">,</span> <span class="n">model_center</span><span class="o">=</span><span class="n">model_center</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="c1">## specify args for loading data</span>
+    <span class="n">load_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">decode_times</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">mask_and_scale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">chunks</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">3000</span><span class="p">),</span>
+        <span class="n">coords</span><span class="o">=</span><span class="s2">&quot;minimal&quot;</span><span class="p">,</span>
+        <span class="n">data_vars</span><span class="o">=</span><span class="s2">&quot;minimal&quot;</span><span class="p">,</span>
+        <span class="n">concat_dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">,</span>
+        <span class="n">combine</span><span class="o">=</span><span class="s2">&quot;nested&quot;</span><span class="p">,</span>
+        <span class="n">compat</span><span class="o">=</span><span class="s2">&quot;override&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1">## load data (ignore serialization warning)</span>
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">SerializationWarning</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*nc&quot;</span><span class="p">),</span> <span class="o">**</span><span class="n">load_kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+    <span class="c1">## get mask of NaN values</span>
+    <span class="n">data</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_grid_mask</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1">## regrid</span>
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+        <span class="n">regridder</span> <span class="o">=</span> <span class="n">xe</span><span class="o">.</span><span class="n">Regridder</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="s2">&quot;bilinear&quot;</span><span class="p">,</span> <span class="n">ignore_degenerate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">regridder</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1">## reset time axis</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;1850-01&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;MS&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">time</span><span class="p">))</span>
+    <span class="n">data</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span>
+
+    <span class="c1">## get annual average</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;time.year&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;tos&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model_center</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_model</span><span class="p">(</span><span class="n">server_fp</span><span class="p">,</span> <span class="n">save_fp</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">model_center</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;load data for given model, re-gridded to specified grid&quot;&quot;&quot;</span>
+
+    <span class="c1">## get save filepath</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">save_fp</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model_center</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">.nc&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">fp</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataarray</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="c1">## load data from file</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">load_model_fromserver</span><span class="p">(</span>
+            <span class="n">server_fp</span><span class="p">,</span>
+            <span class="n">grid</span><span class="p">,</span>
+            <span class="n">model_center</span><span class="p">,</span>
+            <span class="n">model</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1">## save to file</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sort_longitude</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;shuffles data so that longitude is monotonically increasing&quot;&quot;&quot;</span>
+
+    <span class="c1">## Transpose data so that longitude is last dimension</span>
+    <span class="c1">## (we&#39;ll do all the sorting along this dimension)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="s2">&quot;nlon&quot;</span><span class="p">)</span>
+
+    <span class="c1">## Get indices needed to sort longitude to be monotonic increasing</span>
+    <span class="n">lon_sort_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1">## sort the lon/lat coordindates</span>
+    <span class="n">sort</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">X</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">take_along_axis</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">],</span> <span class="n">idx</span><span class="o">=</span><span class="n">lon_sort_idx</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">],</span> <span class="n">idx</span><span class="o">=</span><span class="n">lon_sort_idx</span><span class="p">)</span>
+
+    <span class="c1">#### sort the data</span>
+
+    <span class="c1"># first, check to see if data has more than two dimensions</span>
+    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">extra_dims</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)]</span>
+        <span class="n">lon_sort_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">lon_sort_idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">extra_dims</span><span class="p">)</span>
+
+    <span class="c1">## now, do the actual sorting</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">lon_sort_idx</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">swap_longitude_range</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;swap longitude range of xr.DataArray from [0,360) to (-180, 180].</span>
+<span class="sd">    Handles case with 2-dimension longitude coordinates (&#39;lon&#39;)&quot;&quot;&quot;</span>
+
+    <span class="c1">## make copy of longitude coordinate to be modified</span>
+    <span class="n">lon_new</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="c1">## relabel values greater than 180</span>
+    <span class="n">exceeds_180</span> <span class="o">=</span> <span class="n">lon_new</span> <span class="o">&gt;</span> <span class="mi">180</span>
+    <span class="n">lon_new</span><span class="p">[</span><span class="n">exceeds_180</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">360</span> <span class="o">+</span> <span class="n">lon_new</span><span class="p">[</span><span class="n">exceeds_180</span><span class="p">]</span>
+
+    <span class="c1">## Update the coordinate on the xarray object</span>
+    <span class="n">data</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">lon_new</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_models</span><span class="p">(</span><span class="n">server_fp</span><span class="p">,</span> <span class="n">save_fp</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">model_names</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load output from all models&quot;&quot;&quot;</span>
+
+    <span class="c1">## empty list to hold models</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1">## shared arguments</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">server_fp</span><span class="o">=</span><span class="n">server_fp</span><span class="p">,</span> <span class="n">save_fp</span><span class="o">=</span><span class="n">save_fp</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">)</span>
+
+    <span class="c1">## loop thru models</span>
+    <span class="k">for</span> <span class="n">model_name</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">model_names</span><span class="p">):</span>
+
+        <span class="c1">## unwrap model center/name</span>
+        <span class="n">model_center</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">model_name</span>
+
+        <span class="c1">## load data for the  model</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">load_model</span><span class="p">(</span><span class="n">model_center</span><span class="o">=</span><span class="n">model_center</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+
+    <span class="c1">## merge into single dataset</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">150</span><span class="p">))</span>
+
+    <span class="c1">## convert from dataset to dataarray</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_dataarray</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;model&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="data-loading">
+<h2>Data loading<a class="headerlink" href="#data-loading" title="Link to this heading">#</a></h2>
+<section id="filepaths">
+<h3>Filepaths<a class="headerlink" href="#filepaths" title="Link to this heading">#</a></h3>
+<div class="admonition-to-do admonition">
+<p class="admonition-title">To-do</p>
+<p>Update the <code class="docutils literal notranslate"><span class="pre">SERVER_FP</span></code> and <code class="docutils literal notranslate"><span class="pre">SAVE_FP</span></code> in the code cell below (intermediate results will be saved to <code class="docutils literal notranslate"><span class="pre">SAVE_FP</span></code>).</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Path to file server</span>
+<span class="n">server_fp</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/Volumes&quot;</span><span class="p">)</span>
+<span class="n">save_fp</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="do-the-dataloading">
+<h3>Do the dataloading<a class="headerlink" href="#do-the-dataloading" title="Link to this heading">#</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ol class="arabic simple">
+<li><p><strong>Loading the data from the CMIP server is slow</strong> (<span class="math notranslate nohighlight">\(\sim 15\)</span> minutes on a laptop). To avoid this step, download <a class="reference external" href="https://drive.google.com/drive/folders/1ghkCtBgynHOy18LZdvIsiVHcWiPKkuYq?usp=sharing">the trimmed data from Google Drive</a> (then unzip the file and save it to the same directory as this notebook). If you choose to load the data from the server, the loading function (<code class="docutils literal notranslate"><span class="pre">load_model</span></code>) will save the pre-processed data to a file (and load it, if it already exists), so the cell below will run much faster the second time around.</p></li>
+<li><p><strong>Loading the data from the CMIP server requires the <code class="docutils literal notranslate"><span class="pre">xesmf</span></code> package</strong>. If not already installed, you can install it with:<br />
+<code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">xesmf</span></code>. You don’t need this package if using the pre-computed data from Google Drive.</p></li>
+</ol>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## comment out this import if you are using data from Google Drive</span>
+<span class="c1">## (and don&#39;t have xesmf installed)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xesmf</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xe</span>
+
+<span class="c1">## list of (model center, model) tuples</span>
+<span class="n">model_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;NCAR&quot;</span><span class="p">,</span> <span class="s2">&quot;CESM2&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;NCAR&quot;</span><span class="p">,</span> <span class="s2">&quot;CESM2-WACCM&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;CSIRO&quot;</span><span class="p">,</span> <span class="s2">&quot;ACCESS-ESM1-5&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;MIROC&quot;</span><span class="p">,</span> <span class="s2">&quot;MIROC6&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;MPI-M&quot;</span><span class="p">,</span> <span class="s2">&quot;MPI-ESM1-2-LR&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;IPSL&quot;</span><span class="p">,</span> <span class="s2">&quot;IPSL-CM6A-LR&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;NASA-GISS&quot;</span><span class="p">,</span> <span class="s2">&quot;GISS-E2-2-G&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1">## get target grid</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">get_grid</span><span class="p">(</span><span class="n">server_fp</span><span class="p">,</span> <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="mi">260</span><span class="p">,</span> <span class="mi">360</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">70</span><span class="p">])</span>
+
+<span class="c1">## load data</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">server_fp</span><span class="o">=</span><span class="n">server_fp</span><span class="p">,</span> <span class="n">save_fp</span><span class="o">=</span><span class="n">save_fp</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span> <span class="n">model_names</span><span class="o">=</span><span class="n">model_names</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">load_models</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="c1">## swap longitude range from [0,360) to (-180, 180]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">swap_longitude_range</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1">## make sure longitude is in ascending order</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sort_longitude</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                                                                                                 | 0/7 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:00&lt;00:00, 205.09it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/gd/xv4t6tlj16n5774zwn6ctwkh0000gn/T/ipykernel_16500/2132995134.py:12: DeprecationWarning: Usage of &#39;use_cftime&#39; as a kwarg is deprecated. Please pass a &#39;CFDatetimeCoder&#39; instance initialized with &#39;use_cftime&#39; to the &#39;decode_times&#39; kwarg instead.
-Example usage:
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    ds = xr.open_dataset(decode_times=time_coder)
-
-  xr.open_mfdataset(
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="combine-in-single-data-array">
-<h3>Combine in single data array<a class="headerlink" href="#combine-in-single-data-array" title="Link to this heading">#</a></h3>
+</section>
+<section id="analysis">
+<h2>Analysis<a class="headerlink" href="#analysis" title="Link to this heading">#</a></h2>
+<p>Compute climatology and change over time</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">reset_year</span><span class="p">(</span><span class="n">T2m</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to reset year to start at 1850&quot;&quot;&quot;</span>
-
-    <span class="c1">## get new time index</span>
-    <span class="n">updated_year</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1850</span><span class="p">,</span> <span class="mi">1850</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">T2m</span><span class="o">.</span><span class="n">year</span><span class="p">))</span>
-
-    <span class="c1">## add to array</span>
-    <span class="n">T2m</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">updated_year</span>
-
-    <span class="k">return</span> <span class="n">T2m</span>
-
-
-<span class="c1">## concatenate in dataset</span>
-<span class="n">T2m_idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">reset_year</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">T2m_idx</span><span class="p">]</span>
-<span class="n">T2m_idx</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">T2m_idx</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">models</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;model&quot;</span><span class="p">),</span> <span class="n">coords</span><span class="o">=</span><span class="s2">&quot;minimal&quot;</span><span class="p">)</span>
-
-<span class="c1">## Drop unnecessary coordinates</span>
-<span class="n">T2m_idx</span> <span class="o">=</span> <span class="n">T2m_idx</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">([</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">])</span>
-
-<span class="c1">## Load into memory</span>
-<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">T2m_idx</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>118.87468695640564
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Get change (last 30 yrs minus first 30)</span>
+<span class="n">first30</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+<span class="n">last30</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+<span class="n">change</span> <span class="o">=</span> <span class="p">(</span><span class="n">last30</span> <span class="o">-</span> <span class="n">first30</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="normalized-version-of-data">
-<h3>Normalized version of data<a class="headerlink" href="#normalized-version-of-data" title="Link to this heading">#</a></h3>
+<section id="compare-climatologies-for-two-of-the-models">
+<h3>Compare climatologies for two of the models<a class="headerlink" href="#compare-climatologies-for-two-of-the-models" title="Link to this heading">#</a></h3>
+<p>Compute climatologies and differencee</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## normalize by removing mean of first 30 years</span>
-<span class="n">T2m_idx_baseline</span> <span class="o">=</span> <span class="n">T2m_idx</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
-<span class="n">T2m_idx_norm</span> <span class="o">=</span> <span class="n">T2m_idx</span> <span class="o">-</span> <span class="n">T2m_idx_baseline</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## specify models to compare</span>
+<span class="n">model1</span> <span class="o">=</span> <span class="s2">&quot;IPSL_IPSL-CM6A-LR&quot;</span>
+<span class="n">model2</span> <span class="o">=</span> <span class="s2">&quot;NASA-GISS_GISS-E2-2-G&quot;</span>
+
+<span class="c1">## compute climatologies and difference</span>
+<span class="n">clim1</span> <span class="o">=</span> <span class="n">first30</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model1</span><span class="p">)</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">)</span>
+<span class="n">clim2</span> <span class="o">=</span> <span class="n">first30</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model2</span><span class="p">)</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">)</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">clim1</span> <span class="o">-</span> <span class="n">clim2</span>
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="plot-results">
-<h2>Plot results<a class="headerlink" href="#plot-results" title="Link to this heading">#</a></h2>
+<div class="cell tag_hide-inputs docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_clim</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">clim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;plot climatology on given ax object&quot;&quot;&quot;</span>
+
+    <span class="c1">## plot data</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span>
+        <span class="n">clim</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span>
+        <span class="n">clim</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span>
+        <span class="n">clim</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;cmo.thermal&quot;</span><span class="p">,</span>
+        <span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+        <span class="n">extend</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1">## plot outline of Woods Hole region</span>
+    <span class="n">plot_box_outline</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="mf">287.5</span><span class="p">,</span> <span class="mf">293.5</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">39</span><span class="p">,</span> <span class="mi">44</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;magenta&quot;</span><span class="p">)</span>
+
+    <span class="c1">## plot outline of warming hole region</span>
+    <span class="n">plot_box_outline</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="mi">323</span><span class="p">,</span> <span class="mi">343</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">55</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">p</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_diff</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">diff</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;plot difference on given ax object&quot;&quot;&quot;</span>
+
+    <span class="n">diff_plot</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span>
+        <span class="n">diff</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span>
+        <span class="n">diff</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span>
+        <span class="n">diff</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;cmo.balance&quot;</span><span class="p">,</span>
+        <span class="n">levels</span><span class="o">=</span><span class="n">make_cb_range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+        <span class="n">extend</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+    <span class="p">)</span>
+
+    <span class="c1">## plot outline of Woods Hole region</span>
+    <span class="n">plot_box_outline</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="mf">287.5</span><span class="p">,</span> <span class="mf">293.5</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">39</span><span class="p">,</span> <span class="mi">44</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;magenta&quot;</span><span class="p">)</span>
+
+    <span class="c1">## plot outline of warming hole region</span>
+    <span class="n">plot_box_outline</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="mi">323</span><span class="p">,</span> <span class="mi">343</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">55</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">diff_plot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-to-do admonition">
+<p class="admonition-title">To-do</p>
+<p>If you’re not looking at Woods Hole, you may need to adapt the plotting function below (<code class="docutils literal notranslate"><span class="pre">plot_setup_atlantic</span></code>).</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## setup plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;constrained&quot;</span><span class="p">)</span>
 
-<span class="c1">## first, plot the raw data; then, plot the normalized data</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">T2m_idx</span><span class="p">,</span> <span class="n">T2m_idx_norm</span><span class="p">]):</span>
+<span class="c1">## generate axes objects for plotting</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_setup_atlantic</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">posn</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_setup_atlantic</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">posn</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plot_setup_atlantic</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">posn</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
-    <span class="c1">## loop through each model</span>
-    <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">model</span><span class="p">:</span>
+<span class="c1">## plot climatologies of models</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">clim</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">],</span> <span class="p">[</span><span class="n">clim1</span><span class="p">,</span> <span class="n">clim2</span><span class="p">],</span> <span class="p">[</span><span class="n">model1</span><span class="p">,</span> <span class="n">model2</span><span class="p">]):</span>
 
-        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1">## plot data and label</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">plot_clim</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">clim</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">27</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$^{\circ}$C&quot;</span><span class="p">)</span>
 
-<span class="c1">## plot ensemble mean</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="kc">None</span><span class="p">,</span> <span class="mi">1999</span><span class="p">])</span>
 
-<span class="c1">## add legend</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">})</span>
+<span class="c1">## plot difference and label</span>
+<span class="n">diff_plot</span> <span class="o">=</span> <span class="n">plot_diff</span><span class="p">(</span><span class="n">ax3</span><span class="p">,</span> <span class="n">diff</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Difference&quot;</span><span class="p">)</span>
+<span class="n">cb_diff</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">diff_plot</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$^{\circ}$C&quot;</span><span class="p">)</span>
+
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c77d217d89368b86353ffc60a9c3c5c3c6d087ab7fe8daff9ebab709f15ee442.png" src="../../_images/c77d217d89368b86353ffc60a9c3c5c3c6d087ab7fe8daff9ebab709f15ee442.png" />
+<img alt="../../_images/9fdea9c19fae24a977d10bc9c05f6ca32732d36e15d3a056398130b7ffec9d9a.png" src="../../_images/9fdea9c19fae24a977d10bc9c05f6ca32732d36e15d3a056398130b7ffec9d9a.png" />
 </div>
 </div>
+</section>
+<section id="plot-ensemble-mean-warming-pattern">
+<h3>Plot ensemble-mean warming pattern<a class="headerlink" href="#plot-ensemble-mean-warming-pattern" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">2.75</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;constrained&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_setup_atlantic</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+
+<span class="c1">## plot the difference</span>
+<span class="n">plot_data</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span>
+    <span class="n">change</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span>
+    <span class="n">change</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span>
+    <span class="n">change</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;cmo.amp&quot;</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+<span class="p">)</span>
+
+<span class="c1">## plot the background state</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span>
+    <span class="n">first30</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span>
+    <span class="n">first30</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span>
+    <span class="n">first30</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">),</span>
+    <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
+    <span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+    <span class="n">extend</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">## make a colorbar</span>
+<span class="n">cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$^{\circ}$C&quot;</span><span class="p">)</span>
+
+<span class="c1">## plot outline of Woods Hole region</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_box_outline</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="mf">287.5</span><span class="p">,</span> <span class="mf">293.5</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">39</span><span class="p">,</span> <span class="mi">44</span><span class="p">])</span>
+
+<span class="c1">## plot outline of warming hole region</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_box_outline</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="mi">323</span><span class="p">,</span> <span class="mi">343</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">55</span><span class="p">])</span>
+
+<span class="c1">## label</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\Delta$(SST) b/n 1850-1880 and 1970-2000&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8cc44f5890330afe218f72b8e290770c4f4cdb06127b436c3e2ab3b39f0a54ab.png" src="../../_images/8cc44f5890330afe218f72b8e290770c4f4cdb06127b436c3e2ab3b39f0a54ab.png" />
+</div>
+</div>
+</section>
+<section id="climate-index">
+<h3>Climate index<a class="headerlink" href="#climate-index" title="Link to this heading">#</a></h3>
+<section id="compute-index">
+<h4>Compute index<a class="headerlink" href="#compute-index" title="Link to this heading">#</a></h4>
+<div class="admonition-to-do admonition">
+<p class="admonition-title">To-do</p>
+<p>If you’d like to look at a different index, modify the function below.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_T_wh</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute Woods Hole temperature index&quot;&quot;&quot;</span>
+
+    <span class="c1">## compute spatial average</span>
+    <span class="k">return</span> <span class="n">trim</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">72.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">66.5</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">39</span><span class="p">,</span> <span class="mi">44</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="s2">&quot;nlon&quot;</span><span class="p">,</span> <span class="s2">&quot;nlat&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Do computation here</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## do the computation here</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">compute_T_wh</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1">## normalize by removing mean of first 30 years</span>
+<span class="n">idx_base</span> <span class="o">=</span> <span class="n">idx</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+<span class="n">idx_end</span> <span class="o">=</span> <span class="n">idx</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+<span class="n">idx_norm</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">-</span> <span class="n">idx_base</span>
+
+<span class="c1">## get change in index</span>
+<span class="n">idx_change</span> <span class="o">=</span> <span class="n">idx_end</span> <span class="o">-</span> <span class="n">idx_base</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="change-over-time">
+<h4>Change over time<a class="headerlink" href="#change-over-time" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;constrained&quot;</span><span class="p">)</span>
+
+<span class="c1">## first, plot the raw data; then, plot the normalized data</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">idx_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx_norm</span><span class="p">]):</span>
+
+    <span class="c1">## loop through each model</span>
+    <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">idx_</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+
+        <span class="n">label</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">idx_</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">idx_</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">## plot ensemble mean</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">idx_</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">idx_</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+
+<span class="c1">## label and format</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Raw index&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Change from first 30 yrs&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">})</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">21</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">()</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_label_position</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$^{\circ}$C&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/20f2074fb7230b7e198178b3ffdb55b405fe218655143a171223ed9f6388bb80.png" src="../../_images/20f2074fb7230b7e198178b3ffdb55b405fe218655143a171223ed9f6388bb80.png" />
+</div>
+</div>
+</section>
+<section id="change-vs-climatology">
+<h4>Change vs. climatology<a class="headerlink" href="#change-vs-climatology" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## specify markers and colors to use in plot</span>
+<span class="n">markers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="s2">&quot;P&quot;</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">markers</span><span class="p">)]</span>
+
+<span class="c1">## plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;constrained&quot;</span><span class="p">)</span>
+
+<span class="c1">## loop thru models</span>
+<span class="k">for</span> <span class="n">model</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">idx_base</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">markers</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
+
+    <span class="c1">## get label</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1">## plot datapoint</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">idx_base</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">),</span>
+        <span class="n">idx_change</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">),</span>
+        <span class="n">marker</span><span class="o">=</span><span class="n">m</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="c1">## label/format plot</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">18</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;SST$_</span><span class="si">{1850}</span><span class="s2">$ ($^{\circ}$C)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\Delta$ SST ($^{\circ}$C)&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/94b4aa2411383f6d870fdd7f136d371ef920ddfed739e7386963665c8abd1ac6.png" src="../../_images/94b4aa2411383f6d870fdd7f136d371ef920ddfed739e7386963665c8abd1ac6.png" />
+</div>
+</div>
+</section>
+</section>
 </section>
 </section>
 
@@ -823,6 +1254,24 @@ Example usage:
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="overview.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">5) Intermodel comparison</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../examples/overview.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">6) Examples</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -840,15 +1289,23 @@ Example usage:
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filepaths">Filepaths</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-index">Climate index</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-climate-index">Compute climate index</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loop-through-models">Loop through models</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-in-single-data-array">Combine in single data array</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalized-version-of-data">Normalized version of data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading">Data loading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filepaths">Filepaths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-the-dataloading">Do the dataloading</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-results">Plot results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-climatologies-for-two-of-the-models">Compare climatologies for two of the models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-ensemble-mean-warming-pattern">Plot ensemble-mean warming pattern</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-index">Climate index</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-index">Compute index</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#change-over-time">Change over time</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#change-vs-climatology">Change vs. climatology</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

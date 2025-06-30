@@ -57,9 +57,13 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'pages/data_analysis/overview';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Example" href="example.html" />
+    <link rel="prev" title="Test the setup worked!" href="../setup/test.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,12 +181,35 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../setup/setup.html">0) Setup</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1yKFb-_fa_Z-WPbMJax3rHNFw9lOVioPsFmkPtsnXynI/edit?usp=sharing">Slides</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup/setup_venv.html">Python / virtual environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup/connect_to_server.html">Accessing the CMIP data servers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup/test.html">Test the setup worked!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">1) Climate diagnostics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example.html">Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../single_model/overview.html">3) Single-model climate-change</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../single_model/example.html">Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../single_model_ensemble/overview.html">4) Single-model ensemble</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../single_model_ensemble/woods-hole_example.html">Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intermodel_comp/overview.html">5) Intermodel comparison</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intermodel_comp/example.html">Intermodel comparison example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/overview.html">6) Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1bAFB9mO22WYc6El3nojJgDyJqpis6xx5XXz0Tj2rMbI/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/azores_prep.html">Azores high: data prep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/azores_analysis.html">Azores high: analysis</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../resources/resources.html">Resources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -193,6 +218,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../resources/git_basics.html">Git basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../resources/ersst_cloud.html">Accessing ERSST on the cloud</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../resources/cesm_cloud.html">Accessing CESM2-LENS on the cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources/setup_hpc.html">High-performance computing</a></li>
 </ul>
 </details></li>
 </ul>
@@ -438,6 +464,9 @@ document.write(`
 <figure class="align-default" id="sst-sample">
 <a class="reference internal image-reference" href="../../_images/sst-sample.svg"><img alt="../../_images/sst-sample.svg" src="../../_images/sst-sample.svg" style="height: 250px;" />
 </a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">North Atlantic SST during September, 2022. Black star shows Woods Hole.</span><a class="headerlink" href="#sst-sample" title="Link to this image">#</a></p>
+</figcaption>
 </figure>
 <ol class="arabic simple" start="2">
 <li><p>After computing the index, we’ll compute its seasonal cycle and trend over time (shown here):</p></li>
@@ -445,6 +474,9 @@ document.write(`
 <figure class="align-default" id="trend">
 <a class="reference internal image-reference" href="../../_images/trend.svg"><img alt="../../_images/trend.svg" src="../../_images/trend.svg" style="height: 250px;" />
 </a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Woods Hole climate index (blue line), defined as SST averaged over region 72.5<span class="math notranslate nohighlight">\(^{\circ}\)</span>–66.5<span class="math notranslate nohighlight">\(^{\circ}\)</span>W and 39<span class="math notranslate nohighlight">\(^{\circ}\)</span>–44<span class="math notranslate nohighlight">\(^{\circ}\)</span>N (time-mean value has been removed). Black line shows linear trend.</span><a class="headerlink" href="#trend" title="Link to this image">#</a></p>
+</figcaption>
 </figure>
 <ol class="arabic simple" start="3">
 <li><p>Finally, we’ll look at the statistics of these anomalies, including their probability distribution and their correlation with SSTs in the rest of the North Atlantic:</p></li>
@@ -452,6 +484,9 @@ document.write(`
 <figure class="align-default" id="woodshole-correlation">
 <a class="reference internal image-reference" href="../../_images/spatial-correlation.svg"><img alt="../../_images/spatial-correlation.svg" src="../../_images/spatial-correlation.svg" style="height: 250px;" />
 </a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">SST correlation at each gridpoint with Woods Hole climate index.</span><a class="headerlink" href="#woodshole-correlation" title="Link to this image">#</a></p>
+</figcaption>
 </figure>
 </section>
 <section id="to-dos">
@@ -491,7 +526,13 @@ document.write(`
 </section>
 <section id="references">
 <h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
-<p>Hersbach, H. et al. The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society 146, 1999–2049 (2020).</p>
+<p>Hersbach, H. et al. “The ERA5 global reanalysis.” <em>Quarterly Journal of the Royal Meteorological Society 146</em>, 1999–2049 (2020).</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Example</a></li>
+</ul>
+</div>
 </section>
 </section>
 </section>
@@ -526,6 +567,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../setup/test.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Test the setup worked!</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="example.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Example</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

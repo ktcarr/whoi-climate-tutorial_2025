@@ -1,8 +1,8 @@
 # Python / virtual environment
-First, we'll create a "virtual environment" for the class, which contains python and associated software packages (if you're comfortable with python/virtual environments, feel free to skip ahead to [software dependencies](dependencies).
+First, we'll create a "virtual environment" for the class, which contains python and associated software packages (if you're comfortable with python/virtual environments, feel free to skip ahead to [software dependencies](dependencies)). If you have an account on Poseidon (WHOI's high-performance computing system), and feel comfortable with HPC, you could [set up the virtual environment on Poseidon](../resources/setup_hpc.md) (not recommended if you're not familiar with HPC).
 
 ## (optional) Set up virtual environment
-If you don't have a preferred package manager, I recommend using ```mamba``` (a faster version of the ```conda``` package manager). To use mamba:
+If you don't have a preferred package manager, we recommend using ```mamba``` (a faster version of the ```conda``` package manager). To use mamba:
 1. Check if conda is installed by typing ```conda info``` at the command line. Also check if mamba is installed (if you have conda but not mamba installed you can run ```conda install -n base -c conda-forge mamba```). If you have neither, download and install miniforge following the instructions here: [https://github.com/conda-forge/miniforge](https://github.com/conda-forge/miniforge).
 
 2. Create a virtual environment for the project with: ```mamba create -n my_new_env``` and activate your environment with ```conda activate my_new_env```

@@ -18,30 +18,42 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
+## keep track of loading time
+t0 = time.time()
+
 ## shared arguments for loading data
-load_kwargs = dict(
-    varname="SST", preprocess_func=preprocess, save_fp=save_fp, n_members=35
-)
+load_kwargs = dict(varname="SST", member_id=10, preprocess_func=None)
 
 ## Load data
-data_hist = load_ensemble(simulation_type="hist", **load_kwargs)
-data_rcp = load_ensemble(simulation_type="rcp85", **load_kwargs)
+data_hist = load_simulation(simulation_type="hist", **load_kwargs).compute()
+data_rcp = load_simulation(simulation_type="rcp85", **load_kwargs).compute()
 
 ## concatenate in time
 data = xr.concat([data_hist, data_rcp], dim="time")
+
+## print out loading time
+t1 = time.time()
+print(f"Elapsed time: {t1-t0:.1f} seconds")
 ------------------
 
 
 [31m---------------------------------------------------------------------------[39m
-[31mNameError[39m                                 Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 7[39m
-[32m      2[39m load_kwargs = [38;5;28mdict[39m(
-[32m      3[39m     varname=[33m"[39m[33mSST[39m[33m"[39m, preprocess_func=preprocess, save_fp=save_fp, n_members=[32m35[39m
-[32m      4[39m )
-[32m      6[39m [38;5;66;03m## Load data[39;00m
-[32m----> [39m[32m7[39m data_hist = [43mload_ensemble[49m(simulation_type=[33m"[39m[33mhist[39m[33m"[39m, **load_kwargs)
-[32m      8[39m data_rcp = load_ensemble(simulation_type=[33m"[39m[33mrcp85[39m[33m"[39m, **load_kwargs)
-[32m     10[39m [38;5;66;03m## concatenate in time[39;00m
+[31mIndexError[39m                                Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 8[39m
+[32m      5[39m load_kwargs = [38;5;28mdict[39m(varname=[33m"[39m[33mSST[39m[33m"[39m, member_id=[32m10[39m, preprocess_func=[38;5;28;01mNone[39;00m)
+[32m      7[39m [38;5;66;03m## Load data[39;00m
+[32m----> [39m[32m8[39m data_hist = [43mload_simulation[49m[43m([49m[43msimulation_type[49m[43m=[49m[33;43m"[39;49m[33;43mhist[39;49m[33;43m"[39;49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mload_kwargs[49m[43m)[49m.compute()
+[32m      9[39m data_rcp = load_simulation(simulation_type=[33m"[39m[33mrcp85[39m[33m"[39m, **load_kwargs).compute()
+[32m     11[39m [38;5;66;03m## concatenate in time[39;00m
 
-[31mNameError[39m: name 'load_ensemble' is not defined
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 221[39m, in [36mload_simulation[39m[34m(varname, member_id, simulation_type, preprocess_func)[39m
+[32m    216[39m     [38;5;28mprint[39m([33m"[39m[33mNot a valid simulation type[39m[33m"[39m)
+[32m    218[39m [38;5;66;03m#### 3. open the relevant datasets, applying preprocessing function[39;00m
+[32m    219[39m 
+[32m    220[39m [38;5;66;03m## filepath to data[39;00m
+[32m--> [39m[32m221[39m fp = [38;5;28;43mlist[39;49m[43m([49m[43mdata_fp[49m[43m.[49m[43mglob[49m[43m([49m[43mfile_pattern[49m[43m)[49m[43m)[49m[43m[[49m[32;43m0[39;49m[43m][49m
+[32m    223[39m [38;5;66;03m## load data[39;00m
+[32m    224[39m data = xr.open_dataset(fp, chunks=[38;5;28;01mNone[39;00m, decode_timedelta=[38;5;28;01mTrue[39;00m)
+
+[31mIndexError[39m: list index out of range
 
