@@ -6,3 +6,5 @@ envs
 _build
 docs/pages/tutorial_9-19/figs
 docs/pages/tutorial_11-7/azores_analysis_files
+docs/pages/single_model_ensemble/data
+docs/pages/intermodel_comp/data
