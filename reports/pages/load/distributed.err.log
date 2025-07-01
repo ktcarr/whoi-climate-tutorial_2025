@@ -1,0 +1,1170 @@
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# If not using NCAR HPC, use the LocalCluster
+cluster = LocalCluster(n_workers=16)
+# cluster.scale(32)
+
+client = Client(cluster)
+client
+------------------
+
+----- stderr -----
+2025-07-01 13:16:07,058 - distributed.nanny - ERROR - Failed to start process
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 714, in start
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 49, in __init__
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 88, in BoundedSemaphore
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 152, in __init__
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 57, in __init__
+OSError: [Errno 24] Too many open files
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 714, in start
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 49, in __init__
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 88, in BoundedSemaphore
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 152, in __init__
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 57, in __init__
+OSError: [Errno 24] Too many open files
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 142, in _event_pipe
+AttributeError: '_thread._local' object has no attribute 'event_pipe'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1113, in emit
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/IPython/core/interactiveshell.py", line 3027, in write
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 694, in write
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 590, in _schedule_flush
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 267, in schedule
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 146, in _event_pipe
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/context.py", line 352, in socket
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/socket.py", line 162, in __init__
+  File "_zmq.py", line 724, in zmq.backend.cython._zmq.Socket.__init__
+zmq.error.ZMQError: Too many open files
+Call stack:
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1002, in _bootstrap
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/ipkernel.py", line 766, in run_closure
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 982, in run
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 463, in wrapper
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 571, in run_loop
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/compatibility.py", line 204, in asyncio_run
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/runners.py", line 118, in run
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 641, in run_until_complete
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 608, in run_forever
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 1936, in _run_once
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/tasks.py", line 694, in _wrap_awaitable
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/core.py", line 528, in start
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 1923, in wait_for
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 369, in start_unsafe
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 454, in instantiate
+Message: 'Failed to start process'
+Arguments: ()
+2025-07-01 13:16:07,066 - distributed.nanny - ERROR - Failed to start process
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 713, in start
+    self.init_result_q = mp_ctx.Queue()
+                         ^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 42, in __init__
+    self._reader, self._writer = connection.Pipe(duplex=False)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/connection.py", line 544, in Pipe
+    fd1, fd2 = os.pipe()
+               ^^^^^^^^^
+OSError: [Errno 24] Too many open files
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 713, in start
+    self.init_result_q = mp_ctx.Queue()
+                         ^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 42, in __init__
+    self._reader, self._writer = connection.Pipe(duplex=False)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/connection.py", line 544, in Pipe
+    fd1, fd2 = os.pipe()
+               ^^^^^^^^^
+OSError: [Errno 24] Too many open files
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 142, in _event_pipe
+    event_pipe = self._local.event_pipe
+                 ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: '_thread._local' object has no attribute 'event_pipe'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1114, in emit
+    self.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1094, in flush
+    self.stream.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 604, in flush
+    self.pub_thread.schedule(self._flush)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 267, in schedule
+    self._event_pipe.send(b"")
+    ^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 146, in _event_pipe
+    event_pipe = ctx.socket(zmq.PUSH)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/context.py", line 352, in socket
+    socket_class(  # set PYTHONTRACEMALLOC=2 to get the calling frame
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/socket.py", line 162, in __init__
+    super().__init__(
+  File "_zmq.py", line 724, in zmq.backend.cython._zmq.Socket.__init__
+zmq.error.ZMQError: Too many open files
+Call stack:
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/ipkernel.py", line 766, in run_closure
+    _threading_Thread_run(self)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 463, in wrapper
+    target()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 571, in run_loop
+    asyncio_run(amain(), loop_factory=get_loop_factory())
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/compatibility.py", line 204, in asyncio_run
+    return runner.run(main)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 641, in run_until_complete
+    self.run_forever()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 608, in run_forever
+    self._run_once()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 1936, in _run_once
+    handle._run()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/tasks.py", line 694, in _wrap_awaitable
+    return (yield from awaitable.__await__())
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/core.py", line 528, in start
+    await wait_for(self.start_unsafe(), timeout=timeout)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 1923, in wait_for
+    return await fut
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 369, in start_unsafe
+    response = await self.instantiate()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 454, in instantiate
+    logger.error("Failed to start process", exc_info=True)
+Message: 'Failed to start process'
+Arguments: ()
+2025-07-01 13:16:07,080 - distributed.nanny - ERROR - Failed to start process
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 713, in start
+    self.init_result_q = mp_ctx.Queue()
+                         ^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 43, in __init__
+    self._rlock = ctx.Lock()
+                  ^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 68, in Lock
+    return Lock(ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 169, in __init__
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 57, in __init__
+OSError: [Errno 24] Too many open files
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 713, in start
+    self.init_result_q = mp_ctx.Queue()
+                         ^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 43, in __init__
+    self._rlock = ctx.Lock()
+                  ^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 68, in Lock
+    return Lock(ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 169, in __init__
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 57, in __init__
+OSError: [Errno 24] Too many open files
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 142, in _event_pipe
+    event_pipe = self._local.event_pipe
+                 ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: '_thread._local' object has no attribute 'event_pipe'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1114, in emit
+    self.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1094, in flush
+    self.stream.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 604, in flush
+    self.pub_thread.schedule(self._flush)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 267, in schedule
+    self._event_pipe.send(b"")
+    ^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 146, in _event_pipe
+    event_pipe = ctx.socket(zmq.PUSH)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/context.py", line 352, in socket
+    socket_class(  # set PYTHONTRACEMALLOC=2 to get the calling frame
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/socket.py", line 162, in __init__
+    super().__init__(
+  File "_zmq.py", line 724, in zmq.backend.cython._zmq.Socket.__init__
+zmq.error.ZMQError: Too many open files
+Call stack:
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/ipkernel.py", line 766, in run_closure
+    _threading_Thread_run(self)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 463, in wrapper
+    target()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 571, in run_loop
+    asyncio_run(amain(), loop_factory=get_loop_factory())
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/compatibility.py", line 204, in asyncio_run
+    return runner.run(main)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 641, in run_until_complete
+    self.run_forever()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 608, in run_forever
+    self._run_once()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 1936, in _run_once
+    handle._run()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/tasks.py", line 694, in _wrap_awaitable
+    return (yield from awaitable.__await__())
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/core.py", line 528, in start
+    await wait_for(self.start_unsafe(), timeout=timeout)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 1923, in wait_for
+    return await fut
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 369, in start_unsafe
+    response = await self.instantiate()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 454, in instantiate
+    logger.error("Failed to start process", exc_info=True)
+Message: 'Failed to start process'
+Arguments: ()
+2025-07-01 13:16:07,082 - distributed.nanny - ERROR - Failed to start process
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 713, in start
+    self.init_result_q = mp_ctx.Queue()
+                         ^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 42, in __init__
+    self._reader, self._writer = connection.Pipe(duplex=False)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/connection.py", line 544, in Pipe
+    fd1, fd2 = os.pipe()
+               ^^^^^^^^^
+OSError: [Errno 24] Too many open files
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 713, in start
+    self.init_result_q = mp_ctx.Queue()
+                         ^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 42, in __init__
+    self._reader, self._writer = connection.Pipe(duplex=False)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/connection.py", line 544, in Pipe
+    fd1, fd2 = os.pipe()
+               ^^^^^^^^^
+OSError: [Errno 24] Too many open files
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 142, in _event_pipe
+    event_pipe = self._local.event_pipe
+                 ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: '_thread._local' object has no attribute 'event_pipe'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1114, in emit
+    self.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1094, in flush
+    self.stream.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 604, in flush
+    self.pub_thread.schedule(self._flush)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 267, in schedule
+    self._event_pipe.send(b"")
+    ^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 146, in _event_pipe
+    event_pipe = ctx.socket(zmq.PUSH)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/context.py", line 352, in socket
+    socket_class(  # set PYTHONTRACEMALLOC=2 to get the calling frame
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/socket.py", line 162, in __init__
+    super().__init__(
+  File "_zmq.py", line 724, in zmq.backend.cython._zmq.Socket.__init__
+zmq.error.ZMQError: Too many open files
+Call stack:
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/ipkernel.py", line 766, in run_closure
+    _threading_Thread_run(self)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 463, in wrapper
+    target()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 571, in run_loop
+    asyncio_run(amain(), loop_factory=get_loop_factory())
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/compatibility.py", line 204, in asyncio_run
+    return runner.run(main)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 641, in run_until_complete
+    self.run_forever()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 608, in run_forever
+    self._run_once()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 1936, in _run_once
+    handle._run()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/tasks.py", line 694, in _wrap_awaitable
+    return (yield from awaitable.__await__())
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/core.py", line 528, in start
+    await wait_for(self.start_unsafe(), timeout=timeout)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 1923, in wait_for
+    return await fut
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 369, in start_unsafe
+    response = await self.instantiate()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 454, in instantiate
+    logger.error("Failed to start process", exc_info=True)
+Message: 'Failed to start process'
+Arguments: ()
+2025-07-01 13:16:07,084 - distributed.nanny - ERROR - Failed to start process
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 713, in start
+    self.init_result_q = mp_ctx.Queue()
+                         ^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 43, in __init__
+    self._rlock = ctx.Lock()
+                  ^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 68, in Lock
+    return Lock(ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 169, in __init__
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 57, in __init__
+OSError: [Errno 24] Too many open files
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 713, in start
+    self.init_result_q = mp_ctx.Queue()
+                         ^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 43, in __init__
+    self._rlock = ctx.Lock()
+                  ^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 68, in Lock
+    return Lock(ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 169, in __init__
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 57, in __init__
+OSError: [Errno 24] Too many open files
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 142, in _event_pipe
+    event_pipe = self._local.event_pipe
+                 ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: '_thread._local' object has no attribute 'event_pipe'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1114, in emit
+    self.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1094, in flush
+    self.stream.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 604, in flush
+    self.pub_thread.schedule(self._flush)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 267, in schedule
+    self._event_pipe.send(b"")
+    ^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 146, in _event_pipe
+    event_pipe = ctx.socket(zmq.PUSH)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/context.py", line 352, in socket
+    socket_class(  # set PYTHONTRACEMALLOC=2 to get the calling frame
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/socket.py", line 162, in __init__
+    super().__init__(
+  File "_zmq.py", line 724, in zmq.backend.cython._zmq.Socket.__init__
+zmq.error.ZMQError: Too many open files
+Call stack:
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/ipkernel.py", line 766, in run_closure
+    _threading_Thread_run(self)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 463, in wrapper
+    target()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 571, in run_loop
+    asyncio_run(amain(), loop_factory=get_loop_factory())
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/compatibility.py", line 204, in asyncio_run
+    return runner.run(main)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 641, in run_until_complete
+    self.run_forever()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 608, in run_forever
+    self._run_once()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 1936, in _run_once
+    handle._run()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/tasks.py", line 694, in _wrap_awaitable
+    return (yield from awaitable.__await__())
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/core.py", line 528, in start
+    await wait_for(self.start_unsafe(), timeout=timeout)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 1923, in wait_for
+    return await fut
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 369, in start_unsafe
+    response = await self.instantiate()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 454, in instantiate
+    logger.error("Failed to start process", exc_info=True)
+Message: 'Failed to start process'
+Arguments: ()
+2025-07-01 13:16:07,086 - distributed.nanny - ERROR - Failed to start process
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 713, in start
+    self.init_result_q = mp_ctx.Queue()
+                         ^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 42, in __init__
+    self._reader, self._writer = connection.Pipe(duplex=False)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/connection.py", line 544, in Pipe
+    fd1, fd2 = os.pipe()
+               ^^^^^^^^^
+OSError: [Errno 24] Too many open files
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 713, in start
+    self.init_result_q = mp_ctx.Queue()
+                         ^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 42, in __init__
+    self._reader, self._writer = connection.Pipe(duplex=False)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/connection.py", line 544, in Pipe
+    fd1, fd2 = os.pipe()
+               ^^^^^^^^^
+OSError: [Errno 24] Too many open files
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 142, in _event_pipe
+    event_pipe = self._local.event_pipe
+                 ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: '_thread._local' object has no attribute 'event_pipe'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1114, in emit
+    self.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1094, in flush
+    self.stream.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 604, in flush
+    self.pub_thread.schedule(self._flush)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 267, in schedule
+    self._event_pipe.send(b"")
+    ^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 146, in _event_pipe
+    event_pipe = ctx.socket(zmq.PUSH)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/context.py", line 352, in socket
+    socket_class(  # set PYTHONTRACEMALLOC=2 to get the calling frame
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/socket.py", line 162, in __init__
+    super().__init__(
+  File "_zmq.py", line 724, in zmq.backend.cython._zmq.Socket.__init__
+zmq.error.ZMQError: Too many open files
+Call stack:
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/ipkernel.py", line 766, in run_closure
+    _threading_Thread_run(self)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 463, in wrapper
+    target()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 571, in run_loop
+    asyncio_run(amain(), loop_factory=get_loop_factory())
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/compatibility.py", line 204, in asyncio_run
+    return runner.run(main)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 641, in run_until_complete
+    self.run_forever()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 608, in run_forever
+    self._run_once()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 1936, in _run_once
+    handle._run()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/tasks.py", line 694, in _wrap_awaitable
+    return (yield from awaitable.__await__())
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/core.py", line 528, in start
+    await wait_for(self.start_unsafe(), timeout=timeout)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 1923, in wait_for
+    return await fut
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 369, in start_unsafe
+    response = await self.instantiate()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 454, in instantiate
+    logger.error("Failed to start process", exc_info=True)
+Message: 'Failed to start process'
+Arguments: ()
+2025-07-01 13:16:07,088 - distributed.nanny - ERROR - Failed to start process
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 713, in start
+    self.init_result_q = mp_ctx.Queue()
+                         ^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 43, in __init__
+    self._rlock = ctx.Lock()
+                  ^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 68, in Lock
+    return Lock(ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 169, in __init__
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 57, in __init__
+OSError: [Errno 24] Too many open files
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 713, in start
+    self.init_result_q = mp_ctx.Queue()
+                         ^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 43, in __init__
+    self._rlock = ctx.Lock()
+                  ^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 68, in Lock
+    return Lock(ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 169, in __init__
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/synchronize.py", line 57, in __init__
+OSError: [Errno 24] Too many open files
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 142, in _event_pipe
+    event_pipe = self._local.event_pipe
+                 ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: '_thread._local' object has no attribute 'event_pipe'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1114, in emit
+    self.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1094, in flush
+    self.stream.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 604, in flush
+    self.pub_thread.schedule(self._flush)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 267, in schedule
+    self._event_pipe.send(b"")
+    ^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 146, in _event_pipe
+    event_pipe = ctx.socket(zmq.PUSH)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/context.py", line 352, in socket
+    socket_class(  # set PYTHONTRACEMALLOC=2 to get the calling frame
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/socket.py", line 162, in __init__
+    super().__init__(
+  File "_zmq.py", line 724, in zmq.backend.cython._zmq.Socket.__init__
+zmq.error.ZMQError: Too many open files
+Call stack:
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/ipkernel.py", line 766, in run_closure
+    _threading_Thread_run(self)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 463, in wrapper
+    target()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 571, in run_loop
+    asyncio_run(amain(), loop_factory=get_loop_factory())
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/compatibility.py", line 204, in asyncio_run
+    return runner.run(main)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 641, in run_until_complete
+    self.run_forever()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 608, in run_forever
+    self._run_once()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 1936, in _run_once
+    handle._run()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/tasks.py", line 694, in _wrap_awaitable
+    return (yield from awaitable.__await__())
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/core.py", line 528, in start
+    await wait_for(self.start_unsafe(), timeout=timeout)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 1923, in wait_for
+    return await fut
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 369, in start_unsafe
+    response = await self.instantiate()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 454, in instantiate
+    logger.error("Failed to start process", exc_info=True)
+Message: 'Failed to start process'
+Arguments: ()
+2025-07-01 13:16:07,090 - distributed.nanny - ERROR - Failed to start process
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 713, in start
+    self.init_result_q = mp_ctx.Queue()
+                         ^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 42, in __init__
+    self._reader, self._writer = connection.Pipe(duplex=False)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/connection.py", line 544, in Pipe
+    fd1, fd2 = os.pipe()
+               ^^^^^^^^^
+OSError: [Errno 24] Too many open files
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 713, in start
+    self.init_result_q = mp_ctx.Queue()
+                         ^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/queues.py", line 42, in __init__
+    self._reader, self._writer = connection.Pipe(duplex=False)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/connection.py", line 544, in Pipe
+    fd1, fd2 = os.pipe()
+               ^^^^^^^^^
+OSError: [Errno 24] Too many open files
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 142, in _event_pipe
+    event_pipe = self._local.event_pipe
+                 ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: '_thread._local' object has no attribute 'event_pipe'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1114, in emit
+    self.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/logging/__init__.py", line 1094, in flush
+    self.stream.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 604, in flush
+    self.pub_thread.schedule(self._flush)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 267, in schedule
+    self._event_pipe.send(b"")
+    ^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 146, in _event_pipe
+    event_pipe = ctx.socket(zmq.PUSH)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/context.py", line 352, in socket
+    socket_class(  # set PYTHONTRACEMALLOC=2 to get the calling frame
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/socket.py", line 162, in __init__
+    super().__init__(
+  File "_zmq.py", line 724, in zmq.backend.cython._zmq.Socket.__init__
+zmq.error.ZMQError: Too many open files
+Call stack:
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/ipkernel.py", line 766, in run_closure
+    _threading_Thread_run(self)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 463, in wrapper
+    target()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 571, in run_loop
+    asyncio_run(amain(), loop_factory=get_loop_factory())
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/compatibility.py", line 204, in asyncio_run
+    return runner.run(main)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 641, in run_until_complete
+    self.run_forever()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 608, in run_forever
+    self._run_once()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/base_events.py", line 1936, in _run_once
+    handle._run()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/tasks.py", line 694, in _wrap_awaitable
+    return (yield from awaitable.__await__())
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/core.py", line 528, in start
+    await wait_for(self.start_unsafe(), timeout=timeout)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py", line 1923, in wait_for
+    return await fut
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 369, in start_unsafe
+    response = await self.instantiate()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 454, in instantiate
+    logger.error("Failed to start process", exc_info=True)
+Message: 'Failed to start process'
+Arguments: ()
+2025-07-01 13:16:07,093 - distributed.nanny - ERROR - Failed to start process
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 142, in _event_pipe
+    event_pipe = self._local.event_pipe
+                 ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: '_thread._local' object has no attribute 'event_pipe'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 452, in instantiate
+    result = await self.process.start()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/nanny.py", line 750, in start
+    await self.process.start()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/process.py", line 55, in _call_and_set_future
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/process.py", line 215, in _start
+    process.start()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/process.py", line 121, in start
+    self._popen = self._Popen(self)
+                  ^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/context.py", line 288, in _Popen
+    return Popen(process_obj)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/popen_spawn_posix.py", line 32, in __init__
+    super().__init__(process_obj)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/popen_fork.py", line 16, in __init__
+    util._flush_std_streams()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/multiprocessing/util.py", line 438, in _flush_std_streams
+    sys.stdout.flush()
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 604, in flush
+    self.pub_thread.schedule(self._flush)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 267, in schedule
+    self._event_pipe.send(b"")
+    ^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/ipykernel/iostream.py", line 146, in _event_pipe
+    event_pipe = ctx.socket(zmq.PUSH)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/context.py", line 352, in socket
+    socket_class(  # set PYTHONTRACEMALLOC=2 to get the calling frame
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/zmq/sugar/socket.py", line 162, in __init__
+    super().__init__(
+  File "_zmq.py", line 724, in zmq.backend.cython._zmq.Socket.__init__
+zmq.error.ZMQError: Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+2025-07-01 13:16:07,836 - distributed.worker - WARNING - Mismatched versions found
+
++-------------+---------------------------------------------+-----------+----------+
+| Package     | Worker-ccd8ec96-e9af-4135-a21d-1137b3a2d78d | Scheduler | Workers  |
++-------------+---------------------------------------------+-----------+----------+
+| cloudpickle | 3.1.1                                       | None      | 3.1.1    |
+| dask        | 2025.5.0                                    | None      | 2025.5.0 |
+| distributed | 2025.5.0                                    | None      | 2025.5.0 |
+| lz4         | 4.4.4                                       | None      | 4.4.4    |
+| msgpack     | 1.1.0                                       | None      | 1.1.0    |
+| toolz       | 1.0.0                                       | None      | 1.0.0    |
+| tornado     | 6.5                                         | None      | 6.5      |
++-------------+---------------------------------------------+-----Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(75, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(75, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(85, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(85, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(93, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(93, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(87, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(87, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(83, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(83, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(91, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(91, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+Exception in callback BaseAsyncIOLoop._handle_events(81, 1)
+handle: <Handle BaseAsyncIOLoop._handle_events(81, 1)>
+Traceback (most recent call last):
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/platform/asyncio.py", line 208, in _handle_events
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/tornado/netutil.py", line 273, in accept_handler
+  File "/Users/theo/research/whoi-climate-tutorial_2025/envs/lib/python3.11/socket.py", line 294, in accept
+OSError: [Errno 24] Too many open files
+----- stderr -----
+2025-07-01 13:26:46,862 - distributed.scheduler - WARNING - Received heartbeat from unregistered worker 'tcp://127.0.0.1:56408'.
+----- stderr -----
+2025-07-01 13:26:46,914 - distributed.scheduler - WARNING - Received heartbeat from unregistered worker 'tcp://127.0.0.1:56425'.
+----- stderr -----
+2025-07-01 13:26:47,011 - distributed.scheduler - WARNING - Received heartbeat from unregistered worker 'tcp://127.0.0.1:56418'.
+----- stderr -----
+2025-07-01 13:26:47,078 - distributed.scheduler - WARNING - Received heartbeat from unregistered worker 'tcp://127.0.0.1:56420'.
+----- stderr -----
+2025-07-01 13:26:47,124 - distributed.scheduler - WARNING - Received heartbeat from unregistered worker 'tcp://127.0.0.1:56409'.
+----- stderr -----
+2025-07-01 13:26:47,128 - distributed.scheduler - WARNING - Received heartbeat from unregistered worker 'tcp://127.0.0.1:56410'.
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mKeyboardInterrupt[39m                         Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 2[39m
+[32m      1[39m [38;5;66;03m# If not using NCAR HPC, use the LocalCluster[39;00m
+[32m----> [39m[32m2[39m cluster = [43mLocalCluster[49m[43m([49m[43mn_workers[49m[43m=[49m[32;43m16[39;49m[43m)[49m
+[32m      3[39m [38;5;66;03m# cluster.scale(32)[39;00m
+[32m      5[39m client = Client(cluster)
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/deploy/local.py:256[39m, in [36mLocalCluster.__init__[39m[34m(self, name, n_workers, threads_per_worker, processes, loop, start, host, ip, scheduler_port, silence_logs, dashboard_address, worker_dashboard_address, diagnostics_port, services, worker_services, service_kwargs, asynchronous, security, protocol, blocked_handlers, interface, worker_class, scheduler_kwargs, scheduler_sync_interval, **worker_kwargs)[39m
+[32m    253[39m worker = {[33m"[39m[33mcls[39m[33m"[39m: worker_class, [33m"[39m[33moptions[39m[33m"[39m: worker_kwargs}
+[32m    254[39m workers = {i: worker [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m [38;5;28mrange[39m(n_workers)}
+[32m--> [39m[32m256[39m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[43m.[49m[34;43m__init__[39;49m[43m([49m
+[32m    257[39m [43m    [49m[43mname[49m[43m=[49m[43mname[49m[43m,[49m
+[32m    258[39m [43m    [49m[43mscheduler[49m[43m=[49m[43mscheduler[49m[43m,[49m
+[32m    259[39m [43m    [49m[43mworkers[49m[43m=[49m[43mworkers[49m[43m,[49m
+[32m    260[39m [43m    [49m[43mworker[49m[43m=[49m[43mworker[49m[43m,[49m
+[32m    261[39m [43m    [49m[43mloop[49m[43m=[49m[43mloop[49m[43m,[49m
+[32m    262[39m [43m    [49m[43masynchronous[49m[43m=[49m[43masynchronous[49m[43m,[49m
+[32m    263[39m [43m    [49m[43msilence_logs[49m[43m=[49m[43msilence_logs[49m[43m,[49m
+[32m    264[39m [43m    [49m[43msecurity[49m[43m=[49m[43msecurity[49m[43m,[49m
+[32m    265[39m [43m    [49m[43mscheduler_sync_interval[49m[43m=[49m[43mscheduler_sync_interval[49m[43m,[49m
+[32m    266[39m [43m[49m[43m)[49m
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/deploy/spec.py:292[39m, in [36mSpecCluster.__init__[39m[34m(self, workers, scheduler, worker, asynchronous, loop, security, silence_logs, name, shutdown_on_close, scheduler_sync_interval, shutdown_scheduler)[39m
+[32m    290[39m [38;5;28mself[39m.sync([38;5;28mself[39m._start)
+[32m    291[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m292[39m     [38;5;28;43mself[39;49m[43m.[49m[43msync[49m[43m([49m[38;5;28;43mself[39;49m[43m.[49m[43m_correct_state[49m[43m)[49m
+[32m    293[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m:
+[32m    294[39m     [38;5;28mself[39m.sync([38;5;28mself[39m.close)
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py:376[39m, in [36mSyncMethodMixin.sync[39m[34m(self, func, asynchronous, callback_timeout, *args, **kwargs)[39m
+[32m    374[39m     [38;5;28;01mreturn[39;00m future
+[32m    375[39m [38;5;28;01melse[39;00m:
+[32m--> [39m[32m376[39m     [38;5;28;01mreturn[39;00m [43msync[49m[43m([49m
+[32m    377[39m [43m        [49m[38;5;28;43mself[39;49m[43m.[49m[43mloop[49m[43m,[49m[43m [49m[43mfunc[49m[43m,[49m[43m [49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43mcallback_timeout[49m[43m=[49m[43mcallback_timeout[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m
+[32m    378[39m [43m    [49m[43m)[49m
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py:449[39m, in [36msync[39m[34m(loop, func, callback_timeout, *args, **kwargs)[39m
+[32m    447[39m [38;5;28;01melse[39;00m:
+[32m    448[39m     [38;5;28;01mwhile[39;00m [38;5;129;01mnot[39;00m e.is_set():
+[32m--> [39m[32m449[39m         [43mwait[49m[43m([49m[32;43m10[39;49m[43m)[49m
+[32m    451[39m [38;5;28;01mif[39;00m error [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m    452[39m     [38;5;28;01mraise[39;00m error
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/site-packages/distributed/utils.py:438[39m, in [36msync.<locals>.wait[39m[34m(timeout)[39m
+[32m    436[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mwait[39m(timeout: [38;5;28mfloat[39m | [38;5;28;01mNone[39;00m) -> [38;5;28mbool[39m:
+[32m    437[39m     [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m438[39m         [38;5;28;01mreturn[39;00m [43me[49m[43m.[49m[43mwait[49m[43m([49m[43mtimeout[49m[43m)[49m
+[32m    439[39m     [38;5;28;01mexcept[39;00m [38;5;167;01mKeyboardInterrupt[39;00m:
+[32m    440[39m         loop.add_callback(cancel)
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py:629[39m, in [36mEvent.wait[39m[34m(self, timeout)[39m
+[32m    627[39m signaled = [38;5;28mself[39m._flag
+[32m    628[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m signaled:
+[32m--> [39m[32m629[39m     signaled = [38;5;28;43mself[39;49m[43m.[49m[43m_cond[49m[43m.[49m[43mwait[49m[43m([49m[43mtimeout[49m[43m)[49m
+[32m    630[39m [38;5;28;01mreturn[39;00m signaled
+
+[36mFile [39m[32m~/research/whoi-climate-tutorial_2025/envs/lib/python3.11/threading.py:331[39m, in [36mCondition.wait[39m[34m(self, timeout)[39m
+[32m    329[39m [38;5;28;01melse[39;00m:
+[32m    330[39m     [38;5;28;01mif[39;00m timeout > [32m0[39m:
+[32m--> [39m[32m331[39m         gotit = [43mwaiter[49m[43m.[49m[43macquire[49m[43m([49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[43mtimeout[49m[43m)[49m
+[32m    332[39m     [38;5;28;01melse[39;00m:
+[32m    333[39m         gotit = waiter.acquire([38;5;28;01mFalse[39;00m)
+
+[31mKeyboardInterrupt[39m: 
+
