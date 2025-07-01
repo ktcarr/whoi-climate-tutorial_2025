@@ -15,6 +15,7 @@ chapters:
   sections:
   - url: https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing
     title: Slides
+  - file: setup-changes.md
   - file: pages/data_analysis/example.ipynb
 # - file: pages/model_validation/overview
 #   sections:
