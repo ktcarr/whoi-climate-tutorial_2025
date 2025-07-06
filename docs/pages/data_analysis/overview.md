@@ -98,7 +98,7 @@ def plot_setup_atlantic(fig):
 ````
 
 ### Links
-
+[List of observational/reanalysis climate data sources](../resources/data-links.md)
 
 
 ### References
