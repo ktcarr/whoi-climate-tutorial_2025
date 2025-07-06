@@ -3,7 +3,8 @@
 
 title: WHOI Climate Data Tutorial (2025) 
 author: Theo Carr 
-logo: logo.png
+#logo: logo.png
+logo: logo2.svg
 
 # See https://jupyterbook.org/content/execute.html
 execute:
