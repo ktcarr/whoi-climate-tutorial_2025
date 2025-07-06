@@ -6,15 +6,16 @@
 Today in lecture, we talked about data assimilation and reanalysis products. As discssed, reanalysis products use a combination of observations and models to produce a "best estimate" of climate variables (e.g., temperature, velocity, ozone, etc.) at specified intervals and space and time. The benefit of reanalysis products is that -- unlike observations -- there are no "gaps" in the data (the "gaps" are filled in by climate models), which makes data analysis easier. One important caveat is that there may be large uncertainty about the "true" value of a variable in regions with sparse observations (most reanalysis products also include estimates of this uncertainty). Another is that reanalysis products typically violate conservation principles (e.g., conservation of mass/heat/salt).
 
 ### Goal for tutorial 
-Today, we're going to analyze sea surface temperature (SST) data from a widely-used reanalysis product, ERA5 (Hersbach et al, 2020). The goal is to become familiar with how to load, preprocess, and analyze (e.g., compute statistics on) gridded climate data. In particular, we'll define a climate "index"and compute some statistics on the index over the recent historical period. We'll use these statistics as baselines for the current climate; later in short course we'll compute the same statistics on simulations of the future climate to see how they're projected to change over time.
+Today, we're going to analyze sea surface temperature (SST) data from a widely-used reanalysis product, ERA5 (Hersbach et al, 2020). The goal is to become familiar with how to load, preprocess, and analyze (e.g., compute statistics on) gridded climate data. In particular, we'll define a climate "index" and compute some statistics on the index over the recent historical period. We'll use these statistics as baselines for the current climate; later in the short course we'll compute the same statistics on simulations of the future climate to see how they're projected to change over time.
 
 #### To-do list
-1. **Define a climate index**: choose a region (e.g., the North Atlantic Ocean) and a variable (e.g., sea surface temperature), then define an ``index'' which can be evaluated at every timestep (e.g., SST averaged over the North Atlantic).
+1. **Define a climate index**: choose a region (e.g., the North Atlantic Ocean) and a variable (e.g., sea surface temperature), then define an "index" which can be evaluated at every timestep (e.g., SST averaged over the North Atlantic).
 2. **Preprocess the climate index**: compute "anomalies" by removing the time-mean seasonal cycle.
-3. **Plot some diagnostics**: try to characterize variability of the index. Possibly informative figures:
+3. **Plot some diagnostics**: try to characterize variability of the index. Here are a few ideas:
     * Timeseries of anomalies with linear best-fit line
     * Histogram of anomalies
     * Spatial correlation plot (e.g., correlation of your index with SST at each gridpoint)
+    * Power spectral density
 
 Rather than doing all this from scratch, we suggest adapting [the example](./example.ipynb), discussed below.
 
