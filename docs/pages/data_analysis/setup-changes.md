@@ -9,7 +9,7 @@ The CMIP server seems unable to handle multiple users access the same file at on
 Until we figure out how to fix this, we suggest using one of the work-arounds suggested below during the tutorial sessions (outside of the tutorial sessions, when less users are trying to access a given file simultaneously, we expect these errors to be less common). 
 
 ### Two workarounds
-1. **Use a different variable from the example**: e.g., rather than using sea surface temperature, use 2-meter atmospheric temperature, sea level pressure, or precipitation. Here are filepaths to several variables on the CMIP server (click for downdown):
+1. **Use a different variable from the example**: e.g., rather than using sea surface temperature, use 2-meter atmospheric temperature, sea level pressure, or precipitation. Here are filepaths to several variables on the CMIP server (click for dropdown):
 ````{dropdown} ERA5 filepaths on CMIP server
 ```python
 from pathlib import Path
