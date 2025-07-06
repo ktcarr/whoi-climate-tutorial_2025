@@ -155,8 +155,8 @@
       
     
     
-    <img src="../../_static/logo.png" class="logo__image only-light" alt="WHOI Climate Data Tutorial (2025) - Home"/>
-    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="WHOI Climate Data Tutorial (2025) - Home"/>`);</script>
+    <img src="../../_static/logo2.svg" class="logo__image only-light" alt="WHOI Climate Data Tutorial (2025) - Home"/>
+    <script>document.write(`<img src="../../_static/logo2.svg" class="logo__image only-dark" alt="WHOI Climate Data Tutorial (2025) - Home"/>`);</script>
   
   
 </a></div>
@@ -190,7 +190,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="overview.html">1) Climate diagnostics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1bwNsn7P8J24s__1svavDL2vwk0QB2eK0PjDc0EKwnMU/edit?usp=sharing">Slides</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup-changes.html">Set-up changes</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Example</a></li>
 </ul>
@@ -756,17 +756,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">trim_to_north_atl</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;trim xr.DataArray to North Atlantic region&quot;&quot;&quot;</span>
-
-    <span class="c1">## boolean arrays for lon/lat</span>
-    <span class="n">lon_in_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">longitude</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">100</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">longitude</span> <span class="o">&lt;=</span> <span class="mi">15</span><span class="p">)</span>
-    <span class="n">lat_in_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">latitude</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">latitude</span> <span class="o">&lt;=</span> <span class="mi">70</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="n">lat_in_range</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="n">lon_in_range</span><span class="p">)</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">plot_setup_atlantic</span><span class="p">(</span><span class="n">fig</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_setup_atlantic</span><span class="p">(</span><span class="n">fig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Atlantic region&quot;&quot;&quot;</span>
 
     <span class="c1">## adjust figure size</span>
@@ -872,9 +862,12 @@ document.write(`
 </section>
 <section id="load-the-data">
 <h3>Load the data<a class="headerlink" href="#load-the-data" title="Link to this heading">#</a></h3>
-<div class="admonition-to-do-update-path-to-data admonition">
-<p class="admonition-title">To-do: update path to data</p>
-<p>Update the filepath <code class="docutils literal notranslate"><span class="pre">server_fp</span></code> in the code cell below. This is the location of the WHOI CMIP server on your computer (see <a class="reference internal" href="../setup/connect_to_server.html"><span class="std std-doc">server connection setup</span></a> for details).</p>
+<div class="admonition-to-dos admonition">
+<p class="admonition-title">To-dos</p>
+<ol class="arabic simple">
+<li><p><strong>Filepath</strong>: update the filepath <code class="docutils literal notranslate"><span class="pre">server_fp</span></code> in the code cell below. This is the location of the WHOI CMIP server on your computer (see <a class="reference internal" href="../setup/connect_to_server.html"><span class="std std-doc">server connection setup</span></a> for details).</p></li>
+<li><p><strong>Longitude/latitude range</strong> (optional): to look at a different region, update the <code class="docutils literal notranslate"><span class="pre">lon_range</span></code> and <code class="docutils literal notranslate"><span class="pre">lat_range</span></code> parameters in the code cell below (both are set inside of the <code class="docutils literal notranslate"><span class="pre">KWARGS</span></code> dictionary)</p></li>
+</ol>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -893,17 +886,17 @@ The CMIP server seems unable to handle multiple users access the same file at on
 <span class="n">LOAD_FROM_CLOUD</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="c1">## specify lon/lat range</span>
-<span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="mi">260</span><span class="p">,</span> <span class="mi">360</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">70</span><span class="p">])</span>
+<span class="n">KWARGS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">lon_range</span><span class="o">=</span><span class="p">[</span><span class="mi">260</span><span class="p">,</span> <span class="mi">360</span><span class="p">],</span> <span class="n">lat_range</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">70</span><span class="p">])</span>
 
 <span class="c1">## keep track of time for data loading</span>
 <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
 <span class="c1">## do the data loading</span>
 <span class="k">if</span> <span class="n">LOAD_FROM_CLOUD</span><span class="p">:</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">load_era5_from_cloud</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">load_era5_from_cloud</span><span class="p">(</span><span class="o">**</span><span class="n">KWARGS</span><span class="p">)</span>
 
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">load_era5_from_server</span><span class="p">(</span><span class="n">SERVER_FP</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">load_era5_from_server</span><span class="p">(</span><span class="n">SERVER_FP</span><span class="p">,</span> <span class="o">**</span><span class="n">KWARGS</span><span class="p">)</span>
 
 <span class="c1">## print elapsed time</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="si">:</span><span class="s2"> .1f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
@@ -911,7 +904,7 @@ The CMIP server seems unable to handle multiple users access the same file at on
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 92.7 seconds
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 61.1 seconds
 </pre></div>
 </div>
 </div>

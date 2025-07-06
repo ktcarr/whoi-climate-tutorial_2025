@@ -153,8 +153,8 @@
       
     
     
-    <img src="../../_static/logo.png" class="logo__image only-light" alt="WHOI Climate Data Tutorial (2025) - Home"/>
-    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="WHOI Climate Data Tutorial (2025) - Home"/>`);</script>
+    <img src="../../_static/logo2.svg" class="logo__image only-light" alt="WHOI Climate Data Tutorial (2025) - Home"/>
+    <script>document.write(`<img src="../../_static/logo2.svg" class="logo__image only-dark" alt="WHOI Climate Data Tutorial (2025) - Home"/>`);</script>
   
   
 </a></div>
@@ -188,7 +188,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="overview.html">1) Climate diagnostics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1bwNsn7P8J24s__1svavDL2vwk0QB2eK0PjDc0EKwnMU/edit?usp=sharing">Slides</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Set-up changes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example.html">Example</a></li>
 </ul>
@@ -448,15 +448,37 @@ document.write(`
 <section id="two-workarounds">
 <h3>Two workarounds<a class="headerlink" href="#two-workarounds" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p><strong>Use a different variable from the example</strong>: e.g., rather than using sea surface temperature, use 2-meter atmospheric temperature, sea level pressure, or precipitation.</p></li>
-<li><p><strong>Use data from “the cloud”</strong>: both Google and Amazon host lots of climate data in the cloud. Example scripts will include an option to <code class="docutils literal notranslate"><span class="pre">LOAD_FROM_CLOUD</span></code>. To use data from the cloud, you’ll have to install the following packages:</p></li>
+<li><p><strong>Use a different variable from the example</strong>: e.g., rather than using sea surface temperature, use 2-meter atmospheric temperature, sea level pressure, or precipitation. Here are filepaths to several variables on the CMIP server (click for downdown):</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">gcsfs</span>
-<span class="o">-</span> <span class="n">s3fs</span>
-<span class="o">-</span> <span class="n">intake</span><span class="o">-</span><span class="n">esm</span>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">ERA5 filepaths on CMIP server</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1">## filepath to the CMIP server on your PC </span>
+<span class="c1">## TO-DO: update this!</span>
+<span class="n">server_fp</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="c1">## Filepath to the ERA5 reanalysis</span>
+<span class="n">era5_fp</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;cmip6/data/era5/reanalysis/single-levels/monthly-means&quot;</span><span class="p">)</span>
+
+<span class="c1">## sea surface temperature (SST)</span>
+<span class="n">era5_fp_sst</span> <span class="o">=</span> <span class="n">server_fp</span> <span class="o">/</span> <span class="n">era5_fp</span> <span class="o">/</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;sea_surface_temperature&quot;</span><span class="p">)</span>
+
+<span class="c1">## 2m-temperature (T2m)</span>
+<span class="n">era5_fp_t2m</span> <span class="o">=</span> <span class="n">server_fp</span> <span class="o">/</span> <span class="n">era5_fp</span> <span class="o">/</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;2m_temperature&quot;</span><span class="p">)</span>
+
+<span class="c1">## sea level pressure (SLP)</span>
+<span class="n">era5_fp_slp</span> <span class="o">=</span> <span class="n">server_fp</span> <span class="o">/</span> <span class="n">era5_fp</span> <span class="o">/</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;mean_sea_level_pressure&quot;</span><span class="p">)</span>
+
+<span class="c1">## precipitation</span>
+<span class="n">era5_fp_pre</span> <span class="o">=</span> <span class="n">server_fp</span> <span class="o">/</span> <span class="n">era5_fp</span> <span class="o">/</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;total_precipitation&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>You can install them with <code class="docutils literal notranslate"><span class="pre">mamba</span></code> using:</p>
+</div>
+</details><ol class="arabic simple" start="2">
+<li><p><strong>Use data from “the cloud”</strong>: both Google and Amazon host lots of climate data in the cloud. Example scripts will include an option to <code class="docutils literal notranslate"><span class="pre">LOAD_FROM_CLOUD</span></code>. To use data from the cloud, you’ll have to install the following packages: <code class="docutils literal notranslate"><span class="pre">gcsfs</span></code>, <code class="docutils literal notranslate"><span class="pre">s3fs</span></code>, and <code class="docutils literal notranslate"><span class="pre">intake-esm</span></code>. You can install them with <code class="docutils literal notranslate"><span class="pre">mamba</span></code> using:</p></li>
+</ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mamba</span> <span class="n">install</span> <span class="o">-</span><span class="n">n</span> <span class="n">my_new_env</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">gcsfs</span> <span class="n">s3fs</span> <span class="n">intake</span><span class="o">-</span><span class="n">esm</span>
 </pre></div>
 </div>
