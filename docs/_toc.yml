@@ -13,7 +13,7 @@ chapters:
   - file: pages/setup/test
 - file: pages/data_analysis/overview
   sections:
-  - url: https://docs.google.com/presentation/d/1F3ClDLU4TeUIMx5RtKBREIaY270f5Ra1BCKot5fQyiE/edit?usp=sharing
+  - url: https://docs.google.com/presentation/d/1bwNsn7P8J24s__1svavDL2vwk0QB2eK0PjDc0EKwnMU/edit?usp=sharing 
     title: Slides
   - file: pages/data_analysis/setup-changes.md
   - file: pages/data_analysis/example.ipynb
