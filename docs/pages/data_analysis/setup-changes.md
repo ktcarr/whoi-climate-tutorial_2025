@@ -35,9 +35,9 @@ era5_fp_pre = server_fp / era5_fp / Path("total_precipitation")
 ```
 ````
 
-2. **Use data from "the cloud"**: both Google and Amazon host lots of climate data in the cloud. Example scripts will include an option to ```LOAD_FROM_CLOUD```. To use data from the cloud, you'll have to install the following packages: ```gcsfs```, ```s3fs```, and ```intake-esm```. You can install them with ```mamba``` using:
+2. **Use data from "the cloud"**: both Google and Amazon host lots of climate data in the cloud. Example scripts will include an option to ```LOAD_FROM_CLOUD```. To use data from the cloud, you'll have to install the following packages: ```gcsfs```, ```zarr```, ```s3fs```, and ```intake-esm```. You can install them with ```mamba``` using:
 ```
-mamba install -n my_new_env -c conda-forge gcsfs s3fs intake-esm
+mamba install -n my_new_env -c conda-forge gcsfs zarr s3fs intake-esm
 ```
 where ```my_new_env``` is the name of your virtual environment.
 
