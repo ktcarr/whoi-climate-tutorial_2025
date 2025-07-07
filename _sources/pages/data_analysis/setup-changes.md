@@ -9,7 +9,7 @@ The CMIP server seems unable to handle multiple users access the same file at on
 Until we figure out how to fix this, we suggest using one of the work-arounds suggested below during the tutorial sessions (outside of the tutorial sessions, when less users are trying to access a given file simultaneously, we expect these errors to be less common). 
 
 ### Two workarounds
-1. **Use a different variable from the example**: e.g., rather than using sea surface temperature, use 2-meter atmospheric temperature, sea level pressure, or precipitation. Here are filepaths to several variables on the CMIP server (click for downdown):
+1. **Use a different variable from the example**: e.g., rather than using sea surface temperature, use 2-meter atmospheric temperature, sea level pressure, or precipitation. Here are filepaths to several variables on the CMIP server (click for dropdown):
 ````{dropdown} ERA5 filepaths on CMIP server
 ```python
 from pathlib import Path
@@ -35,9 +35,9 @@ era5_fp_pre = server_fp / era5_fp / Path("total_precipitation")
 ```
 ````
 
-2. **Use data from "the cloud"**: both Google and Amazon host lots of climate data in the cloud. Example scripts will include an option to ```LOAD_FROM_CLOUD```. To use data from the cloud, you'll have to install the following packages: ```gcsfs```, ```s3fs```, and ```intake-esm```. You can install them with ```mamba``` using:
+2. **Use data from "the cloud"**: both Google and Amazon host lots of climate data in the cloud. Example scripts will include an option to ```LOAD_FROM_CLOUD```. To use data from the cloud, you'll have to install the following packages: ```gcsfs```, ```zarr```, ```s3fs```, and ```intake-esm```. You can install them with ```mamba``` using:
 ```
-mamba install -n my_new_env -c conda-forge gcsfs s3fs intake-esm
+mamba install -n my_new_env -c conda-forge gcsfs zarr s3fs intake-esm
 ```
 where ```my_new_env``` is the name of your virtual environment.
 

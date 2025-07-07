@@ -873,9 +873,9 @@ document.write(`
 <p class="admonition-title">Warning</p>
 <p>CMIP server errors
 The CMIP server seems unable to handle multiple users access the same file at once (e.g., during the actual tutorial session). If you get a mysterious error when trying to load data from the server (e.g., <code class="docutils literal notranslate"><span class="pre">NetCDF:</span> <span class="pre">HDF</span> <span class="pre">error</span></code>), try loading the data from the cloud instead (i.e., set <code class="docutils literal notranslate"><span class="pre">LOAD_FROM_CLOUD</span> <span class="pre">=</span> <span class="pre">True</span></code> in the code cell below).</p>
-<p>In order to load data from Google Cloud storage, you need to install the <a class="reference external" href="https://gcsfs.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">gcsfs</span></code> package</a>:<br />
-<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">gcsfs</span></code>, or<br />
-<code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">gcsfs</span></code></p>
+<p>In order to load data from Google Cloud storage, you need to install the <a class="reference external" href="https://gcsfs.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">gcsfs</span></code></a> and <code class="docutils literal notranslate"><span class="pre">zarr</span></code> packages:<br />
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">gcsfs</span> <span class="pre">zarr</span></code>, or<br />
+<code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">gcsfs</span> <span class="pre">zarr</span></code></p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
