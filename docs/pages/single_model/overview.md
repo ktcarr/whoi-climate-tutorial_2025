@@ -6,9 +6,17 @@ In the first two tutorials, we (i) analyzed the variability of a climate index i
 
 ## Goal for tutorial 
 
-To look at projected changes this, we're going to use a CESM simulation forced with the RCP8.5 protocol[^1], which spans the simulated years 2006 to 2080 (the corresponding "historical" simulation spans the years 1920-2006). The goal is to estimate the "forced component" of our climate index (in practice, the trend over time) and assess its statistical significance.
+To look at projected changes this, we're going to use a CESM simulation forced with the RCP8.5 protocol$^{1}$, which spans the simulated years 2006 to 2080 (the corresponding "historical" simulation spans the years 1920-2006). The goal is to estimate the "forced component" of our climate index (in practice, the trend over time) and assess its statistical significance. Next time, we'll look at a more robust method of estimating the forced component (averaging over an ensemble of simulations, each with the same external forcing).
 
-[^1]"RCP" stands for "representative concentration pathway"; the number references a 8.5 $W/m^2$ radiative forcing. RCP8.5 was the "worst-case" emissions scenario used in CMIP5.
+### To-do list
+1. **Load data** for (i) the historical period and (ii) the future scenario. In the example below, we'll use output from a CESM1 simulation that was forced with CMIP5-era emissions. The historical component spans 1920-2006 and the future component (forced with the RCP8.5 protocol) spans from 2006 onwards$^{2}$.
+2. **Compute an index** of your choice on the data (for both historical and future).
+3. **Estimate the long-term trend**: note the data may not follow a linear trend (see example below).
+4. **Plot the spatial pattern of warming**: e.g., plot a difference between (i) average over last 30 years and (ii) average over first 30 years; alternatively, plot spatial pattern of trend coefficients.
+5. **Assess robustness of the change**: E.g., overlay histograms of your index from the last 30 years and the first 30 years. How robust is the warming signal?
+
+$^{\mathbf{1}}$"RCP" stands for "representative concentration pathway"; the number references a 8.5 $W/m^2$ radiative forcing. RCP8.5 was the "worst-case" emissions scenario used in CMIP5.  
+$^{\mathbf{2}}$As a default, data loaded from the server will be 2-meter atmospheric surface temperature from CMIP6 (the variable is called "TREFHT"), where the future scenario is SSP5-8.5, and the cutoff between historical and future periods is 2014.
 
 
 
@@ -50,15 +58,6 @@ name: pdfs-anom
 ---
 Same as Figure 3, but after removing quadratic trend from both indices (and including data from all seasons, not just SON).
 ```
-
-
-## To-dos
-0. Run the example.
-1. Adapt example to look at trend / internal variability in a different region and/or using a different variable (see example for details about where to make these changes).
-2. Re-run the analyses using your index.
-
-### Advanced (optional)
-1. Compute linear trend at each grid point (e.g., for period 2006-2080, when the warming signal looks more linear in Figure 1). Then, plot the slope of each linear trend as a spatial map (as in Fig 2).
 
 
 ### References
