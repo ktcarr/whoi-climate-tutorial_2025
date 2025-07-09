@@ -57,9 +57,13 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'pages/model_validation/overview';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Example" href="example.html" />
+    <link rel="prev" title="Example" href="../data_analysis/example.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,7 +181,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../setup/setup.html">0) Setup</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1yKFb-_fa_Z-WPbMJax3rHNFw9lOVioPsFmkPtsnXynI/edit?usp=sharing">Slides</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup/setup_venv.html">Python / virtual environment</a></li>
@@ -191,6 +193,11 @@
 <li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1bwNsn7P8J24s__1svavDL2vwk0QB2eK0PjDc0EKwnMU/edit?usp=sharing">Slides</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../data_analysis/setup-changes.html">Set-up changes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../data_analysis/example.html">Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">2) Model validation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1pOMZBwi7BtkkiM8KvIcDS0DyyNMhudgcL7nRoUsCRso/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example.html">Example</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../single_model/overview.html">3) Single-model climate-change</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -392,7 +399,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -408,6 +417,23 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-of-lecture">Recap of lecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-for-tutorial">Goal for tutorial</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#to-do-list">To-do list</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-cesm-s-biased-representation-of-woods-hole-sst">Example: CESM’s biased representation of Woods Hole SST</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -419,7 +445,81 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="model-validation">
 <h1>2) Model validation<a class="headerlink" href="#model-validation" title="Link to this heading">#</a></h1>
-<p>The goal of this tutorial is to learn how to assess or “diagnose” climate variability from a set of observations, reanalysis data, or climate model output. In practice, this means computing the statistics for a given variable (e.g., temperature in Woods Hole) over a given time period. In the tutorial, we’ll start by going through an example together, assessing temperature variability in Woods Hole, based on model output from the CESM2 climate model. Then, you’ll pick a region/variable and do the same type of analysis. This will lead directly into the first assignment, where you’ll evaluate how well the CESM model represents climate variability in your specific region (“model validation”).</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<section id="recap-of-lecture">
+<h3>Recap of lecture<a class="headerlink" href="#recap-of-lecture" title="Link to this heading">#</a></h3>
+<p>Today in lecture, we discussed climate models and their assessment. Climate models have been developed painstakingly over decades, and are a cornerstone of climate science. For example, they are how the scientific community makes projections about future climate change (e.g., “if we continue emitting <span class="math notranslate nohighlight">\(CO_2\)</span> at the current rate, how much will global temperatures rise in the next 50 years”?).</p>
+<p>Climate models are also very computationally expensive to run, necessitating that they use a relatively “coarse” spatial resolution (distance between gridcells). For example, the width of a gridcell in CESM2 is on the order of 100 km, approximately the distance from Boston to Woods Hole. This means that, from the perspective of CESM2, Boston and Woods Hole – and everywhere in between – have exactly the same conditions at all times. If you’ve ever driven into a wall of fog crossing the Cape Cod canal (going from Boston to Woods Hole), you know this isn’t true (another example: today, on July 8, 2025, the temperaure high was 35<span class="math notranslate nohighlight">\(^{\circ}\)</span>C in Boston and 26<span class="math notranslate nohighlight">\(^{\circ}\)</span>C in Woods Hole).</p>
+<figure class="align-default" id="validation-cesm2-cell">
+<a class="reference internal image-reference" href="../../_images/cesm2-cell.png"><img alt="../../_images/cesm2-cell.png" src="../../_images/cesm2-cell.png" style="height: 250px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">The CESM2 gridcell (black outline) which encompasses Woods hole and Boston.</span><a class="headerlink" href="#validation-cesm2-cell" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>While this coarse spatial resolution clearly degrades climate models’ ability to simulate small-scale processes, it also degrades their ability to simulate <em>large-scale</em> features. This is because in the real world, the small-scale processes “within the gridcells” (i.e., those <em>not</em> simulated by the model) impact the large-scale features. In practice, this means that the large-scale climate simulated by the model looks different than the observed climate (e.g., the mean temperature is too high/low).</p>
+<p>Owing to these deficiencies, we typically assess a climate model’s ability to simulate the current climate before using it to project future changes. One way to do this assessment is to compare the statistics between the climate model’s simulation and observations (or a reanalysis product). As discussed in class, some metrics might include: mean, standard deviation, linear trend (over time), power spectrum, autocorrelation, etc. It’s good to be aware of mismatches between the simulated and observed statistics, and to think about what limitations these mismatches might imply (e.g., “can the model be trusted to simulate future change in a given region”?). While there’s no clear “best” climate model, certain models may simulate certain regions and large-scale features better than others. Note as well that defining “best” is difficult: just because the model’s statistics look “right” doesn’t mean it’s simulating the processes correctly: if the model has compensating errors, it might get the “right answer” for the wrong reason.</p>
+</section>
+<section id="goal-for-tutorial">
+<h3>Goal for tutorial<a class="headerlink" href="#goal-for-tutorial" title="Link to this heading">#</a></h3>
+<p>Today, we’re going to assess the ability of the CESM climate model (Danabasoglu, G. et al., 2020) to represent variability in our index/region. We’ll compare CESM’s statistics to those from ERA5 (a reanalysis product, which we’ll treat as our observational “ground truth”). In the previous tutorial, we defined an index and computed statistics for this index (e.g., linear trend and histogram). Today, we’ll re-compute several of these statistics, for both ERA5 and CESM, and decide whether CESM is a trustworthy model for projecting future changes to this index. Next time, we’ll look at the projected changes.</p>
+<section id="to-do-list">
+<h4>To-do list<a class="headerlink" href="#to-do-list" title="Link to this heading">#</a></h4>
+<ol class="arabic simple" start="0">
+<li><p><strong>Pick a climate index</strong>: we suggest using the same index as last time!</p></li>
+<li><p><strong>Pick some metrics</strong>: In the example, we compare the probability distribution of the index in (i) ERA5 and (ii) CESM2. We also look at differences in the time-mean spatial pattern. Several other useful metrics – also listed above – may include linear trend, power spectrum, and autocorrelation in time.</p></li>
+<li><p><strong>Compute the metrics and make a comparison plot</strong>: e.g., plot the difference between the mean states (the “bias”) or overlay the histograms on a single plot.</p></li>
+<li><p><strong>Make your assessment</strong>: is the model doing a “good” job? Would you trust its future projections in the region you’re looking at? If not, does modifying the index give a better match? (e.g., average over a larger region).</p></li>
+</ol>
+<p>Rather than doing all this from scratch, we suggest adapting <a class="reference internal" href="example.html"><span class="std std-doc">the example</span></a>, discussed below.</p>
+</section>
+</section>
+<section id="example-cesm-s-biased-representation-of-woods-hole-sst">
+<h3>Example: CESM’s biased representation of Woods Hole SST<a class="headerlink" href="#example-cesm-s-biased-representation-of-woods-hole-sst" title="Link to this heading">#</a></h3>
+<p>(see notebook on the <a class="reference internal" href="example.html"><span class="std std-doc">following page</span></a> for code to reproduce results)</p>
+<ol class="arabic simple">
+<li><p>In the CESM climate model, SST near Woods Hole is much warmer than in the real world:</p></li>
+</ol>
+<figure class="align-default" id="validation-timeseries">
+<a class="reference internal image-reference" href="../../_images/timeseries.svg"><img alt="../../_images/timeseries.svg" src="../../_images/timeseries.svg" style="height: 200px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Timeseries of Woods Hole temperature index in ERA5 and the CESM climate model (both averaged over Jul-Aug-Sep for each calendar year).</span><a class="headerlink" href="#validation-timeseries" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>It’s also much less variable (note the tails of the distribution):</p></li>
+</ol>
+<figure class="align-default" id="validation-histogram">
+<a class="reference internal image-reference" href="../../_images/histogram.svg"><img alt="../../_images/histogram.svg" src="../../_images/histogram.svg" style="height: 200px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Histogram of Woods Hole temperature index in ERA5 and CESM (monthly data, taken from all calendar months).</span><a class="headerlink" href="#validation-histogram" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>Interestingly, this large positive bias seems to be a relatively local feature: CESM is <em>too cold</em> over lots of the North Atlantic. Perhaps the cold bias in the eastern equatorial Pacific (west of the Sahara) is related to poor representation of clouds?</p></li>
+</ol>
+<figure class="align-default" id="validation-spatial-bias">
+<a class="reference internal image-reference" href="../../_images/spatial-bias.svg"><img alt="../../_images/spatial-bias.svg" src="../../_images/spatial-bias.svg" style="height: 300px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text"><strong>Mean-state SST bias in CESM</strong>. <strong>Left</strong>: time-mean SST from ERA5, for Jul-Aug-Sep season. <strong>Center</strong>: same as left, but for CESM. <strong>Right</strong>: difference between CESM and ERA5.</span><a class="headerlink" href="#validation-spatial-bias" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<p>Danabasoglu, G. et al. “The Community Earth System Model Version 2 (CESM2)”. <em>J Adv Model Earth Syst</em> 12, e2019MS001916 (2020).</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://docs.google.com/presentation/d/1pOMZBwi7BtkkiM8KvIcDS0DyyNMhudgcL7nRoUsCRso/edit?usp=sharing">Slides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Example</a></li>
+</ul>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -452,12 +552,54 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../data_analysis/example.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Example</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="example.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Example</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-of-lecture">Recap of lecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-for-tutorial">Goal for tutorial</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#to-do-list">To-do list</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-cesm-s-biased-representation-of-woods-hole-sst">Example: CESM’s biased representation of Woods Hole SST</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
@@ -468,7 +610,7 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By Theo Carr
+By Theo Carr & Finn Wimberly
 </p>
 
   </div>
