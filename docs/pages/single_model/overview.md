@@ -16,7 +16,7 @@ To look at projected changes this, we're going to use a CESM simulation forced w
 5. **Assess robustness of the change**: E.g., overlay histograms of your index from the last 30 years and the first 30 years. How robust is the warming signal?
 
 $^{\mathbf{1}}$"RCP" stands for "representative concentration pathway"; the number references a 8.5 $W/m^2$ radiative forcing. RCP8.5 was the "worst-case" emissions scenario used in CMIP5.  
-$^{\mathbf{2}}$As a default, data loaded from the server will be 2-meter atmospheric surface temperature from CMIP6 (the variable is called "TREFHT"), where the future scenario is SSP5-8.5, and the cutoff between historical and future periods is 2014.
+$^{\mathbf{2}}$As a default, data loaded from the server will be 2-meter atmospheric surface temperature from CMIP6 (the variable is called "TREFHT"), where the future scenario is SSP3-7.0, and the cutoff between historical and future periods is 2014.
 
 
 
