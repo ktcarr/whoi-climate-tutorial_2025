@@ -201,6 +201,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">3) Single-model climate-change</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1W0gHDGQoarfeodf-VUkXuN2tNRnU3pRR_PxaNXpYGKM/edit?usp=sharing">Slides</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example.html">Example</a></li>
 </ul>
 </details></li>
@@ -423,10 +424,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap">Recap</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-for-tutorial">Goal for tutorial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-woods-hole-and-the-north-atlantic-warming-hole">Example: Woods Hole and the North Atlantic “warming hole”</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-dos">To-dos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-optional">Advanced (optional)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-for-tutorial">Goal for tutorial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#to-do-list">To-do list</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-woods-hole-and-the-north-atlantic-warming-hole">Example: Woods Hole and the North Atlantic “warming hole”</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
 </li>
@@ -449,8 +451,19 @@ document.write(`
 </section>
 <section id="goal-for-tutorial">
 <h2>Goal for tutorial<a class="headerlink" href="#goal-for-tutorial" title="Link to this heading">#</a></h2>
-<p>To look at projected changes this, we’re going to use a CESM simulation forced with the RCP8.5 protocol[^1], which spans the simulated years 2006 to 2080 (the corresponding “historical” simulation spans the years 1920-2006). The goal is to estimate the “forced component” of our climate index (in practice, the trend over time) and assess its statistical significance.</p>
-<p>[^1]”RCP” stands for “representative concentration pathway”; the number references a 8.5 <span class="math notranslate nohighlight">\(W/m^2\)</span> radiative forcing. RCP8.5 was the “worst-case” emissions scenario used in CMIP5.</p>
+<p>To look at projected changes this, we’re going to use a CESM simulation forced with the RCP8.5 protocol<span class="math notranslate nohighlight">\(^{1}\)</span>, which spans the simulated years 2006 to 2080 (the corresponding “historical” simulation spans the years 1920-2006). The goal is to estimate the “forced component” of our climate index (in practice, the trend over time) and assess its statistical significance. Next time, we’ll look at a more robust method of estimating the forced component (averaging over an ensemble of simulations, each with the same external forcing).</p>
+<section id="to-do-list">
+<h3>To-do list<a class="headerlink" href="#to-do-list" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Load data</strong> for (i) the historical period and (ii) the future scenario. In the example below, we’ll use output from a CESM1 simulation that was forced with CMIP5-era emissions. The historical component spans 1920-2006 and the future component (forced with the RCP8.5 protocol) spans from 2006 onwards<span class="math notranslate nohighlight">\(^{2}\)</span>.</p></li>
+<li><p><strong>Compute an index</strong> of your choice on the data (for both historical and future).</p></li>
+<li><p><strong>Estimate the long-term trend</strong>: note the data may not follow a linear trend (see example below).</p></li>
+<li><p><strong>Plot the spatial pattern of warming</strong>: e.g., plot a difference between (i) average over last 30 years and (ii) average over first 30 years; alternatively, plot spatial pattern of trend coefficients.</p></li>
+<li><p><strong>Assess robustness of the change</strong>: E.g., overlay histograms of your index from the last 30 years and the first 30 years. How robust is the warming signal?</p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(^{\mathbf{1}}\)</span>”RCP” stands for “representative concentration pathway”; the number references a 8.5 <span class="math notranslate nohighlight">\(W/m^2\)</span> radiative forcing. RCP8.5 was the “worst-case” emissions scenario used in CMIP5.<br />
+<span class="math notranslate nohighlight">\(^{\mathbf{2}}\)</span>As a default, data loaded from the server will be 2-meter atmospheric surface temperature from CMIP6 (the variable is called “TREFHT”), where the future scenario is SSP3-7.0, and the cutoff between historical and future periods is 2014.</p>
+</section>
 </section>
 <section id="example-woods-hole-and-the-north-atlantic-warming-hole">
 <h2>Example: Woods Hole and the North Atlantic “warming hole”<a class="headerlink" href="#example-woods-hole-and-the-north-atlantic-warming-hole" title="Link to this heading">#</a></h2>
@@ -495,25 +508,12 @@ document.write(`
 <p><span class="caption-number">Fig. 11 </span><span class="caption-text">Same as Figure 3, but after removing quadratic trend from both indices (and including data from all seasons, not just SON).</span><a class="headerlink" href="#pdfs-anom" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-</section>
-<section id="to-dos">
-<h2>To-dos<a class="headerlink" href="#to-dos" title="Link to this heading">#</a></h2>
-<ol class="arabic simple" start="0">
-<li><p>Run the example.</p></li>
-<li><p>Adapt example to look at trend / internal variability in a different region and/or using a different variable (see example for details about where to make these changes).</p></li>
-<li><p>Re-run the analyses using your index.</p></li>
-</ol>
-<section id="advanced-optional">
-<h3>Advanced (optional)<a class="headerlink" href="#advanced-optional" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p>Compute linear trend at each grid point (e.g., for period 2006-2080, when the warming signal looks more linear in Figure 1). Then, plot the slope of each linear trend as a spatial map (as in Fig 2).</p></li>
-</ol>
-</section>
 <section id="references">
 <h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
 <p>Keil, P. et al. “Multiple drivers of the North Atlantic warming hole.” <em>Nat. Clim. Chang. 10</em>, 667–671 (2020).</p>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference external" href="https://docs.google.com/presentation/d/1W0gHDGQoarfeodf-VUkXuN2tNRnU3pRR_PxaNXpYGKM/edit?usp=sharing">Slides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Example</a></li>
 </ul>
 </div>
@@ -586,10 +586,11 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap">Recap</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-for-tutorial">Goal for tutorial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-woods-hole-and-the-north-atlantic-warming-hole">Example: Woods Hole and the North Atlantic “warming hole”</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-dos">To-dos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-optional">Advanced (optional)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-for-tutorial">Goal for tutorial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#to-do-list">To-do list</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-woods-hole-and-the-north-atlantic-warming-hole">Example: Woods Hole and the North Atlantic “warming hole”</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
 </li>
