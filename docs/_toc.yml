@@ -17,9 +17,11 @@ chapters:
     title: Slides
   - file: pages/data_analysis/setup-changes.md
   - file: pages/data_analysis/example.ipynb
-# - file: pages/model_validation/overview
-#   sections:
-#   - file: pages/model_validation/model_validation_stub.ipynb
+- file: pages/model_validation/overview.md
+  sections:
+  - url: https://docs.google.com/presentation/d/1pOMZBwi7BtkkiM8KvIcDS0DyyNMhudgcL7nRoUsCRso/edit?usp=sharing
+    title: Slides
+  - file: pages/model_validation/example.ipynb
 - file: pages/single_model/overview
   sections:
   - file: pages/single_model/example.ipynb
