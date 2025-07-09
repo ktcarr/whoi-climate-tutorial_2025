@@ -67,16 +67,5 @@ name: validation_spatial-bias
 Danabasoglu, G. et al. "The Community Earth System Model Version 2 (CESM2)". *J Adv Model Earth Syst* 12, e2019MS001916 (2020).
 
 
-
-
 ```{tableofcontents}
 ```
-
-
-
-
-
-```{tableofcontents}
-```
-
-
