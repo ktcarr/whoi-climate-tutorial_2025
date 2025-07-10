@@ -57,11 +57,9 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'pages/single_model/example';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pages/load/example_Windows';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="4) Single-model ensemble" href="../single_model_ensemble/overview.html" />
-    <link rel="prev" title="3) Single-model climate-change" href="overview.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,6 +122,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,7 +179,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../setup/setup.html">0) Setup</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1yKFb-_fa_Z-WPbMJax3rHNFw9lOVioPsFmkPtsnXynI/edit?usp=sharing">Slides</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup/setup_venv.html">Python / virtual environment</a></li>
@@ -198,9 +198,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../model_validation/example.html">Example</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="overview.html">3) Single-model climate-change</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../single_model/overview.html">3) Single-model climate-change</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1W0gHDGQoarfeodf-VUkXuN2tNRnU3pRR_PxaNXpYGKM/edit?usp=sharing">Slides</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../single_model/example.html">Example</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../single_model_ensemble/overview.html">4) Single-model ensemble</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -280,7 +280,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/ktcarr/whoi-climate-tutorial_2025/blob/main/docs/pages/single_model/example.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/ktcarr/whoi-climate-tutorial_2025/blob/main/docs/pages/load/example_Windows.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -328,7 +328,7 @@
       
       
       
-      <li><a href="https://github.com/ktcarr/whoi-climate-tutorial_2025/issues/new?title=Issue%20on%20page%20%2Fpages/single_model/example.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ktcarr/whoi-climate-tutorial_2025/issues/new?title=Issue%20on%20page%20%2Fpages/load/example_Windows.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -358,7 +358,7 @@
       
       
       
-      <li><a href="../../_sources/pages/single_model/example.ipynb" target="_blank"
+      <li><a href="../../_sources/pages/load/example_Windows.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -503,7 +503,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="example">
 <h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
 <p>In this example, we’ll use a single ensemble member from CESM1-LE to diagnose the forced response to external forcing near Woods Hole.<br />
-<a class="reference download internal" download="" href="../../_downloads/73b6745285519f06b1b60778ac8b70fa/example.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">notebook</span></code></a></p>
+<code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">notebook</span></code></p>
 <section id="imports">
 <h2>Imports<a class="headerlink" href="#imports" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -959,23 +959,18 @@ document.write(`
 <div class="admonition-set-filepaths-to-data admonition">
 <p class="admonition-title">Set filepaths to data</p>
 <p>In previous tutorials we directed you to update <code class="docutils literal notranslate"><span class="pre">SERVER_FP</span></code> and hard-coded the rest of the filepath inside of the functions above. This was a mistake and made it hard for Windows users to find the data: we thought everything in the filepath <em>after</em> <code class="docutils literal notranslate"><span class="pre">SERVER_FP</span></code> was the same for Mac and Windows users; it’s not (thanks to those who pointed this out!).</p>
-<p>Until we implement a better solution, we’ve updated the data-loading functions to take in a more complete filepath to the data. Mac users shouldn’t have to change anything. Windows users: see the commented-out filepaths below (thank you, Josh Rehlinghaus!).</p>
-<p><strong>To-do</strong>: Update the filepaths <code class="docutils literal notranslate"><span class="pre">LENS_FP</span></code> and <code class="docutils literal notranslate"><span class="pre">LSM_FP</span></code> in the code cell below. These represent the file paths to (i) CESM large ensemble data (<code class="docutils literal notranslate"><span class="pre">LENS_FP</span></code>) and (ii) land-sea mask from ERA5 (<code class="docutils literal notranslate"><span class="pre">LSM_FP</span></code>).</p>
+<p>Until we implement a better solution, we’ve updated the data-loading functions to take in a more complete filepath to the data. Mac users shouldn’t have to change anything. Windows users: please tell us the correct path, and we’ll update the code for next week!</p>
+<p><strong>To-do</strong>: Update the filepaths <code class="docutils literal notranslate"><span class="pre">LENS_FP</span></code> and <code class="docutils literal notranslate"><span class="pre">LSM_FP</span></code> in the code cell below.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### Mac</span>
-<span class="n">LENS_FP</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/Volumes/cmip6/data/cmip6/CMIP/NCAR/LENS&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## specify file paths to (i) CESM large ensemble data and (ii) land-sea mask from ERA5</span>
+<span class="c1">##if you installed the cmip6 under a different drive, change the Z: to another letter</span>
+<span class="c1">#for Mac users: instead of the Z: put &quot;/Volumes/cmip6/...&quot;</span>
+<span class="n">LENS_FP</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;Z:/data/cmip6/CMIP/NCAR/LENS&quot;</span><span class="p">)</span>
 <span class="n">LSM_FP</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span>
-    <span class="s2">&quot;/Volumes/cmip6/data/era5/reanalysis/single-levels/monthly-means/land_sea_mask/2020_land_sea_mask.nc&quot;</span>
+    <span class="s2">&quot;Z:/data/era5/reanalysis/single-levels/monthly-means/land_sea_mask/2020_land_sea_mask.nc&quot;</span>
 <span class="p">)</span>
-
-<span class="c1">#### Windows</span>
-<span class="c1">## if you installed the cmip6 under a different drive, change the Z: to another letter</span>
-<span class="c1"># LENS_FP = pathlib.Path(&quot;Z:/data/cmip6/CMIP/NCAR/LENS&quot;)</span>
-<span class="c1"># LSM_FP = pathlib.Path(</span>
-<span class="c1">#     &quot;Z:/data/era5/reanalysis/single-levels/monthly-means/land_sea_mask/2020_land_sea_mask.nc&quot;</span>
-<span class="c1"># )</span>
 </pre></div>
 </div>
 </div>
@@ -997,16 +992,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LENS directory exists? True
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LENS directory exists? False
 
 Contents:
-/Volumes/cmip6/data/cmip6/CMIP/NCAR/LENS/.DS_Store
-/Volumes/cmip6/data/cmip6/CMIP/NCAR/LENS/PSL
-/Volumes/cmip6/data/cmip6/CMIP/NCAR/LENS/SST
-/Volumes/cmip6/data/cmip6/CMIP/NCAR/LENS/diatChl
-/Volumes/cmip6/data/cmip6/CMIP/NCAR/LENS/spChl
 
-LSM file exists? True
+LSM file exists? False
 </pre></div>
 </div>
 </div>
@@ -1063,7 +1053,33 @@ The CMIP server seems unable to handle multiple users access the same file at on
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Elapsed time: 26.3 seconds
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">18</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">data</span> <span class="o">=</span> <span class="n">load_cesm_from_cloud</span><span class="p">(</span><span class="n">varname</span><span class="o">=</span><span class="s2">&quot;TREFHT&quot;</span><span class="p">,</span> <span class="n">load_ssp370</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">shared_args</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">18</span>     <span class="n">data</span> <span class="o">=</span> <span class="n">load_cesm_from_server</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span>         <span class="n">varname</span><span class="o">=</span><span class="s2">&quot;SST&quot;</span><span class="p">,</span> <span class="n">lens_fp</span><span class="o">=</span><span class="n">LENS_FP</span><span class="p">,</span> <span class="n">lsm_fp</span><span class="o">=</span><span class="n">LSM_FP</span><span class="p">,</span> <span class="o">**</span><span class="n">shared_args</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Elapsed time: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+
+<span class="nn">Cell In[2], line 339,</span> in <span class="ni">load_cesm_from_server</span><span class="nt">(lon_range, lat_range, lens_fp, lsm_fp, varname, member_id)</span>
+<span class="g g-Whitespace">    </span><span class="mi">336</span> <span class="n">load_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">lens_fp</span><span class="o">=</span><span class="n">lens_fp</span><span class="p">,</span> <span class="n">varname</span><span class="o">=</span><span class="n">varname</span><span class="p">,</span> <span class="n">member_id</span><span class="o">=</span><span class="n">member_id</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">338</span> <span class="c1">## Load data</span>
+<span class="ne">--&gt; </span><span class="mi">339</span> <span class="n">data_hist</span> <span class="o">=</span> <span class="n">load_simulation</span><span class="p">(</span><span class="n">simulation_type</span><span class="o">=</span><span class="s2">&quot;hist&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">load_kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">340</span> <span class="n">data_rcp</span> <span class="o">=</span> <span class="n">load_simulation</span><span class="p">(</span><span class="n">simulation_type</span><span class="o">=</span><span class="s2">&quot;rcp85&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">load_kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">342</span> <span class="c1">## concatenate in time</span>
+
+<span class="nn">Cell In[2], line 226,</span> in <span class="ni">load_simulation</span><span class="nt">(lens_fp, varname, member_id, simulation_type, preprocess_func)</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not a valid simulation type&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span> <span class="c1">#### 3. open the relevant datasets, applying preprocessing function</span>
+<span class="g g-Whitespace">    </span><span class="mi">224</span> 
+<span class="g g-Whitespace">    </span><span class="mi">225</span> <span class="c1">## filepath to data</span>
+<span class="ne">--&gt; </span><span class="mi">226</span> <span class="n">fp</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data_fp</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">file_pattern</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">228</span> <span class="c1">## load data</span>
+<span class="g g-Whitespace">    </span><span class="mi">229</span> <span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">decode_timedelta</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="ne">IndexError</span>: list index out of range
 </pre></div>
 </div>
 </div>
@@ -1599,7 +1615,7 @@ The CMIP server seems unable to handle multiple users access the same file at on
         },
         kernelOptions: {
             name: "python3",
-            path: "./pages/single_model"
+            path: "./pages/load"
         },
         predefinedOutput: true
     }
@@ -1616,24 +1632,6 @@ The CMIP server seems unable to handle multiple users access the same file at on
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="overview.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">3) Single-model climate-change</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../single_model_ensemble/overview.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">4) Single-model ensemble</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
