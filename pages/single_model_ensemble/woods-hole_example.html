@@ -462,25 +462,24 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-pre-processing-specs">Set pre-processing specs</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-data-but-don-t-load-to-memory">Open data (but don’t load to memory)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#now-load-to-memory-this-is-the-slow-part">Now, load to memory (this is the slow part)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-filepaths">Set filepaths</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-a-sample">Plot a sample</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">Statistics</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-index">Compute index</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#separate-forced-response-from-internal-variability">Separate forced response from internal variability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-warming-rates-in-mar-and-sep">Compare warming rates in Mar and Sep</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#get-smoothed-timeseries-for-mar-sep">Get smoothed timeseries for Mar/Sep</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-timeseries-of-forced-response-for-mar-sep">Plot timeseries of forced response for Mar/Sep</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-histograms-for-early-late-period">Compare histograms for early/late period</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separate-forced-response-from-internal-variability">Separate forced response from internal variability</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-warming-rates-in-mar-and-sep">Compare warming rates in Mar and Sep</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-smoothed-timeseries-for-mar-sep">Get smoothed timeseries for Mar/Sep</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-timeseries-of-forced-response-for-mar-sep">Plot timeseries of forced response for Mar/Sep</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-histograms-for-early-late-period">Compare histograms for early/late period</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-change-in-standard-deviation-spatial-pattern">Look at change in standard deviation (spatial pattern)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-change">Compute change</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-initial-standard-deviation">Plot initial standard deviation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-change">Plot % change</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-change-in-standard-deviation-spatial-pattern">Look at change in standard deviation (spatial pattern)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-change">Compute change</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-initial-standard-deviation">Plot initial standard deviation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-change">Plot % change</a></li>
 </ul>
 </li>
 </ul>
@@ -1008,16 +1007,9 @@ Elapsed time: 0.0 minutes
 </div>
 </div>
 </section>
-<section id="set-filepaths">
-<h3>Set filepaths<a class="headerlink" href="#set-filepaths" title="Link to this heading">#</a></h3>
-</section>
 </section>
 <section id="plot-a-sample">
 <h2>Plot a sample<a class="headerlink" href="#plot-a-sample" title="Link to this heading">#</a></h2>
-<div class="admonition-to-do admonition">
-<p class="admonition-title">To-do</p>
-<p>If you’re not looking at Woods Hole, you may need to adapt the plotting function below (<code class="docutils literal notranslate"><span class="pre">plot_setup_woodshole</span></code>).</p>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## blank canvas</span>
@@ -1051,8 +1043,8 @@ Elapsed time: 0.0 minutes
 </div>
 </div>
 </section>
-<section id="statistics">
-<h2>Statistics<a class="headerlink" href="#statistics" title="Link to this heading">#</a></h2>
+<section id="analysis">
+<h2>Analysis<a class="headerlink" href="#analysis" title="Link to this heading">#</a></h2>
 <section id="compute-index">
 <h3>Compute index<a class="headerlink" href="#compute-index" title="Link to this heading">#</a></h3>
 <div class="admonition-to-do admonition">
@@ -1078,9 +1070,8 @@ Elapsed time: 0.0 minutes
 </div>
 </div>
 </section>
-</section>
 <section id="separate-forced-response-from-internal-variability">
-<h2>Separate forced response from internal variability<a class="headerlink" href="#separate-forced-response-from-internal-variability" title="Link to this heading">#</a></h2>
+<h3>Separate forced response from internal variability<a class="headerlink" href="#separate-forced-response-from-internal-variability" title="Link to this heading">#</a></h3>
 <p>Estimate forced response and internval variability</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1146,9 +1137,9 @@ Elapsed time: 0.0 minutes
 </div>
 </section>
 <section id="compare-warming-rates-in-mar-and-sep">
-<h2>Compare warming rates in Mar and Sep<a class="headerlink" href="#compare-warming-rates-in-mar-and-sep" title="Link to this heading">#</a></h2>
+<h3>Compare warming rates in Mar and Sep<a class="headerlink" href="#compare-warming-rates-in-mar-and-sep" title="Link to this heading">#</a></h3>
 <section id="get-smoothed-timeseries-for-mar-sep">
-<h3>Get smoothed timeseries for Mar/Sep<a class="headerlink" href="#get-smoothed-timeseries-for-mar-sep" title="Link to this heading">#</a></h3>
+<h4>Get smoothed timeseries for Mar/Sep<a class="headerlink" href="#get-smoothed-timeseries-for-mar-sep" title="Link to this heading">#</a></h4>
 <p>Function to do the smoothing</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1193,7 +1184,7 @@ Elapsed time: 0.0 minutes
 </div>
 </section>
 <section id="plot-timeseries-of-forced-response-for-mar-sep">
-<h3>Plot timeseries of forced response for Mar/Sep<a class="headerlink" href="#plot-timeseries-of-forced-response-for-mar-sep" title="Link to this heading">#</a></h3>
+<h4>Plot timeseries of forced response for Mar/Sep<a class="headerlink" href="#plot-timeseries-of-forced-response-for-mar-sep" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## get colors for plot</span>
@@ -1226,7 +1217,7 @@ Elapsed time: 0.0 minutes
 </div>
 </section>
 <section id="compare-histograms-for-early-late-period">
-<h3>Compare histograms for early/late period<a class="headerlink" href="#compare-histograms-for-early-late-period" title="Link to this heading">#</a></h3>
+<h4>Compare histograms for early/late period<a class="headerlink" href="#compare-histograms-for-early-late-period" title="Link to this heading">#</a></h4>
 <p>Function to compute histograms</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1311,9 +1302,9 @@ Elapsed time: 0.0 minutes
 </section>
 </section>
 <section id="look-at-change-in-standard-deviation-spatial-pattern">
-<h2>Look at change in standard deviation (spatial pattern)<a class="headerlink" href="#look-at-change-in-standard-deviation-spatial-pattern" title="Link to this heading">#</a></h2>
+<h3>Look at change in standard deviation (spatial pattern)<a class="headerlink" href="#look-at-change-in-standard-deviation-spatial-pattern" title="Link to this heading">#</a></h3>
 <section id="compute-change">
-<h3>Compute change<a class="headerlink" href="#compute-change" title="Link to this heading">#</a></h3>
+<h4>Compute change<a class="headerlink" href="#compute-change" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## get internval variability signal</span>
@@ -1331,7 +1322,7 @@ Elapsed time: 0.0 minutes
 </div>
 </section>
 <section id="plot-initial-standard-deviation">
-<h3>Plot initial standard deviation<a class="headerlink" href="#plot-initial-standard-deviation" title="Link to this heading">#</a></h3>
+<h4>Plot initial standard deviation<a class="headerlink" href="#plot-initial-standard-deviation" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## blank canvas</span>
@@ -1375,7 +1366,7 @@ Elapsed time: 0.0 minutes
 </div>
 </section>
 <section id="plot-change">
-<h3>Plot % change<a class="headerlink" href="#plot-change" title="Link to this heading">#</a></h3>
+<h4>Plot % change<a class="headerlink" href="#plot-change" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## blank canvas</span>
@@ -1419,6 +1410,7 @@ Elapsed time: 0.0 minutes
 <img alt="../../_images/4729f76298bf4b21019a5092c8646089649ee1721a5c3cc90a2faf13028e9512.png" src="../../_images/4729f76298bf4b21019a5092c8646089649ee1721a5c3cc90a2faf13028e9512.png" />
 </div>
 </div>
+</section>
 </section>
 </section>
 </section>
@@ -1495,25 +1487,24 @@ Elapsed time: 0.0 minutes
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-pre-processing-specs">Set pre-processing specs</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-data-but-don-t-load-to-memory">Open data (but don’t load to memory)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#now-load-to-memory-this-is-the-slow-part">Now, load to memory (this is the slow part)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-filepaths">Set filepaths</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-a-sample">Plot a sample</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">Statistics</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-index">Compute index</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#separate-forced-response-from-internal-variability">Separate forced response from internal variability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-warming-rates-in-mar-and-sep">Compare warming rates in Mar and Sep</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#get-smoothed-timeseries-for-mar-sep">Get smoothed timeseries for Mar/Sep</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-timeseries-of-forced-response-for-mar-sep">Plot timeseries of forced response for Mar/Sep</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-histograms-for-early-late-period">Compare histograms for early/late period</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separate-forced-response-from-internal-variability">Separate forced response from internal variability</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-warming-rates-in-mar-and-sep">Compare warming rates in Mar and Sep</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-smoothed-timeseries-for-mar-sep">Get smoothed timeseries for Mar/Sep</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-timeseries-of-forced-response-for-mar-sep">Plot timeseries of forced response for Mar/Sep</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-histograms-for-early-late-period">Compare histograms for early/late period</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-change-in-standard-deviation-spatial-pattern">Look at change in standard deviation (spatial pattern)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-change">Compute change</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-initial-standard-deviation">Plot initial standard deviation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-change">Plot % change</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-change-in-standard-deviation-spatial-pattern">Look at change in standard deviation (spatial pattern)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-change">Compute change</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-initial-standard-deviation">Plot initial standard deviation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-change">Plot % change</a></li>
 </ul>
 </li>
 </ul>
