@@ -9,7 +9,7 @@ Part | Topic
 1 | [Climate diagnostics](data_analysis/overview.md)
 2 | [Model validation](model_validation/overview.md)
 3 | [Climate change 1/3 (single-model)](single_model/overview.md)
-4 | [Climate change 2/3 (single-model ensemble](single_model_ensemble/overview.md)
+4 | [Climate change 2/3 (single-model ensemble)](single_model_ensemble/overview.md)
 5 | [Climate change 3/3 (inter-model comparison)](intermodel_comp/overview.md)
 6 | [Examples](examples/overview.md)
 
