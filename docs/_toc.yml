@@ -34,6 +34,8 @@ chapters:
   - file: pages/single_model_ensemble/woods-hole_example
 - file: pages/intermodel_comp/overview
   sections:
+  - url: https://docs.google.com/presentation/d/17KwLSRC-Zx9yqM3DLYL8lsvhCjQtQPtFS0Oi-TOx_4s/edit?usp=sharing
+    title: Slides
   - file: pages/intermodel_comp/example.ipynb
 - file: pages/examples/overview
   sections:
