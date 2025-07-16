@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; WHOI Climate Data Tutorial (2025)</title>
+    <title>Demo of loading CMIP data from cloud &#8212; WHOI Climate Data Tutorial (2025)</title>
   
   
   
@@ -209,6 +209,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intermodel_comp/overview.html">5) Intermodel comparison</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/17KwLSRC-Zx9yqM3DLYL8lsvhCjQtQPtFS0Oi-TOx_4s/edit?usp=sharing">Slides</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intermodel_comp/example.html">Intermodel comparison example</a></li>
 </ul>
 </details></li>
@@ -443,7 +444,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Demo of loading CMIP data from cloud</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -452,9 +453,10 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-information-about-data">Load information about data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-data">Open the data</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -465,27 +467,128 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="demo-of-loading-cmip-data-from-cloud">
+<h1>Demo of loading CMIP data from cloud<a class="headerlink" href="#demo-of-loading-cmip-data-from-cloud" title="Link to this heading">#</a></h1>
+<p>Adapted from <a class="reference external" href="https://nbviewer.org/github/pangeo-data/pangeo-cmip6-examples/blob/master/basic_search_and_load.ipynb?source=post_page-----96b177abe396---------------------------------------">Ryan Abernathey’s demo</a>.</p>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from matplotlib import pyplot as plt</span>
-<span class="c1"># import numpy as np</span>
-<span class="c1"># import pandas as pd</span>
-<span class="c1"># import xarray as xr</span>
-<span class="c1"># import zarr</span>
-<span class="c1"># import gcsfs</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zarr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gcsfs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df = pd.read_csv(&#39;https://storage.googleapis.com/cmip6/cmip6-zarr-consolidated-stores.csv&#39;)</span>
-<span class="c1"># df_ta = df.query(&quot;activity_id==&#39;CMIP&#39; &amp; table_id == &#39;Amon&#39; &amp; variable_id == &#39;tas&#39; &amp; experiment_id == &#39;historical&#39;&quot;)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;https://storage.googleapis.com/cmip6/cmip6-zarr-consolidated-stores.csv&quot;</span>
+<span class="p">)</span>
+<span class="n">df_ta</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+    <span class="s2">&quot;activity_id==&#39;CMIP&#39; &amp; table_id == &#39;Amon&#39; &amp; variable_id == &#39;tas&#39; &amp; experiment_id == &#39;historical&#39; &amp; member_id == &#39;r1i1p1f1&#39;&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://nbviewer.org/github/pangeo-data/pangeo-cmip6-examples/blob/master/basic_search_and_load.ipynb?source=post_page-----96b177abe396---------------------------------------">link</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_subset</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+    <span class="s2">&quot;activity_id==&#39;CMIP&#39; &amp; table_id == &#39;Omon&#39; &amp; variable_id == &#39;tos&#39; &amp; experiment_id == &#39;1pctCO2&#39; &amp; member_id == &#39;r1i1p1f1&#39;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="load-information-about-data">
+<h2>Load information about data<a class="headerlink" href="#load-information-about-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Open CSV file with information about available data</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;https://storage.googleapis.com/cmip6/cmip6-zarr-consolidated-stores.csv&quot;</span>
+<span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done loading model information.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Elapsed time: </span><span class="si">{</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+
+<span class="c1">## subset for the data we want</span>
+<span class="n">df_subset</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+    <span class="s2">&quot;activity_id==&#39;CMIP&#39; &amp; table_id == &#39;Omon&#39; &amp; variable_id == &#39;tos&#39; &amp; experiment_id == &#39;1pctCO2&#39; &amp; member_id == &#39;r1i1p1f1&#39;&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">## list of models</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;NCAR&quot;</span><span class="p">,</span> <span class="s2">&quot;CESM2&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;NCAR&quot;</span><span class="p">,</span> <span class="s2">&quot;CESM2-WACCM&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;CSIRO&quot;</span><span class="p">,</span> <span class="s2">&quot;ACCESS-ESM1-5&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;MIROC&quot;</span><span class="p">,</span> <span class="s2">&quot;MIROC6&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;MPI-M&quot;</span><span class="p">,</span> <span class="s2">&quot;MPI-ESM1-2-LR&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;IPSL&quot;</span><span class="p">,</span> <span class="s2">&quot;IPSL-CM6A-LR&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;NASA-GISS&quot;</span><span class="p">,</span> <span class="s2">&quot;GISS-E2-2-G&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="n">models_</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
+
+<span class="c1">## subset for models</span>
+<span class="n">df_models</span> <span class="o">=</span> <span class="n">df_subset</span><span class="p">[</span><span class="n">df_subset</span><span class="p">[</span><span class="s2">&quot;source_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">models_</span><span class="p">)]</span>
+
+<span class="c1">## get models on native grid</span>
+<span class="n">df_models</span> <span class="o">=</span> <span class="n">df_models</span><span class="p">[</span><span class="n">df_models</span><span class="p">[</span><span class="s2">&quot;grid_label&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;gn&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done loading model information.
+Elapsed time: 0.1 seconds
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">link</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">link</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">df_models</span><span class="p">[</span><span class="s2">&quot;source_id&quot;</span><span class="p">],</span> <span class="n">df_models</span><span class="p">[</span><span class="s2">&quot;zstore&quot;</span><span class="p">])}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;IPSL-CM6A-LR&#39;: &#39;gs://cmip6/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/1pctCO2/r1i1p1f1/Omon/tos/gn/v20180727/&#39;,
+ &#39;MIROC6&#39;: &#39;gs://cmip6/CMIP6/CMIP/MIROC/MIROC6/1pctCO2/r1i1p1f1/Omon/tos/gn/v20181212/&#39;,
+ &#39;CESM2&#39;: &#39;gs://cmip6/CMIP6/CMIP/NCAR/CESM2/1pctCO2/r1i1p1f1/Omon/tos/gn/v20190425/&#39;,
+ &#39;CESM2-WACCM&#39;: &#39;gs://cmip6/CMIP6/CMIP/NCAR/CESM2-WACCM/1pctCO2/r1i1p1f1/Omon/tos/gn/v20190425/&#39;,
+ &#39;MPI-ESM1-2-LR&#39;: &#39;gs://cmip6/CMIP6/CMIP/MPI-M/MPI-ESM1-2-LR/1pctCO2/r1i1p1f1/Omon/tos/gn/v20190710/&#39;,
+ &#39;ACCESS-ESM1-5&#39;: &#39;gs://cmip6/CMIP6/CMIP/CSIRO/ACCESS-ESM1-5/1pctCO2/r1i1p1f1/Omon/tos/gn/v20191115/&#39;,
+ &#39;GISS-E2-2-G&#39;: &#39;gs://cmip6/CMIP6/CMIP/NASA-GISS/GISS-E2-2-G/1pctCO2/r1i1p1f1/Omon/tos/gn/v20191120/&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="open-the-data">
+<h2>Open the data<a class="headerlink" href="#open-the-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this only needs to be created once</span>
+<span class="n">gcs</span> <span class="o">=</span> <span class="n">gcsfs</span><span class="o">.</span><span class="n">GCSFileSystem</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s2">&quot;anon&quot;</span><span class="p">)</span>
+
+<span class="c1"># get the path to a specific zarr store (the first one from the dataframe above)</span>
+<span class="n">zstore</span> <span class="o">=</span> <span class="n">df_models</span><span class="o">.</span><span class="n">zstore</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># create a mutable-mapping-style interface to the store</span>
+<span class="n">mapper</span> <span class="o">=</span> <span class="n">gcs</span><span class="o">.</span><span class="n">get_mapper</span><span class="p">(</span><span class="n">zstore</span><span class="p">)</span>
+
+<span class="c1"># open it using xarray and zarr</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_zarr</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">consolidated</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -532,9 +635,10 @@ document.write(`
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-information-about-data">Load information about data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-data">Open the data</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
