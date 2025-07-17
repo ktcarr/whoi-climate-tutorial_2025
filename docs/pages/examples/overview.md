@@ -1,4 +1,4 @@
-# 6) Examples 
+# 6) Example: Azores High expansion
 
 __The goal__:  We're going to (loosely) reproduce results from Cresswell-Clay et al. (2022){sup}`1` from scratch, using data stored on WHOI's CMIP server. 
 
@@ -13,8 +13,8 @@ __Why does it expansion matter?__ One reason: high pressure is associated with d
 __What are we going to do?__ We're going to reproduce versions of Figs. 1, 2c, and 3d-e, from scratch (the authors' original code is also available online{sup}`3`). The goal is to provide a practical example of how to use reanalysis and climate model output to answer questions about climate. 
 
 __References__  
-{sup}`1`Cresswell-Clay, N. et al. (2022). "Twentieth-century Azores High expansion unprecedented in the past 1,200 years". *Nat. Geosci.* 15, 548–553.   
-{sup}`2`Thatcher, D. L. et al. (2023) "Iberian hydroclimate variability and the Azores High during the last 1200 years: evidence from proxy records and climate model simulations". *Clim Dyn* 60, 2365–2387.  
+{sup}`1`[Cresswell-Clay, N. et al. (2022)](https://www.nature.com/articles/s41561-022-00971-w). "Twentieth-century Azores High expansion unprecedented in the past 1,200 years". *Nat. Geosci.* 15, 548–553.   
+{sup}`2`[Thatcher, D. L. et al. (2023)](https://link.springer.com/article/10.1007/s00382-022-06427-6). "Iberian hydroclimate variability and the Azores High during the last 1200 years: evidence from proxy records and climate model simulations". *Clim Dyn* 60, 2365–2387.  
 {sup}`3`https://github.com/nathanielcresswellclay/AzoresHighExpansion/tree/main
 
 

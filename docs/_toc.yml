@@ -39,7 +39,7 @@ chapters:
   - file: pages/intermodel_comp/example.ipynb
 - file: pages/examples/overview
   sections:
-  - url: https://docs.google.com/presentation/d/1bAFB9mO22WYc6El3nojJgDyJqpis6xx5XXz0Tj2rMbI/edit?usp=sharing
+  - url: https://docs.google.com/presentation/d/1b-X6BYHCtjjcUWR_IWGgde3HpCCkrTAmHVNXbAGqqKQ/edit?usp=sharing
     title: Slides
   - file: pages/examples/azores_prep.ipynb
   - file: pages/examples/azores_analysis.ipynb
