@@ -60,6 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'pages/resources/data-links';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Xarray reference" href="xarray_reference.html" />
+    <link rel="prev" title="Resources" href="resources.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,7 +179,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../setup/setup.html">0) Setup</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference external" href="https://docs.google.com/presentation/d/1yKFb-_fa_Z-WPbMJax3rHNFw9lOVioPsFmkPtsnXynI/edit?usp=sharing">Slides</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup/setup_venv.html">Python / virtual environment</a></li>
@@ -219,13 +219,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../examples/azores_analysis.html">Azores high: analysis</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="resources.html">Resources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="FAQ.html">FAQ</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="resources.html">Resources</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Data links</a></li>
 <li class="toctree-l2"><a class="reference internal" href="xarray_reference.html">Xarray reference</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_basics.html">Git basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eofs.html">Intro to EOFs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ersst_cloud.html">Accessing ERSST on the cloud</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cesm_cloud.html">Accessing CESM2-LENS on the cloud</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup_hpc.html">High-performance computing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html">FAQ</a></li>
 </ul>
 </details></li>
 </ul>
@@ -423,7 +425,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observational-reanalysis-climate-data">Observational/reanalysis climate data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-observational-reanalysis-climate-datasets">List of observational/reanalysis climate datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-useful-resources">Other useful resources</a></li>
 </ul>
             </nav>
         </div>
@@ -437,8 +440,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-links">
 <h1>Data links<a class="headerlink" href="#data-links" title="Link to this heading">#</a></h1>
-<section id="observational-reanalysis-climate-data">
-<h2>Observational/reanalysis climate data<a class="headerlink" href="#observational-reanalysis-climate-data" title="Link to this heading">#</a></h2>
+<section id="list-of-observational-reanalysis-climate-datasets">
+<h2>List of observational/reanalysis climate datasets<a class="headerlink" href="#list-of-observational-reanalysis-climate-datasets" title="Link to this heading">#</a></h2>
 <p>Most of these sites provide access to actual data files (e.g., in NetCDF format). Some also include a web tool to make quick plots and/or subsets of the data.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://www.esrl.noaa.gov/psd/data/gridded/">NOAA PSD gridded climate data sets</a></p></li>
@@ -449,6 +452,13 @@ document.write(`
 <li><p><a class="reference external" href="https://www.metoffice.gov.uk/hadobs/">UK Met Office Hadley Centre observational data sets</a></p></li>
 <li><p><a class="reference external" href="https://app.globus.org/file-manager?origin_id=6b1c030c-af71-4336-b083-8c179f843567&amp;amp;origin_path=%2F">CESM-MARBL-FEISTY</a></p></li>
 <li><p><a class="reference external" href="https://gmao.gsfc.nasa.gov/reanalysis/MERRA-NOBM/data/">MERRA-NOBM (NASA Ocean Biogeochemical Model) Reanalysis</a></p></li>
+</ul>
+</section>
+<section id="other-useful-resources">
+<h2>Other useful resources<a class="headerlink" href="#other-useful-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://climatedataguide.ucar.edu/climate-data/atmospheric-reanalysis-overview-comparison-tables#Summary-of-atmospheric-reanalysis-products">Atmospheric reanalysis overview/comparison</a>: provided by UCAR; scroll down to bottom of page for summary table</p></li>
+<li><p><a class="reference external" href="https://www.cesm.ucar.edu/projects/cvdp/data-repository">Climate Variability and Diagnostics Package (CVDP)</a>: data repository containing summary statistics and pre-computed climate indices (e.g., Niño 3.4, AMOC index, etc) for CMIP models.</p></li>
 </ul>
 </section>
 </section>
@@ -483,6 +493,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="resources.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Resources</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="xarray_reference.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Xarray reference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -499,7 +527,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observational-reanalysis-climate-data">Observational/reanalysis climate data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-observational-reanalysis-climate-datasets">List of observational/reanalysis climate datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-useful-resources">Other useful resources</a></li>
 </ul>
   </nav></div>
 
