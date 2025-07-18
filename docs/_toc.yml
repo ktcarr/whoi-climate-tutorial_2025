@@ -45,11 +45,12 @@ chapters:
   - file: pages/examples/azores_analysis.ipynb
 - file: pages/resources/resources
   sections:
-  - file: pages/resources/FAQ
+  - file: pages/resources/data-links.md 
   - file: pages/resources/xarray_reference
   - file: pages/resources/git_basics
-#   - file: pages/resources/eofs.ipynb
+  - file: pages/resources/eofs.ipynb
   - file: pages/resources/ersst_cloud.ipynb
   - file: pages/resources/cesm_cloud.ipynb
   - file: pages/resources/setup_hpc.md
+  - file: pages/resources/FAQ
 
